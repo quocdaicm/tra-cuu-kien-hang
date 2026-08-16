@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tra cứu kiện hàng</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6f9;color:#17202a;font-family:Arial,sans-serif}
+header{background:#0b5cab;color:white;padding:18px 14px;position:sticky;top:0;z-index:5}
+h1{margin:0 0 5px;font-size:21px}.sub{font-size:13px;opacity:.9}
+.wrap{max-width:1100px;margin:auto;padding:15px}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,select,button{font:inherit;border:1px solid #ccd5df;border-radius:9px;background:white;padding:11px}
+#q{flex:1;min-width:220px}button{cursor:pointer}.primary{background:#0b5cab;color:#fff;border-color:#0b5cab}
+.filters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.stat{background:white;padding:11px;border-radius:10px;text-align:center;box-shadow:0 1px 5px #0001}.stat b{display:block;font-size:20px;color:#0b5cab}.stat span{font-size:11px;color:#667}
+.card{background:white;padding:13px;border-radius:11px;margin-bottom:8px;border-left:5px solid #0b5cab;box-shadow:0 1px 5px #0001}
+.code{font-weight:bold;word-break:break-all}.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.tag{background:#edf4fc;padding:5px 8px;border-radius:7px;font-size:12px}
+.s1{background:#e7f7ec;color:#16743a}.s2{background:#fff1df;color:#a95c00}.none{background:#eee;color:#666}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center}.copy{padding:7px 9px;font-size:12px}
+.help{font-size:12px;color:#667;margin:5px 0 12px}.empty{background:white;padding:35px;text-align:center;border-radius:10px;color:#667}
+#file{display:none}
+@media(max-width:700px){.filters{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header><div style="max-width:1100px;margin:auto">
+<h1>📦 TRA CỨU KIỆN HÀNG</h1><div class="sub">Nhập Excel 5 cột — website tự nhận nhóm, danh mục và vị trí mới</div>
+</div></header>
+<div class="wrap">
+<div class="tools">
+<input id="q" placeholder="🔎 Tìm mã kiện, nhóm, danh mục, vị trí..." oninput="render()">
+<label class="primary" style="padding:11px 13px;border-radius:9px;cursor:pointer">
+📁 Nhập Excel <input id="file" type="file" accept=".xlsx,.xls,.csv" onchange="importExcel(event)">
+</label>
+<button onclick="downloadTemplate()">📥 Tải Excel mẫu</button>
+<button onclick="resetData()">↺ Dữ liệu mẫu</button>
+</div>
+<div class="help">Excel bắt buộc đúng 5 cột: <b>Ngày | Mã kiện | Nhóm | Danh mục | Vị trí</b>. Cột mới có giá trị mới sẽ tự xuất hiện trong bộ lọc.</div>
+
+<div class="filters">
+<select id="date" onchange="render()"><option value="">Tất cả ngày</option></select>
+<select id="group" onchange="render()"><option value="">Tất cả nhóm</option></select>
+<select id="category" onchange="render()"><option value="">Tất cả danh mục</option></select>
+<select id="loc" onchange="render()"><option value="">Tất cả vị trí</option></select>
+</div>
+
+<div class="stats">
+<div class="stat"><b id="total">0</b><span>Tổng kiện</span></div>
+<div class="stat"><b id="shown">0</b><span>Đang hiển thị</span></div>
+<div class="stat"><b id="groups">0</b><span>Nhóm</span></div>
+<div class="stat"><b id="cats">0</b><span>Danh mục</span></div>
+<div class="stat"><b id="locs">0</b><span>Vị trí</span></div>
+</div>
+<div id="list"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const seed = [{"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0001", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0002", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0003", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0004", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0005", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0006", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0007", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0008", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0009", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0010", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0011", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0012", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0013", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0014", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0015", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0016", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0017", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0018", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0019", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0020", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0021", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0022", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0023", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0024", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0025", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0026", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0027", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0028", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0029", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0030", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0031", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0032", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MPW-GT1-TGO-0033", "group": "MPW", "category": "OM4-DE-IS-0004", "loc": "S1"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0001", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0002", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0003", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0004", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0005", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0006", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0007", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0008", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0009", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0010", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-KOB-0011", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN1-MAR-0001", "group": "MG", "category": "OM4-DE-IS-0005", "loc": "S2"}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0001", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0002", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0003", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0004", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0005", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0006", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0007", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0008", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0009", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0010", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-KOB-0011", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}, {"date": "14/08/2026", "code": "OM4-MG-GEN2-MAR-0001", "group": "MG", "category": "OM4-DE-IS-0005", "loc": ""}];
+let data = JSON.parse(localStorage.getItem("warehouseData") || "null") || seed;
+
+function norm(v){return v===undefined||v===null?"":String(v).trim()}
+function unique(key){return [...new Set(data.map(x=>norm(x[key])).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'vi'))}
+function fill(id, values, current){
+ const el=document.getElementById(id), old=current||el.value;
+ el.innerHTML='<option value="">Tất cả</option>'+values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
+ if(values.includes(old)) el.value=old;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function refreshFilters(){
+ const vals={date:document.getElementById('date').value,group:document.getElementById('group').value,category:document.getElementById('category').value,loc:document.getElementById('loc').value};
+ fill('date',unique('date'),vals.date);fill('group',unique('group'),vals.group);fill('category',unique('category'),vals.category);fill('loc',unique('loc'),vals.loc);
+}
+function render(){
+ refreshFilters();
+ const q=norm(document.getElementById('q').value).toLowerCase();
+ const date=document.getElementById('date').value, group=document.getElementById('group').value, cat=document.getElementById('category').value, loc=document.getElementById('loc').value;
+ const filtered=data.filter(x=>{
+   const hay=[x.date,x.code,x.group,x.category,x.loc].join(' ').toLowerCase();
+   return (!q||hay.includes(q))&&(!date||x.date===date)&&(!group||x.group===group)&&(!cat||x.category===cat)&&(!loc||x.loc===loc);
+ });
+ document.getElementById('total').textContent=data.length;
+ document.getElementById('shown').textContent=filtered.length;
+ document.getElementById('groups').textContent=unique('group').length;
+ document.getElementById('cats').textContent=unique('category').length;
+ document.getElementById('locs').textContent=unique('loc').length;
+ document.getElementById('list').innerHTML=filtered.length?filtered.map((x,i)=>`
+ <div class="card"><div class="row"><div class="code">${i+1}. ${esc(x.code)}</div><button class="copy" onclick="copyCode('${esc(x.code)}')">📋 Copy</button></div>
+ <div class="meta"><span class="tag">📅 ${esc(x.date||'')}</span><span class="tag">👥 ${esc(x.group||'')}</span><span class="tag">📂 ${esc(x.category||'')}</span><span class="tag ${x.loc==='S1'?'s1':x.loc==='S2'?'s2':'none'}">📍 ${esc(x.loc||'Chưa có vị trí')}</span></div></div>`).join(''):'<div class="empty">Không tìm thấy kiện hàng.</div>';
+}
+async function importExcel(e){
+ const file=e.target.files[0]; if(!file)return;
+ try{
+   const buf=await file.arrayBuffer();
+   const wb=XLSX.read(buf,{type:'array',cellDates:true});
+   const ws=wb.Sheets[wb.SheetNames[0]];
+   const rows=XLSX.utils.sheet_to_json(ws,{defval:""});
+   if(!rows.length)throw new Error("File không có dữ liệu.");
+   const keys=Object.keys(rows[0]);
+   const required=["Ngày","Mã kiện","Nhóm","Danh mục","Vị trí"];
+   const missing=required.filter(k=>!keys.includes(k));
+   if(missing.length)throw new Error("Thiếu cột: "+missing.join(", "));
+   const imported=rows.map(r=>({date:formatDate(r["Ngày"]),code:norm(r["Mã kiện"]),group:norm(r["Nhóm"]),category:norm(r["Danh mục"]),loc:norm(r["Vị trí"])})).filter(x=>x.code);
+   if(!imported.length)throw new Error("Không có mã kiện hợp lệ.");
+   data=imported;
+   localStorage.setItem("warehouseData",JSON.stringify(data));
+   document.getElementById('q').value="";
+   render();
+   alert("Đã nhập "+data.length+" kiện hàng.");
+ }catch(err){alert("Không thể nhập Excel: "+err.message)}
+ e.target.value="";
+}
+function formatDate(v){
+ if(v instanceof Date && !isNaN(v)) return String(v.getDate()).padStart(2,'0')+'/'+String(v.getMonth()+1).padStart(2,'0')+'/'+v.getFullYear();
+ if(typeof v==='number'){const d=XLSX.SSF.parse_date_code(v);if(d)return String(d.d).padStart(2,'0')+'/'+String(d.m).padStart(2,'0')+'/'+d.y}
+ return norm(v);
+}
+function copyCode(code){navigator.clipboard?.writeText(code);alert("Đã copy: "+code)}
+function resetData(){if(confirm("Khôi phục dữ liệu mẫu 14/08/2026?")){data=seed;localStorage.setItem("warehouseData",JSON.stringify(data));render()}}
+function downloadTemplate(){const a=document.createElement('a');a.href='Mau_Nhap_Kien_Hang.xlsx';a.download='Mau_Nhap_Kien_Hang.xlsx';a.click()}
+render();
+</script>
+</body></html>
