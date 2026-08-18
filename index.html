@@ -1190,8 +1190,9 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
       <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
         <input id="ghTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
       </label>
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Chọn file Excel</label>
-      <input id="ghFile" type="file" accept=".xlsx,.xls" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:9px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:16px">
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Chọn file Excel (có thể chọn nhiều file cùng lúc)</label>
+      <input id="ghFile" type="file" accept=".xlsx,.xls" multiple onchange="renderGhFileList()" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:9px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px">
+      <div id="ghFileList" style="font-size:11px;color:#708296;margin-bottom:16px"></div>
       <button class="primary" style="width:100%;padding:13px" onclick="doUpload()">⬆️ Tải lên GitHub</button>
       <div id="uploadStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
     </div>
@@ -1441,73 +1442,108 @@ function arrayBufferToBase64(buf){
   }
   return btoa(binary);
 }
+// Hiển thị danh sách tên các file đã chọn (khi tải nhiều file cùng lúc)
+// để người dùng biết chắc mình đã chọn đúng/đủ file trước khi bấm tải lên.
+function renderGhFileList(){
+  const fileInput=document.getElementById("ghFile");
+  const listEl=document.getElementById("ghFileList");
+  const files=fileInput.files;
+  if(!files||!files.length){listEl.textContent="";return;}
+  if(files.length===1){listEl.textContent="Đã chọn: "+files[0].name;return;}
+  listEl.innerHTML="Đã chọn "+files.length+" file: "+
+    Array.from(files).map(f=>escapeHtml(f.name)).join(", ");
+}
+
+// Tải lên GitHub 1 file, trả về sha mới (dùng để log/hiển thị nếu cần).
+async function uploadOneFile(file,token){
+  const path=`${DATA_GITHUB_FOLDER}/${file.name}`;
+  const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${encodeURIComponent(path).replace(/%2F/g,"/")}`;
+
+  // Kiểm tra file đã tồn tại chưa để lấy sha (bắt buộc khi ghi đè)
+  let sha=undefined;
+  const check=await fetch(apiUrl+`?ref=${DATA_GITHUB_BRANCH}`,{
+    headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}
+  });
+  if(check.ok){
+    const info=await check.json();
+    sha=info.sha;
+  }
+
+  const buf=await file.arrayBuffer();
+  const base64Content=arrayBufferToBase64(buf);
+
+  const body={
+    message:(sha?"Cập nhật":"Thêm")+" file "+file.name+" qua web",
+    content:base64Content,
+    branch:DATA_GITHUB_BRANCH
+  };
+  if(sha)body.sha=sha;
+
+  const putRes=await fetch(apiUrl,{
+    method:"PUT",
+    headers:{
+      Authorization:"Bearer "+token,
+      Accept:"application/vnd.github+json",
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(body)
+  });
+
+  if(!putRes.ok){
+    const err=await putRes.json().catch(()=>({}));
+    throw new Error(err.message||("Lỗi HTTP "+putRes.status));
+  }
+}
+
 async function doUpload(){
   const statusEl=document.getElementById("uploadStatus");
   const token=document.getElementById("ghToken").value.trim();
   const fileInput=document.getElementById("ghFile");
-  const file=fileInput.files[0];
+  const files=Array.from(fileInput.files||[]);
   const rememberToken=document.getElementById("ghTokenSave").checked;
 
   if(!token){statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";statusEl.style.color="#c0392b";return;}
-  if(!file){statusEl.textContent="⚠️ Vui lòng chọn file Excel.";statusEl.style.color="#c0392b";return;}
+  if(!files.length){statusEl.textContent="⚠️ Vui lòng chọn ít nhất 1 file Excel.";statusEl.style.color="#c0392b";return;}
 
   if(rememberToken)localStorage.setItem("ghToken",token);
   else localStorage.removeItem("ghToken");
 
-  statusEl.style.color="#536277";
-  statusEl.textContent="⏳ Đang tải lên...";
-
-  try{
-    const path=`${DATA_GITHUB_FOLDER}/${file.name}`;
-    const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${encodeURIComponent(path).replace(/%2F/g,"/")}`;
-
-    // Kiểm tra file đã tồn tại chưa để lấy sha (bắt buộc khi ghi đè)
-    let sha=undefined;
-    const check=await fetch(apiUrl+`?ref=${DATA_GITHUB_BRANCH}`,{
-      headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}
-    });
-    if(check.ok){
-      const info=await check.json();
-      sha=info.sha;
+  // Tải TUẦN TỰ từng file (không tải song song) để tránh xung đột API rate
+  // limit của GitHub và để mỗi file lấy đúng "sha" hiện tại của chính nó
+  // trước khi ghi đè (tải song song có thể làm sha bị lệch giữa các request).
+  const failed=[];
+  let lastSuccessName=null;
+  for(let i=0;i<files.length;i++){
+    const file=files[i];
+    statusEl.style.color="#536277";
+    statusEl.textContent=`⏳ Đang tải lên (${i+1}/${files.length}): ${file.name}...`;
+    try{
+      await uploadOneFile(file,token);
+      lastSuccessName=file.name;
+    }catch(e){
+      failed.push(file.name+": "+e.message);
     }
-
-    const buf=await file.arrayBuffer();
-    const base64Content=arrayBufferToBase64(buf);
-
-    const body={
-      message:(sha?"Cập nhật":"Thêm")+" file "+file.name+" qua web",
-      content:base64Content,
-      branch:DATA_GITHUB_BRANCH
-    };
-    if(sha)body.sha=sha;
-
-    const putRes=await fetch(apiUrl,{
-      method:"PUT",
-      headers:{
-        Authorization:"Bearer "+token,
-        Accept:"application/vnd.github+json",
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(body)
-    });
-
-    if(!putRes.ok){
-      const err=await putRes.json().catch(()=>({}));
-      throw new Error(err.message||("Lỗi HTTP "+putRes.status));
-    }
-
-    statusEl.style.color="#20b77b";
-    statusEl.textContent="✅ Tải lên thành công! Đang tải lại dữ liệu...";
-    fileInput.value="";
-    // Ghi nhớ P/L No. của file vừa tải lên (tên file bỏ đuôi .xlsx/.xls) để
-    // sau khi trang tải lại, danh sách tự động lọc hiển thị đúng các kiện
-    // hàng thuộc P/L này thay vì hiện toàn bộ dữ liệu.
-    localStorage.setItem("justUploadedPL",file.name.replace(/\.(xlsx|xls)$/i,""));
-    setTimeout(()=>window.location.reload(),1400);
-  }catch(e){
-    statusEl.style.color="#c0392b";
-    statusEl.textContent="❌ Lỗi: "+e.message;
   }
+
+  if(failed.length){
+    statusEl.style.color="#c0392b";
+    statusEl.textContent="❌ Lỗi ở "+failed.length+"/"+files.length+" file — "+failed.join(" | ");
+    if(!lastSuccessName)return; // không có file nào thành công, dừng lại, không reload trang
+  }else{
+    statusEl.style.color="#20b77b";
+    statusEl.textContent="✅ Tải lên thành công "+files.length+" file! Đang tải lại dữ liệu...";
+  }
+
+  fileInput.value="";
+  document.getElementById("ghFileList").textContent="";
+  // Ghi nhớ P/L No. của file vừa tải lên (tên file bỏ đuôi .xlsx/.xls) để
+  // sau khi trang tải lại, danh sách tự động lọc hiển thị đúng các kiện
+  // hàng thuộc P/L này thay vì hiện toàn bộ dữ liệu. Khi tải nhiều file,
+  // chỉ còn giữ được P/L của file THÀNH CÔNG CUỐI CÙNG.
+  if(lastSuccessName){
+    localStorage.setItem("justUploadedPL",lastSuccessName.replace(/\.(xlsx|xls)$/i,""));
+  }
+  setTimeout(()=>window.location.reload(),1400);
 }
 
 /* ---------- SỬA / THÊM KIỆN HÀNG TRỰC TIẾP ---------- */
