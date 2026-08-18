@@ -1016,6 +1016,20 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
   border-color:#bfe8d7;
 }
 .pick-btn:not(:disabled):active{transform:scale(.92)}
+.pick-qty-input{
+  width:56px;
+  height:34px;
+  border:1px solid #d0dee8;
+  border-radius:10px;
+  text-align:center;
+  font-size:13px;
+  font-weight:800;
+  color:#173450;
+  padding:0 4px;
+  background:#fff;
+  box-shadow:0 2px 7px rgba(30,90,120,.05);
+}
+.pick-qty-input:focus{outline:none;border-color:#55b8e5;box-shadow:0 0 0 3px rgba(85,184,229,.15)}
 .pick-qty-box{
   min-width:68px;
   text-align:center;
@@ -1082,6 +1096,8 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
     height:36px!important;
     flex-basis:36px;
   }
+  .pick-controls{flex-wrap:wrap}
+  .pick-qty-input{width:50px;height:36px;font-size:14px}
   .pick-qty-box{min-width:70px}
   .pick-qty{font-size:18px}
   .pick-bar{grid-column:1}
@@ -2131,8 +2147,48 @@ async function listDailyExcelFiles(){
 // chung (PL No., Dated...). P/L No. lấy theo TÊN FILE (không dùng ô "PL
 // No." trong sheet vì ô này hay bị lỗi công thức #REF!). Vị trí để trống
 // để nhập/cập nhật sau qua nút "Sửa theo P/L".
+// Đọc TẤT CẢ trang tính trong file thay vì chỉ 1 trang, vì nhiều file NCC
+// tách thông tin 1 kiện ra nhiều sheet khác nhau (VD: 1 sheet ghi mô
+// tả/số lượng, sheet khác ghi kích thước/khối lượng/nhà cung cấp...).
+// Sheet nào đọc được (có cột "Package No." + "Description of Goods") thì
+// dùng làm 1 nguồn dữ liệu; các sheet đọc sau chỉ BỔ SUNG những trường còn
+// trống của kiện đã có (không ghi đè dữ liệu đã đọc trước), để có đủ
+// thông tin kiện nhất có thể từ toàn bộ file.
 function readDetailedPLFile(item,wb){
-  const sheetName=wb.SheetNames.find(n=>/detailed\s*p\s*\/?\s*l/i.test(n))||wb.SheetNames[0];
+  const preferred=wb.SheetNames.filter(n=>/detailed\s*p\s*\/?\s*l/i.test(n));
+  const others=wb.SheetNames.filter(n=>!preferred.includes(n));
+  const sheetOrder=[...preferred,...others]; // ưu tiên sheet "Detailed P/L" làm gốc
+
+  const bySheet=[];
+  for(const sheetName of sheetOrder){
+    const rows=readDetailedPLSheet(item,wb,sheetName);
+    if(rows&&rows.length)bySheet.push(rows);
+  }
+  if(!bySheet.length)return null;
+  if(bySheet.length===1)return bySheet[0];
+
+  const merged=new Map();
+  const order=[];
+  for(const rows of bySheet){
+    for(const row of rows){
+      if(!merged.has(row.code)){
+        merged.set(row.code,{...row});
+        order.push(row.code);
+      }else{
+        const base=merged.get(row.code);
+        for(const k of Object.keys(row)){
+          const v=row[k];
+          if(v!==""&&v!=null&&(base[k]===""||base[k]==null))base[k]=v;
+        }
+      }
+    }
+  }
+  return order.map(c=>merged.get(c));
+}
+
+// Đọc 1 trang tính theo định dạng "Detailed Packing List" (trả về null nếu
+// sheet không đúng định dạng — không có cột Package No. / Description).
+function readDetailedPLSheet(item,wb,sheetName){
   const ws=wb.Sheets[sheetName];
   if(!ws)return null;
   const aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:"",raw:true});
@@ -2644,25 +2700,62 @@ function parseGroupItems(text){
       }
 
       // Dự phòng cho dữ liệu viết "Tên hàng - 20 EA" / "Tên hàng 20 EA".
-      m=seg.match(/^(.*?)(?:\s*[-–—:]\s*|\s+)([\d.,]+)\s*(EA|PCS|PC|PKG|SET|LOT|KIT|M|KG|T|PAIR|PR)\s*$/i);
+      // Danh sách đơn vị hay gặp (mở rộng: met, mét, box, cuộn, thùng...).
+      m=seg.match(/^(.*?)(?:\s*[-–—:]\s*|\s+)([\d.,]+)\s*(EA|PCS|PC|PKG|PACK|BOX|CTN|CARTON|SET|LOT|KIT|ROLL|CUỘN|COIL|BAG|DRUM|BUNDLE|SHEET|PLATE|MET|MÉT|METER|METERS|M|KG|G|TON|T|PAIR|PR)\s*$/i);
       if(m){
         const qty=parseFloat(m[2].replace(/,/g,""));
         return {
           name:norm(m[1])||seg,
           qty:isNaN(qty)?null:qty,
-          unit:norm(m[3]).toUpperCase()
+          unit:normalizeUnit(m[3])
         };
+      }
+
+      // Dự phòng cuối: bất kỳ "Tên ... số lượng đơn-vị-chữ" nào chưa khớp ở
+      // trên (đơn vị lạ, viết tắt khác) — chấp nhận mọi cụm chữ ngắn làm đơn vị.
+      m=seg.match(/^(.*?)(?:\s*[-–—:]\s*|\s+)([\d.,]+)\s*([A-Za-zÀ-ỹ]{1,12})\s*$/);
+      if(m){
+        const qty=parseFloat(m[2].replace(/,/g,""));
+        if(!isNaN(qty)){
+          return {name:norm(m[1])||seg,qty,unit:normalizeUnit(m[3])};
+        }
       }
 
       return {name:seg,qty:null,unit:""};
     });
 }
 
+// Chuẩn hoá tên đơn vị hiển thị (met/mét -> M, cuộn -> CUỘN viết hoa, v.v.)
+function normalizeUnit(u){
+  const t=norm(u).toUpperCase();
+  if(["MET","MÉT","METER","METERS"].includes(t))return "M";
+  if(["CARTON"].includes(t))return "CTN";
+  if(!t)return "EA";
+  return t;
+}
+
 // Ghép dữ liệu số lượng còn lại đã lưu (nếu có) với danh sách mặt hàng vừa
 // tách từ mô tả hiện tại. Nếu mô tả đã đổi (tên/số lượng khác lúc lưu) thì
 // coi như hàng mới, số lượng còn lại = số lượng gốc.
 function getItemDetail(x){
-  const parsed=parseGroupItems(x.group);
+  let parsed=parseGroupItems(x.group);
+
+  // Dự phòng: nếu KHÔNG mặt hàng nào trong mô tả tách được số lượng (VD mô
+  // tả không viết dạng "Tên (SL Đơn vị)"), nhưng kiện có sẵn cột "Số lượng"
+  // / "Đơn vị SL" từ Packing List (VD 1000 m) thì dùng luôn số đó để khu
+  // xuất hàng vẫn hiển thị và cho phép xuất được, thay vì báo "chưa có".
+  const hasQtyItem=parsed.some(p=>p.qty!=null);
+  if(!hasQtyItem){
+    const fallbackQty=parseFloat(String(x.qty||"").replace(/,/g,""));
+    if(!isNaN(fallbackQty)&&fallbackQty>0){
+      parsed=[{
+        name:x.group||x.category||"Hàng hóa",
+        qty:fallbackQty,
+        unit:normalizeUnit(x.qtyUnit)
+      }];
+    }
+  }
+
   let stored=[];
   try{ stored=x.detail?JSON.parse(x.detail):[]; }catch(e){ stored=[]; }
 
@@ -2749,10 +2842,14 @@ function pickAreaHtml(x){
         </div>
 
         <div class="pick-controls">
+          <input type="number" class="pick-qty-input" id="pickIn_${escapeHtml(x.code)}_${i}"
+                 value="1" min="0.001" step="any" inputmode="decimal"
+                 aria-label="Số lượng xuất/trả mỗi lần bấm" title="Nhập số lượng rồi bấm − hoặc +">
+
           <button class="pick-btn pick-minus"
-                  aria-label="Xuất 1 ${escapeHtml(it.unit)}"
-                  title="Lấy hàng −1"
-                  onclick="pickItem('${escapeHtml(x.code)}',${i},-1)"
+                  aria-label="Xuất ${escapeHtml(it.unit)}"
+                  title="Lấy hàng theo số lượng đã nhập"
+                  onclick="pickItem('${escapeHtml(x.code)}',${i},-pickInputVal('${escapeHtml(x.code)}',${i}))"
                   ${remaining<=0?'disabled':''}>−</button>
 
           <div class="pick-qty-box">
@@ -2761,9 +2858,9 @@ function pickAreaHtml(x){
           </div>
 
           <button class="pick-btn pick-plus"
-                  aria-label="Trả lại 1 ${escapeHtml(it.unit)}"
-                  title="Trả hàng +1"
-                  onclick="pickItem('${escapeHtml(x.code)}',${i},1)"
+                  aria-label="Trả lại ${escapeHtml(it.unit)}"
+                  title="Trả hàng theo số lượng đã nhập"
+                  onclick="pickItem('${escapeHtml(x.code)}',${i},pickInputVal('${escapeHtml(x.code)}',${i}))"
                   ${remaining>=original?'disabled':''}>+</button>
         </div>
 
@@ -2773,8 +2870,15 @@ function pickAreaHtml(x){
   </div>`;
 }
 
-// Trừ/cộng số lượng 1 đơn vị trong KHU XUẤT HÀNG rồi lưu lên GitHub.
-// − = xuất 1 EA/đơn vị, + = trả lại 1 EA/đơn vị.
+// Đọc số lượng người dùng nhập trong ô ở khu xuất hàng (mặc định 1 nếu bỏ trống/không hợp lệ).
+function pickInputVal(code,idx){
+  const el=document.getElementById("pickIn_"+code+"_"+idx);
+  const v=el?parseFloat(String(el.value).replace(/,/g,".")):NaN;
+  return (!isNaN(v)&&v>0)?v:1;
+}
+
+// Trừ/cộng số lượng trong KHU XUẤT HÀNG rồi lưu lên GitHub.
+// − = xuất theo số lượng đã nhập (mặc định 1), + = trả lại theo số lượng đã nhập.
 let pickBusy=new Set();
 async function pickItem(code,idx,delta){
   const key=code+"|"+idx;
