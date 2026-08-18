@@ -46,10 +46,11 @@ button{font:inherit;border:1px solid #d0dee8;border-radius:12px;background:#fff;
 .pick-box{position:absolute;top:-26px;left:-8px;z-index:5;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #dce7ef;border-radius:8px;padding:3px;box-shadow:0 2px 6px rgba(30,90,120,.1)}
 .pick-box input{width:18px;height:18px;cursor:pointer;accent-color:#087bd1;display:block}
 .card-selected{outline:2px solid #087bd1;outline-offset:-1px;background:#f2f9ff!important}
-.status-badge{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+.status-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 7px}
 .status-in{background:#e7faf3;color:#1a9a6b}
 .status-out{background:#fff3df;color:#c87500}.package-icon{width:68px;height:68px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;background:linear-gradient(145deg,#168de0,#0875c4);box-shadow:0 6px 14px rgba(17,120,197,.18)}.card:nth-child(2) .package-icon{background:linear-gradient(145deg,#2ec294,#18a477)}.card:nth-child(3) .package-icon{background:linear-gradient(145deg,#ffab25,#f48600)}
-.code{font-weight:800;word-break:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#162f4c;font-size:16px;line-height:1.2;min-width:0}.copy{padding:6px 9px;font-size:11px;margin-top:7px;border-radius:8px}.share{padding:9px 14px;background:linear-gradient(135deg,#12b7c2,#1aa9bc);color:#fff;border-color:#12b7c2;white-space:nowrap;border-radius:9px}.field{min-width:0}.field-label{display:block;font-size:11px;color:#536277;margin-bottom:7px}.field-value{font-size:13px;color:#1a304b;font-weight:600;word-break:break-word}.history{margin-top:10px;border-top:1px solid #e7eff4;padding:8px 0 0 82px;font-size:11px;position:relative;z-index:1}.history-title{font-weight:700;color:#456476;margin-bottom:4px}.history-item{padding:4px 0;border-bottom:1px dashed #dce8ee}.empty{background:#fff;padding:35px;text-align:center;border-radius:15px;color:#667;box-shadow:0 7px 20px rgba(27,112,156,.08)}
+.code{font-weight:800;word-break:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#162f4c;font-size:16px;line-height:1.2;min-width:0}.copy{padding:6px 9px;font-size:11px;margin-top:7px;border-radius:8px}.share{padding:9px 14px;background:linear-gradient(135deg,#12b7c2,#1aa9bc);color:#fff;border-color:#12b7c2;white-space:nowrap;border-radius:9px}.field{min-width:0}.field-label{display:block;font-size:11px;color:#536277;margin-bottom:7px}.field-value{font-size:13px;color:#1a304b;font-weight:600;word-break:break-word}.history{margin-top:12px;padding:0;background:#f8fbfd;border:1px solid #dceaf2;border-radius:15px;overflow:hidden;font-size:11px;position:relative;z-index:1}.history-title{margin:0;font-weight:900;color:#087bd1;font-size:13px;display:flex;align-items:center;gap:6px;padding:11px 13px;background:linear-gradient(135deg,#eef9ff,#f7fcff);border-bottom:1px solid #dceaf2}.history-item{padding:8px 13px;border-bottom:1px dashed #e5eef3}.history-item:last-child{border-bottom:none}.empty{background:#fff;padding:35px;text-align:center;border-radius:15px;color:#667;box-shadow:0 7px 20px rgba(27,112,156,.08)}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin:22px 0 4px}.pagination button{width:38px;height:38px;padding:0;border-radius:8px}.pagination button.active{background:#087bd1;color:#fff;border-color:#087bd1}.share-result{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:linear-gradient(135deg,#1178a6,#27a98a);color:#fff;padding:11px 17px;border-radius:13px;box-shadow:0 10px 28px #1178a644;z-index:10;font-size:14px}
 .site-footer{position:relative;margin-top:48px;min-height:145px;overflow:hidden;color:#fff;text-align:center;padding:72px 20px 25px}.site-footer:before{content:"";position:absolute;left:-7%;right:-7%;bottom:-58px;height:130px;background:linear-gradient(105deg,#0a6599,#1687b7 46%,#2d8f92);border-radius:55% 55% 0 0/60% 60% 0 0;transform:rotate(-1.5deg);z-index:-1}.site-footer:after{content:"";position:absolute;left:-8%;right:-8%;bottom:-78px;height:95px;background:rgba(255,255,255,.18);border-radius:55% 55% 0 0/60% 60% 0 0;transform:rotate(2deg);z-index:-1}.site-footer small{font-size:12px;text-shadow:0 1px 4px rgba(0,50,90,.28)}
 
@@ -63,7 +64,7 @@ select{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}s
 @media(max-width:900px){.card-main{grid-template-columns:62px 1.4fr 1fr 1fr auto;gap:10px}.card-main .field:nth-of-type(3),.card-main .field:nth-of-type(4){display:none}}
 /* Xoay ngang: vẫn hiển thị Mô tả hàng hóa */
 @media (min-width:701px) and (max-width:900px) and (orientation:landscape){.card-main .field:nth-of-type(3){display:block}.card-main .field:nth-of-type(3) .field-value{display:block;white-space:normal;overflow-wrap:anywhere}}
-@media(max-width:700px){header{padding:20px 12px 64px}h1{font-size:23px}.sub{font-size:13px}.wrap{padding:9px 10px}.topbar{margin:-28px 10px 16px;padding:10px 11px}.topbar-inner{gap:8px}.buttons{gap:6px;flex:1;min-width:0}.buttons button{flex:1;min-width:0;padding:9px 5px;font-size:11px}.status-box{min-width:0;gap:5px}.status-dot{width:19px;height:19px;flex:0 0 19px}.status-title{font-size:9px}.status{font-size:8px;max-width:85px;overflow:hidden;text-overflow:ellipsis}.search-panel{padding:10px;border-radius:17px}.search-row{gap:7px}.search{font-size:15px;padding:13px 14px}.filter-toggle{width:46px;height:46px;flex-basis:46px;font-size:20px}.filters{grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.filter-box{padding:8px}.filter-box label{font-size:10px}.filter-box select{font-size:12px;padding:8px}.stats{grid-template-columns:1fr 1fr;gap:7px}.stat{min-height:72px;padding:9px}.stat b{font-size:18px}.stat span{font-size:10px}.card{padding:28px 10px 9px;margin-bottom:9px}.card-main{grid-template-columns:48px minmax(0,1fr) auto;gap:8px}.package-icon{width:46px;height:46px;font-size:20px;border-radius:9px}.card-main .field{grid-column:2/4}.card-main .field:nth-of-type(2){display:block}.card-main .field:nth-of-type(n+3){display:block}.card-main .share-wrap{grid-column:3;grid-row:1}.code{font-size:14px;white-space:nowrap}.copy{padding:5px 8px;font-size:10px;margin-top:5px}.share{padding:7px 9px;font-size:11px}.field-label{font-size:9px;margin-bottom:3px}.field-value{font-size:12px}.history{padding-left:56px;font-size:10px}.pagination{gap:5px}.pagination button{width:34px;height:34px}.site-footer{margin-top:35px;min-height:110px;padding-top:58px}}
+@media(max-width:700px){header{padding:20px 12px 64px}h1{font-size:23px}.sub{font-size:13px}.wrap{padding:9px 10px}.topbar{margin:-28px 10px 16px;padding:10px 11px}.topbar-inner{gap:8px}.buttons{gap:6px;flex:1;min-width:0}.buttons button{flex:1;min-width:0;padding:9px 5px;font-size:11px}.status-box{min-width:0;gap:5px}.status-dot{width:19px;height:19px;flex:0 0 19px}.status-title{font-size:9px}.status{font-size:8px;max-width:85px;overflow:hidden;text-overflow:ellipsis}.search-panel{padding:10px;border-radius:17px}.search-row{gap:7px}.search{font-size:15px;padding:13px 14px}.filter-toggle{width:46px;height:46px;flex-basis:46px;font-size:20px}.filters{grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.filter-box{padding:8px}.filter-box label{font-size:10px}.filter-box select{font-size:12px;padding:8px}.stats{grid-template-columns:1fr 1fr;gap:7px}.stat{min-height:72px;padding:9px}.stat b{font-size:18px}.stat span{font-size:10px}.card{padding:28px 10px 9px;margin-bottom:9px}.card-main{grid-template-columns:48px minmax(0,1fr) auto;gap:8px}.package-icon{width:46px;height:46px;font-size:20px;border-radius:9px}.card-main .field{grid-column:2/4}.card-main .field:nth-of-type(2){display:block}.card-main .field:nth-of-type(n+3){display:block}.card-main .share-wrap{grid-column:3;grid-row:1}.code{font-size:14px;white-space:nowrap}.copy{padding:5px 8px;font-size:10px;margin-top:5px}.share{padding:7px 9px;font-size:11px}.field-label{font-size:9px;margin-bottom:3px}.field-value{font-size:12px}.pagination{gap:5px}.pagination button{width:34px;height:34px}.site-footer{margin-top:35px;min-height:110px;padding-top:58px}}
 
 @media(max-width:700px){.gas-plant-bg{opacity:.14}.gas-plant-bg svg{width:1050px;height:360px;bottom:0}.gas-plant-glow{width:120px;height:120px;right:3%;bottom:140px}.search-wrap .search{padding-left:43px}.search-icon{left:14px;font-size:21px}.filter-toggle{width:46px;height:46px;flex-basis:46px}.filter-icon{font-size:13px}.stat{gap:9px}.stat-icon{width:42px;height:42px;flex-basis:42px;font-size:19px}.stat b{font-size:20px}.stat span{font-size:11px}.filter-box:hover,.stat:hover{transform:none}.package-icon{transform:none}.card:hover .package-icon{transform:none}.mini-icon{font-size:10px}}
 
@@ -393,13 +394,12 @@ body:before,.scenery{display:none!important}
 .location-badge{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:6px 12px;border-radius:999px;background:linear-gradient(135deg,#087bd1,#16a7d8);color:#fff;font-size:15px;font-weight:950;letter-spacing:.5px;box-shadow:0 4px 12px rgba(8,123,209,.28);border:2px solid rgba(255,255,255,.9);text-shadow:0 1px 1px rgba(0,0,0,.12)}
 .location-empty{display:inline-flex;padding:5px 10px;border-radius:999px;background:#fff3df;color:#c87500;font-weight:800;border:1px solid #ffd59b}
 @media(max-width:700px){.location-badge{min-width:54px;padding:5px 10px;font-size:14px}.field-location .field-label{font-size:10px}}
-.extra-info{margin-top:10px;border-top:1px solid #e7eff4;padding:10px 0 0 82px;position:relative;z-index:1}
-.extra-info-title{font-weight:700;color:#456476;margin-bottom:8px;font-size:11px;display:flex;align-items:center;gap:5px}
-.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px 14px}
+.extra-info{margin-top:12px;padding:0;background:#f8fbfd;border:1px solid #dceaf2;border-radius:15px;overflow:hidden;position:relative;z-index:1}
+.extra-info-title{margin:0;font-weight:950;letter-spacing:.4px;color:#087bd1;margin-bottom:0;font-size:13px;display:flex;align-items:center;gap:5px;padding:11px 13px;background:linear-gradient(135deg,#eef9ff,#f7fcff);border-bottom:1px solid #dceaf2}
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px 16px;padding:13px}
 .extra-item{min-width:0}
-.extra-item .field-label{display:block;font-size:10.5px;color:#7488a0;margin-bottom:3px}
-.extra-item .field-value{font-size:12.5px;color:#1a304b;font-weight:600;word-break:break-word}
-@media(max-width:700px){.extra-info{padding-left:0}}
+.extra-item .field-label{display:block;font-size:10.5px;color:#7488a0;margin-bottom:4px;font-weight:700}
+.extra-item .field-value{font-size:12.5px;color:#1a304b;font-weight:700;word-break:break-word}
 .pick-area{margin-top:10px;border-top:1px solid #e7eff4;padding:10px 0 4px 82px;position:relative;z-index:1}
 .pick-area-title{font-weight:700;color:#456476;margin-bottom:8px;font-size:11px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .pick-area-hint{font-weight:500;color:#93a3b6;font-size:10px}
@@ -578,8 +578,11 @@ body:before,.scenery{display:none!important}
   .code{font-size:15px;white-space:normal;line-height:1.25}
   .copy{margin-top:5px}
 
-  /* Không để phần chi tiết chen ngang hàng chính. */
-  .extra-info,.history{padding-left:68px}
+  /* Khu vực chi tiết/lịch sử giờ là khung riêng, không cần chừa lề trái theo icon kiện nữa. */
+  .extra-info,.history{margin-top:9px;border-radius:13px}
+  .extra-info-title,.history-title{font-size:11.5px;padding:9px 10px}
+  .extra-grid{padding:10px;gap:10px 12px}
+  .history-item{padding:7px 10px;font-size:10px}
 }
 
 /* Nút Chia sẻ và Sửa luôn cùng một khung, không còn trường hợp Sửa có nền dài gấp đôi Chia sẻ. */
@@ -2331,27 +2334,71 @@ function parseFlatPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
 
 // Kiểu "gộp nhiều mặt hàng": nhiều dòng cùng Package No. rồi tới dòng
 // "Sub-Total" chứa loại kiện/kích thước/khối lượng tổng của cả kiện.
+//
+// LƯU Ý QUAN TRỌNG: một số file NCC không có dòng "Sub-Total" RIÊNG cho
+// từng kiện — thay vào đó, dòng ĐẦU TIÊN của mỗi kiện chính là dòng "thông
+// tin của kiện" (Qty=1, Unit="PKG", kèm Package Type/kích thước/trọng
+// lượng của CẢ kiện), rồi các dòng theo sau mới là từng mặt hàng thật bên
+// trong kiện (Unit là EA/PCS/...). Dòng "Sub-Total" (nếu có) trong các file
+// này chỉ là dòng TỔNG CUỐI CÙNG của toàn bộ file/sheet, không phải của
+// riêng từng kiện — nếu coi dòng Qty=1 Unit=PKG đó là 1 "mặt hàng" như
+// trước đây thì kiện hàng sẽ hiện sai: bị tính dư 1 mặt hàng (chính là
+// kiện hàng), thiếu thông tin kích thước/trọng lượng cho gần hết các kiện
+// (chỉ kiện cuối cùng, đứng trước dòng Sub-Total thật, mới có).
+// Vì vậy: bất kỳ dòng nào có Unit = "PKG" VÀ có kèm ít nhất 1 trong các
+// trường Package Type/kích thước/trọng lượng đều được coi là dòng THÔNG TIN
+// KIỆN (không phải mặt hàng) — lấy ngay các trường đó cho cả kiện, KHÔNG
+// đưa dòng này vào danh sách mặt hàng bên trong.
+function isPackageInfoRow(row,cols,get){
+  const unit=get(row,cols.colQtyUnit).toUpperCase();
+  if(unit!=="PKG")return false;
+  return !!(get(row,cols.colPackageType)||get(row,cols.colLength)||get(row,cols.colWidth)||
+    get(row,cols.colHeight)||get(row,cols.colVolume)||get(row,cols.colNetWeight)||get(row,cols.colGrossWeight));
+}
+
 function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
   const out=[];
   let group=null;
 
+  function applyPackageInfo(g,row){
+    if(!g.packageType)g.packageType=get(row,cols.colPackageType);
+    if(!g.length)g.length=get(row,cols.colLength);
+    if(!g.width)g.width=get(row,cols.colWidth);
+    if(!g.height)g.height=get(row,cols.colHeight);
+    if(!g.volume)g.volume=get(row,cols.colVolume);
+    if(!g.netWeight)g.netWeight=get(row,cols.colNetWeight);
+    if(!g.grossWeight)g.grossWeight=get(row,cols.colGrossWeight);
+    if(!g.hazard)g.hazard=get(row,cols.colHazard);
+    if(!g.storage)g.storage=get(row,cols.colStorage);
+    // Giữ lại mô tả/số lượng của chính dòng kiện, phòng khi kiện không có
+    // mặt hàng con nào tách riêng được (dùng làm dự phòng ở finalize()).
+    if(!g.selfDesc)g.selfDesc=get(row,cols.colDesc);
+    if(!g.selfQty)g.selfQty=get(row,cols.colQtyNos);
+  }
+
   function finalize(g){
-    const descParts=g.items.map(it=>{
+    // Dự phòng: kiện không có mặt hàng con nào (mọi dòng đều là dòng thông
+    // tin kiện) — vẫn hiển thị được bằng chính mô tả/số lượng của kiện đó.
+    const items=g.items.length?g.items:[{
+      desc:g.selfDesc||"",spec:"",qty:g.selfQty||"",unit:"PKG",netW:g.netWeight||""
+    }];
+
+    const descParts=items.map(it=>{
       const s=[it.desc,it.spec].filter(Boolean).join(" ");
       const q=[it.qty,it.unit].filter(Boolean).join(" ");
       return q?`${s} (${q})`:s;
     }).filter(Boolean);
 
-    const units=[...new Set(g.items.map(it=>it.unit).filter(Boolean))];
+    const units=[...new Set(items.map(it=>it.unit).filter(Boolean))];
     let qty="",qtyUnit="";
-    if(g.items.length===1){qty=g.items[0].qty;qtyUnit=g.items[0].unit;}
+    if(items.length===1){qty=items[0].qty;qtyUnit=items[0].unit;}
     else if(units.length===1){
-      const total=g.items.reduce((s,it)=>s+(parseFloat(it.qty)||0),0);
+      const total=items.reduce((s,it)=>s+(parseFloat(it.qty)||0),0);
       qty=total?String(total):"";qtyUnit=units[0];
-    }else qty=g.items.length+" mặt hàng";
+    }else qty=items.length+" mặt hàng";
 
     const netWeight=g.netWeight||(()=>{
-      const sum=g.items.reduce((s,it)=>s+(parseFloat(it.netW)||0),0);
+      const sum=items.reduce((s,it)=>s+(parseFloat(it.netW)||0),0);
       return sum?String(sum):"";
     })();
 
@@ -2374,16 +2421,10 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
     const code=get(row,colCode);
 
     if(isSubtotal){
+      // Dòng "Sub-Total" ghi đè (nếu có giá trị) lên thông tin đã lấy được
+      // từ dòng kiện ở trên — coi đây là nguồn chính xác/cuối cùng nếu có.
       if(group){
-        group.packageType=get(row,cols.colPackageType);
-        group.length=get(row,cols.colLength);
-        group.width=get(row,cols.colWidth);
-        group.height=get(row,cols.colHeight);
-        group.volume=get(row,cols.colVolume);
-        group.netWeight=get(row,cols.colNetWeight);
-        group.grossWeight=get(row,cols.colGrossWeight);
-        group.hazard=get(row,cols.colHazard);
-        group.storage=get(row,cols.colStorage);
+        applyPackageInfo(group,row);
         out.push(finalize(group));
         group=null;
       }
@@ -2399,6 +2440,13 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
     if(!group.supplier)group.supplier=get(row,cols.colSupplier);
     if(!group.origin)group.origin=get(row,cols.colOrigin);
     if(!group.posSchedule)group.posSchedule=get(row,cols.colPosSchedule);
+
+    if(isPackageInfoRow(row,cols,get)){
+      // Đây là dòng thông tin của CHÍNH kiện hàng (Qty=1, Unit=PKG, kèm
+      // kích thước/trọng lượng cả kiện) — không phải 1 mặt hàng bên trong.
+      applyPackageInfo(group,row);
+      continue;
+    }
 
     group.items.push({
       desc:get(row,cols.colDesc),spec:get(row,cols.colDescDetail),
@@ -2973,7 +3021,7 @@ function render(){
           <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
           <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
-          <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">📤 Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">📥 Trong kho</span>`}</span></div>
+          <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">Trong kho</span>`}</span></div>
           <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button><button class="share" style="display:block;width:100%;margin-top:6px;background:linear-gradient(135deg,#8c6ce8,#a98af0);border-color:#8c6ce8" onclick="openEditModal(${start+i})"><span>✏️</span> Sửa</button></div>
           <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
