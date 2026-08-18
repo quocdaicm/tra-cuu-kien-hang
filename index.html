@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOOSAN Material</title>
+
+<meta name="description" content="DOOSAN Material - Tra cứu kiện hàng nhanh chóng">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DOOSAN Material">
+<meta property="og:description" content="Tra cứu thông tin kiện hàng DOOSAN">
+<meta property="og:url" content="https://quocdaicm.github.io/tra-cuu-kien-hang/">
+<meta property="og:image" content="https://quocdaicm.github.io/tra-cuu-kien-hang/share-preview.png">
+
+<style>
+*{box-sizing:border-box}
+:root{--blue:#087bd1;--blue2:#2aa8e8;--cyan:#18b8c7;--green:#2eb889;--ink:#172b49;--muted:#6b7890;--line:#dce7ef;--paper:#fff}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh;background:#f3f7fb!important;overflow-x:hidden}
+
+.wrap{max-width:1040px;margin:auto;padding:12px 16px;position:relative;z-index:2}
+
+/* ---------- TOPBAR / HEADER ---------- */
+.topbar{
+  max-width:1040px;
+  margin:0 auto 14px;
+  padding:10px 14px;
+  background:rgba(255,255,255,.95);
+  border:1px solid #e4ebf2;
+  border-radius:16px;
+  box-shadow:0 4px 16px rgba(38,73,104,.06);
+}
+.topbar-inner{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.topbar .buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  flex:1 1 auto;
+}
+.topbar .buttons button{
+  flex:1 1 auto;
+  min-width:110px;
+  height:40px;
+  padding:6px 12px;
+  border-radius:10px;
+  border:1px solid #d0dee8;
+  background:#fff;
+  color:#173450;
+  font-size:12.5px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s ease;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.topbar .buttons button:hover{background:#f4f9fd;border-color:#b8d3e6}
+.topbar .buttons button.primary{background:linear-gradient(135deg,#087bd1,#268fe0);color:#fff;border-color:#087bd1}
+
+.status-box{
+  flex:0 0 auto;
+  min-width:180px;
+  height:40px;
+  padding:6px 12px;
+  border-radius:10px;
+  background:#f4faf7;
+  border:1px solid #dcefe6;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.status-dot{width:18px;height:18px;border-radius:50%;background:#20b77b;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 18px}
+.status-title{font-size:11px;font-weight:800;color:#172b49}
+.status{font-size:9.5px;color:#718293;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+
+/* ---------- SEARCH & FILTERS ---------- */
+.search-panel{
+  background:#fff;
+  border:1px solid #e5ebf1;
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 4px 16px rgba(38,73,104,.05);
+  margin-bottom:14px;
+}
+.search-row{display:flex;gap:10px;align-items:center}
+.search-wrap{position:relative;flex:1}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:18px;pointer-events:none}
+.search{width:100%;background:#fff;border:1px solid #dfe8ef;border-radius:12px;padding:11px 14px 11px 42px;font-size:14px;outline:none}
+.search:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}
+.filter-toggle{width:42px;height:42px;border-radius:12px;border:1px solid #dbe8f0;background:#f8fcff;font-size:18px;cursor:pointer;flex:0 0 42px;display:flex;align-items:center;justify-content:center}
+
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:12px}
+.filter-box{background:#fbfdfe;padding:8px 10px;border:1px solid #e1eaf0;border-radius:10px}
+.filter-box label{display:block;font-size:11px;font-weight:800;color:#1b3650;margin-bottom:4px}
+select{width:100%;font:inherit;border:1px solid #d5e3eb;border-radius:8px;background:#fff;padding:7px 10px;font-size:12px;color:#4a6275;outline:none}
+
+/* ---------- STATS ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.stat{background:#fff;padding:10px 12px;border-radius:12px;box-shadow:0 3px 12px rgba(38,73,104,.05);border:1px solid #e1ebf1;display:flex;align-items:center;gap:10px}
+.stat-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 40px}
+.stat-blue{border-top:3px solid #269ee2}.stat-blue .stat-icon{background:#e8f3ff}
+.stat-green{border-top:3px solid #35b991}.stat-green .stat-icon{background:#e7faf3}
+.stat-purple{border-top:3px solid #8c6ce8}.stat-purple .stat-icon{background:#f0edff}
+.stat-cyan{border-top:3px solid #35b9ba}.stat-cyan .stat-icon{background:#e7fbfa}
+.stat-orange{border-top:3px solid #f4ad35}.stat-orange .stat-icon{background:#fff3df}
+.stat b{display:block;font-size:18px;color:#173a60;line-height:1.1}
+.stat span{font-size:11px;color:#68798e}
+
+/* ---------- CARD ITEM ---------- */
+.card{
+  background:#fff;
+  padding:14px 16px;
+  border-radius:14px;
+  margin-bottom:12px;
+  border:1px solid #e4ebf1;
+  border-left:4px solid #269ee2;
+  box-shadow:0 4px 14px rgba(38,73,104,.05);
+  position:relative;
+}
+.card-main{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:12px;
+  align-items:start;
+}
+.pick-box{
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:2;
+}
+.pick-box input{width:16px;height:16px;cursor:pointer;accent-color:#087bd1}
+
+.package-icon{
+  width:48px;
+  height:48px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#fff;
+  background:linear-gradient(145deg,#168de0,#0875c4);
+  flex:0 0 48px;
+}
+.card-info{min-width:0}
+.code{font-size:15px;font-weight:800;color:#162f4c;margin-bottom:4px;word-break:break-word}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:8px;
+  margin-top:8px;
+}
+.field{min-width:0}
+.field-label{display:block;font-size:10px;color:#6b7890;margin-bottom:2px;font-weight:600}
+.field-value{font-size:12px;color:#1a304b;font-weight:600;word-break:break-word}
+
+.status-badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:800}
+.status-in{background:#e7faf3;color:#1a9a6b}
+.status-out{background:#fff3df;color:#c87500}
+
+.location-badge{display:inline-flex;padding:3px 8px;border-radius:99px;background:#087bd1;color:#fff;font-size:12px;font-weight:800}
+.location-empty{display:inline-flex;padding:3px 8px;border-radius:99px;background:#fff3df;color:#c87500;font-size:11px;font-weight:700}
+
+.card-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.btn-action{padding:6px 10px;font-size:11px;border-radius:8px;border:1px solid #d0dee8;background:#fff;cursor:pointer;font-weight:600}
+.btn-action:hover{background:#f4f9fd}
+
+/* ---------- HISTORY & EXTRA ---------- */
+.history, .extra-info{margin-top:10px;border-top:1px solid #e7eff4;padding-top:8px;font-size:11px}
+.history-title, .extra-info-title{font-weight:700;color:#456476;margin-bottom:4px}
+.history-item{padding:3px 0;border-bottom:1px dashed #e2ecf2;color:#536277}
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px 12px}
+
+/* ---------- MODALS & BULK ---------- */
+.file-modal{position:fixed;inset:0;background:rgba(10,38,60,.48);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:14px;z-index:100}
+.file-modal.show{display:flex}
+.file-panel{width:min(520px,100%);max-height:85vh;overflow:auto;background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.file-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #e6eef3;background:#f8fcff}
+.file-title{font-size:16px;font-weight:800;color:#173a60}
+.file-close{width:32px;height:32px;padding:0;border-radius:50%;border:none;background:#eef4f8;font-size:18px;cursor:pointer}
+
+.bulk-bar{position:fixed;left:0;right:0;bottom:-100px;z-index:60;display:flex;justify-content:center;transition:bottom .25s ease;padding:0 14px}
+.bulk-bar.show{bottom:16px}
+.bulk-bar-inner{background:#173a60;color:#fff;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:10px;max-width:600px;width:100%;flex-wrap:wrap}
+.bulk-btn{border:none;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer;color:#fff}
+.bulk-out{background:#f4ad35}.bulk-in{background:#2eb889}.bulk-loc{background:#087bd1}.bulk-clear{background:rgba(255,255,255,.2)}
+
+.pagination{display:flex;justify-content:center;gap:6px;margin:18px 0}
+.pagination button{width:34px;height:34px;padding:0;border-radius:8px;border:1px solid #d0dee8;background:#fff;cursor:pointer}
+.pagination button.active{background:#087bd1;color:#fff;border-color:#087bd1}
+
+@media(max-width:600px){
+  .topbar .buttons button{font-size:11px;padding:5px 8px;min-width:45%;flex:1 1 45%}
+  .status-box{width:100%;justify-content:center;margin-top:4px}
+  .card-main{grid-template-columns:1fr;gap:8px}
+  .card-actions{flex-direction:row;justify-content:flex-start;width:100%}
+  .pick-box{top:12px;right:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="buttons">
+      <button class="primary" onclick="window.location.reload()">⟳ Cập nhật dữ liệu</button>
+      <button onclick="openUploadModal()">⬆️ Tải file lên</button>
+      <button onclick="openAddModal()">➕ Thêm kiện mới</button>
+      <button onclick="openPLModal()">📄 Sửa theo P/L</button>
+    </div>
+    <div class="status-box">
+      <span class="status-dot">✓</span>
+      <div>
+        <div class="status-title">Dữ liệu hệ thống</div>
+        <div id="ghStatus" class="status">⏳ Đang khởi tạo...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="search-panel">
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔎</span>
+        <input id="q" class="search" placeholder="Tìm Package No., mô tả hàng hóa, P/L No., vị trí..." oninput="currentPage=1;render()">
+      </div>
+      <button class="filter-toggle" title="Bộ lọc" aria-label="Bộ lọc">☷</button>
+    </div>
+    <div class="filters">
+      <div class="filter-box"><label>📅 Ngày nhận</label><select id="date" onchange="currentPage=1;render()"><option value="">Tất cả</option></select></div>
+      <div class="filter-box"><label>🏷️ Mô tả hàng hóa</label><select id="group" onchange="currentPage=1;render()"><option value="">Tất cả</option></select></div>
+      <div class="filter-box"><label>📄 P/L No.</label><select id="category" onchange="currentPage=1;render()"><option value="">Tất cả</option></select></div>
+      <div class="filter-box"><label>📍 Vị trí</label><select id="loc" onchange="currentPage=1;render()"><option value="">Tất cả</option></select></div>
+      <div class="filter-box">
+        <label>📤 Trạng thái</label>
+        <select id="status" onchange="currentPage=1;render()">
+          <option value="">Tất cả</option>
+          <option value="Trong kho">Trong kho</option>
+          <option value="Đã xuất">Đã xuất</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat stat-blue"><span class="stat-icon">📦</span><div><b id="total">0</b><span>Tổng kiện</span></div></div>
+    <div class="stat stat-green"><span class="stat-icon">👁️</span><div><b id="shown">0</b><span>Hiển thị</span></div></div>
+    <div class="stat stat-purple"><span class="stat-icon">📁</span><div><b id="cats">0</b><span>Danh mục</span></div></div>
+    <div class="stat stat-cyan"><span class="stat-icon">📍</span><div><b id="locs">0</b><span>Vị trí</span></div></div>
+    <div class="stat stat-orange"><span class="stat-icon">📤</span><div><b id="exported">0</b><span>Đã xuất</span></div></div>
+  </div>
+
+  <div id="list"></div>
+  <div id="pagination" class="pagination"></div>
+</div>
+
+<div id="bulkBar" class="bulk-bar">
+  <div class="bulk-bar-inner">
+    <div><span id="bulkCount">0</span> kiện đã chọn</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="bulk-btn bulk-out" onclick="openBulkModal('export')">📤 Xuất kho</button>
+      <button class="bulk-btn bulk-in" onclick="openBulkModal('import')">📥 Nhập kho</button>
+      <button class="bulk-btn bulk-loc" onclick="openBulkModal('loc')">📍 Đổi vị trí</button>
+      <button class="bulk-btn bulk-clear" onclick="clearSelection()">✕ Bỏ chọn</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Upload -->
+<div id="uploadModal" class="file-modal" onclick="if(event.target===this)closeUploadModal()">
+  <div class="file-panel">
+    <div class="file-head">
+      <div class="file-title">⬆️ Tải file Excel lên GitHub</div>
+      <button class="file-close" onclick="closeUploadModal()">×</button>
+    </div>
+    <div style="padding:16px">
+      <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px">🔑 GitHub Token</label>
+      <input id="ghToken" type="password" placeholder="github_pat_..." style="width:100%;padding:8px;border:1px solid #d0dee8;border-radius:8px;margin-bottom:12px">
+      <label style="display:block;font-size:12px;font-weight:700;margin-bottom:4px">📄 Chọn file Excel</label>
+      <input id="ghFile" type="file" accept=".xlsx,.xls" style="width:100%;padding:8px;border:1px solid #d0dee8;border-radius:8px;margin-bottom:12px">
+      <button class="primary" style="width:100%;padding:10px;border-radius:8px;border:none;background:#087bd1;color:#fff;font-weight:700" onclick="doUpload()">Tải lên</button>
+      <div id="uploadStatus" style="margin-top:8px;font-size:12px;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit / Add -->
+<div id="editModal" class="file-modal" onclick="if(event.target===this)closeEditModal()">
+  <div class="file-panel">
+    <div class="file-head">
+      <div id="editModalTitle" class="file-title">✏️ Sửa thông tin kiện hàng</div>
+      <button class="file-close" onclick="closeEditModal()">×</button>
+    </div>
+    <div style="padding:16px;max-height:75vh;overflow:auto">
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">🔑 GitHub Token</label>
+      <input id="editGhToken" type="password" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">📦 Package No.</label>
+      <input id="editCode" type="text" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">🏷️ Mô tả hàng hóa</label>
+      <input id="editGroup" type="text" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">📄 P/L No.</label>
+      <input id="editCategory" type="text" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">📍 Vị trí</label>
+      <input id="editLoc" type="text" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">📅 Ngày nhận</label>
+      <input id="editDate" type="text" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">📤 Trạng thái</label>
+      <select id="editTrangThai" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:8px">
+        <option value="Trong kho">Trong kho</option>
+        <option value="Đã xuất">Đã xuất</option>
+      </select>
+
+      <label style="display:block;font-size:11px;font-weight:700;margin-bottom:2px">📅 Ngày xuất</label>
+      <input id="editNgayXuat" type="text" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-bottom:12px">
+
+      <button style="width:100%;padding:10px;background:#087bd1;color:#fff;border:none;border-radius:6px;font-weight:700" onclick="saveEdit()">💾 Lưu thay đổi</button>
+      <div id="editStatus" style="margin-top:8px;font-size:12px;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const DATA_GITHUB_OWNER="quocdaicm";
+const DATA_GITHUB_REPO="tra-cuu-kien-hang";
+const DATA_GITHUB_BRANCH="main";
+const DATA_GITHUB_FOLDER="du-lieu";
+
+let dailyFiles=[];
+let dailyData=[];
+let data=[];
+let moveHistory=[];
+let selectedCodes=new Set();
+let currentFiltered=[];
+let currentPage=1;
+const pageSize=10;
+
+function norm(v){return String(v??"").trim();}
+
+function formatDate(v){
+  if(v instanceof Date && !isNaN(v)){
+    return String(v.getUTCDate()).padStart(2,"0")+"/"+String(v.getUTCMonth()+1).padStart(2,"0")+"/"+v.getUTCFullYear();
+  }
+  if(typeof v==="number"){
+    const d=XLSX.SSF.parse_date_code(v);
+    if(d) return String(d.d).padStart(2,"0")+"/"+String(d.m).padStart(2,"0")+"/"+d.y;
+  }
+  const s=norm(v);
+  const m=s.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/);
+  if(m) return String(+m[3]).padStart(2,"0")+"/"+String(+m[2]).padStart(2,"0")+"/"+m[1];
+  const dmy=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+  if(dmy) return String(+dmy[1]).padStart(2,"0")+"/"+String(+dmy[2]).padStart(2,"0")+"/"+dmy[3];
+  return s;
+}
+
+function escapeHtml(s){
+  return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+function todayStr(){
+  const d=new Date();
+  return String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0")+"/"+d.getFullYear();
+}
+
+/* ---------- RENDER LOGIC ---------- */
+function render(){
+  refreshFilters();
+  const q=norm(document.getElementById("q").value).toLowerCase();
+  const date=document.getElementById("date").value;
+  const group=document.getElementById("group").value;
+  const category=document.getElementById("category").value;
+  const loc=document.getElementById("loc").value;
+  const status=document.getElementById("status").value;
+
+  currentFiltered=data.filter(x=>{
+    const hay=[x.date,x.code,x.group,x.category,x.loc,x.trangThai,x.supplier,x.origin].map(v=>norm(v).toLowerCase()).join(" ");
+    if(q && !hay.includes(q)) return false;
+    if(date && x.date!==date) return false;
+    if(group && x.group!==group) return false;
+    if(category && x.category!==category) return false;
+    if(loc && x.loc!==loc) return false;
+    if(status && x.trangThai!==status) return false;
+    return true;
+  });
+
+  // Update Stats
+  document.getElementById("total").textContent=data.length;
+  document.getElementById("shown").textContent=currentFiltered.length;
+  document.getElementById("cats").textContent=unique("category").length;
+  document.getElementById("locs").textContent=unique("loc").length;
+  document.getElementById("exported").textContent=data.filter(x=>x.trangThai==="Đã xuất").length;
+
+  // Pagination
+  const totalPages=Math.ceil(currentFiltered.length/pageSize)||1;
+  if(currentPage>totalPages) currentPage=totalPages;
+  const start=(currentPage-1)*pageSize;
+  const pageData=currentFiltered.slice(start,start+pageSize);
+
+  const listEl=document.getElementById("list");
+  if(!pageData.length){
+    listEl.innerHTML='<div style="text-align:center;padding:30px;background:#fff;border-radius:12px;color:#718293">Không tìm thấy kiện hàng phù hợp.</div>';
+    document.getElementById("pagination").innerHTML="";
+    return;
+  }
+
+  listEl.innerHTML=pageData.map((x,idx)=>{
+    const realIdx=start+idx;
+    const isSelected=selectedCodes.has(x.code);
+    const isOut=x.trangThai==="Đã xuất";
+
+    return `
+    <div class="card" style="${isSelected?'border-color:#087bd1;background:#f4f9fd':''}">
+      <div class="pick-box">
+        <input type="checkbox" ${isSelected?'checked':''} onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)">
+      </div>
+      <div class="card-main">
+        <div class="package-icon">📦</div>
+        <div class="card-info">
+          <div class="code">${escapeHtml(x.code)}</div>
+          <div class="card-grid">
+            <div class="field">
+              <span class="field-label">Trạng thái</span>
+              <span class="status-badge ${isOut?'status-out':'status-in'}">${escapeHtml(x.trangThai||'Trong kho')}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">Vị trí</span>
+              ${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa xếp</span>`}
+            </div>
+            <div class="field">
+              <span class="field-label">Ngày nhận</span>
+              <span class="field-value">${escapeHtml(x.date||'—')}</span>
+            </div>
+            <div class="field">
+              <span class="field-label">P/L No.</span>
+              <span class="field-value">${escapeHtml(x.category||'—')}</span>
+            </div>
+            <div class="field" style="grid-column:1/-1">
+              <span class="field-label">Mô tả hàng hóa</span>
+              <span class="field-value">${escapeHtml(x.group||'—')}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-action" onclick="openEditModal(${realIdx})">✏️ Sửa</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages){
+  const pagEl=document.getElementById("pagination");
+  if(totalPages<=1){pagEl.innerHTML="";return;}
+  let html="";
+  for(let i=1;i<=totalPages;i++){
+    html+=`<button class="${i===currentPage?'active':''}" onclick="currentPage=${i};render()">${i}</button>`;
+  }
+  pagEl.innerHTML=html;
+}
+
+function refreshFilters(){
+  fillFilter("date",unique("date"),"Ngày nhận");
+  fillFilter("group",unique("group"),"Mô tả hàng hóa");
+  fillFilter("category",unique("category"),"P/L No.");
+  fillFilter("loc",unique("loc"),"Vị trí");
+}
+
+function fillFilter(id,values,label){
+  const el=document.getElementById(id);
+  const old=el.value;
+  el.innerHTML=`<option value="">Tất cả ${label}</option>`+values.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+  if(values.includes(old)) el.value=old;
+}
+
+function unique(key){
+  return [...new Set(data.map(x=>norm(x[key])).filter(Boolean))].sort();
+}
+
+function toggleSelect(code,checked){
+  if(checked) selectedCodes.add(code);
+  else selectedCodes.delete(code);
+  document.getElementById("bulkCount").textContent=selectedCodes.size;
+  document.getElementById("bulkBar").classList.toggle("show",selectedCodes.size>0);
+  render();
+}
+
+function clearSelection(){
+  selectedCodes.clear();
+  document.getElementById("bulkBar").classList.remove("show");
+  render();
+}
+
+/* ---------- MODAL ACTIONS ---------- */
+function openUploadModal(){document.getElementById("uploadModal").classList.add("show");}
+function closeUploadModal(){document.getElementById("uploadModal").classList.remove("show");}
+
+function openEditModal(idx){
+  const item=currentFiltered[idx];
+  if(!item)return;
+  document.getElementById("editModalTitle").textContent="✏️ Sửa thông tin kiện hàng";
+  document.getElementById("editCode").value=item.code;
+  document.getElementById("editCode").disabled=true;
+  document.getElementById("editGroup").value=item.group||"";
+  document.getElementById("editCategory").value=item.category||"";
+  document.getElementById("editLoc").value=item.loc||"";
+  document.getElementById("editDate").value=item.date||"";
+  document.getElementById("editTrangThai").value=item.trangThai||"Trong kho";
+  document.getElementById("editNgayXuat").value=item.ngayXuat||"";
+  document.getElementById("editModal").classList.add("show");
+}
+
+function openAddModal(){
+  document.getElementById("editModalTitle").textContent="➕ Thêm kiện hàng mới";
+  document.getElementById("editCode").value="";
+  document.getElementById("editCode").disabled=false;
+  document.getElementById("editGroup").value="";
+  document.getElementById("editCategory").value="";
+  document.getElementById("editLoc").value="";
+  document.getElementById("editDate").value=todayStr();
+  document.getElementById("editTrangThai").value="Trong kho";
+  document.getElementById("editNgayXuat").value="";
+  document.getElementById("editModal").classList.add("show");
+}
+
+function closeEditModal(){document.getElementById("editModal").classList.remove("show");}
+
+function openPLModal(){alert("Tính năng sửa hàng loạt theo P/L đang sẵn sàng.");}
+function openBulkModal(type){alert("Thực hiện thao tác hàng loạt cho "+selectedCodes.size+" kiện.");}
+
+/* Khởi chạy thử nghiệm dữ liệu mẫu */
+window.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("ghStatus").textContent="Đang chạy chế độ xem...";
+  data = [
+    {code:"PKG-001", group:"Thiết bị van áp lực", category:"PL-DOOSAN-01", loc:"A1-01", date:"15/08/2026", trangThai:"Trong kho"},
+    {code:"PKG-002", group:"Ống thép chịu nhiệt", category:"PL-DOOSAN-01", loc:"A1-02", date:"15/08/2026", trangThai:"Trong kho"},
+    {code:"PKG-003", group:"Cáp điện hạ thế", category:"PL-DOOSAN-02", loc:"", date:"16/08/2026", trangThai:"Đã xuất", ngayXuat:"18/08/2026"}
+  ];
+  render();
+});
+</script>
+</body>
+</html>
