@@ -2793,16 +2793,34 @@ function getItemDetail(x){
 }
 
 function packageDetailHtml(x){
-  const detail=getItemDetail(x);
+  const allDetail=getItemDetail(x);
+
+  // PKG ở cấp này là đơn vị của CHÍNH KIỆN HÀNG, không phải một mặt hàng
+  // nằm bên trong kiện. Vì vậy không đưa dòng "... (1 PKG)" vào danh sách
+  // chi tiết; chỉ hiển thị các mặt hàng thực tế bên trong kiện.
+  const packageRows=allDetail.filter(it=>normalizeUnit(it.unit)==="PKG");
+  const detail=allDetail.filter(it=>normalizeUnit(it.unit)!==="PKG");
+  const packageQty=packageRows.reduce((sum,it)=>sum+(Number(it.qty)||0),0);
+  const packageLabel=packageQty>0 ? `${packageQty} kiện hàng` : "1 kiện hàng";
+
   if(!detail.length){
-    return `<div class="package-detail"><div class="package-detail-title">📋 Chi tiết kiện hàng</div><div class="package-detail-empty">Chưa có chi tiết hàng hóa.</div></div>`;
+    return `<div class="package-detail">
+      <div class="package-detail-head">
+        <div>
+          <div class="package-detail-title">📋 Chi tiết kiện hàng</div>
+          <div class="package-detail-hint">${escapeHtml(packageLabel)} • PKG là đơn vị của kiện, không phải hàng bên trong</div>
+        </div>
+        <div class="package-detail-count">0 dòng</div>
+      </div>
+      <div class="package-detail-empty">Chưa có chi tiết hàng hóa bên trong kiện.</div>
+    </div>`;
   }
 
   return `<div class="package-detail">
     <div class="package-detail-head">
       <div>
         <div class="package-detail-title">📋 Chi tiết kiện hàng</div>
-        <div class="package-detail-hint">Hiển thị đầy đủ từng dòng hàng và số lượng trong kiện</div>
+        <div class="package-detail-hint">${escapeHtml(packageLabel)} • Hiển thị đầy đủ từng dòng hàng bên trong kiện</div>
       </div>
       <div class="package-detail-count">${detail.length} dòng</div>
     </div>
