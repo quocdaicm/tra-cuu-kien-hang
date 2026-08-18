@@ -1,0 +1,2222 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOOSAN Material</title>
+
+<!-- Preview khi chia sẻ link -->
+<meta name="description" content="DOOSAN Material - Tra cứu kiện hàng nhanh chóng">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DOOSAN Material">
+<meta property="og:description" content="Tra cứu thông tin kiện hàng DOOSAN">
+<meta property="og:url" content="https://quocdaicm.github.io/tra-cuu-kien-hang/">
+<meta property="og:image" content="https://quocdaicm.github.io/tra-cuu-kien-hang/share-preview.png">
+<meta property="og:image:secure_url" content="https://quocdaicm.github.io/tra-cuu-kien-hang/share-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOOSAN Material">
+<meta name="twitter:description" content="Tra cứu thông tin kiện hàng DOOSAN">
+<meta name="twitter:image" content="https://quocdaicm.github.io/tra-cuu-kien-hang/share-preview.png">
+<style>
+*{box-sizing:border-box}
+:root{--blue:#087bd1;--blue2:#2aa8e8;--cyan:#18b8c7;--green:#2eb889;--ink:#172b49;--muted:#6b7890;--line:#dce7ef;--paper:#fff}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,Arial,sans-serif;min-height:100vh;background:#f7fbfd;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-10;background:linear-gradient(180deg,#dff3ff 0%,#f5fbff 18%,#ffffff 52%,#f7fbfd 82%,#e9f6fc 100%)}
+.scenery{position:fixed;inset:0;z-index:-9;pointer-events:none;overflow:hidden}
+.scenery svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wrap{max-width:1040px;margin:auto;padding:12px 20px;position:relative;z-index:2}
+header{position:relative;overflow:hidden;text-align:center;padding:26px 18px 82px;background:linear-gradient(180deg,rgba(244,251,255,.48),rgba(226,244,252,.38));box-shadow:none}
+header:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 9% 20%,rgba(255,255,255,.72),transparent 26%),radial-gradient(circle at 90% 18%,rgba(255,255,255,.55),transparent 24%);pointer-events:none}
+header:after{content:"";position:absolute;left:-8%;right:-8%;bottom:-53px;height:112px;background:linear-gradient(110deg,#0b79cf,#2b9fd8 48%,#2bb5b1);border-radius:52% 52% 0 0/62% 62% 0 0;transform:rotate(-1.5deg);opacity:.92}
+.hero{padding:0!important}
+h1{margin:3px 0 4px;font-size:28px;letter-spacing:.2px}.sub{font-size:15px;line-height:1.5;color:#536b83}.sub b{color:#087bd1}
+.topbar{max-width:1000px;margin:-34px auto 22px;padding:18px 22px;background:rgba(255,255,255,.98);border:1px solid #e3edf3;border-radius:21px;box-shadow:0 12px 32px rgba(30,105,139,.13);position:relative;z-index:5}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:62px}.buttons{display:flex;gap:15px;align-items:center}.buttons button{white-space:nowrap}
+button{font:inherit;border:1px solid #d0dee8;border-radius:12px;background:#fff;padding:11px 18px;cursor:pointer;color:#173450;transition:.2s;box-shadow:0 3px 8px rgba(32,91,119,.06)}button:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(17,105,143,.12)}button.primary{background:linear-gradient(135deg,#087bd1,#268fe0);color:#fff;border-color:#087bd1;box-shadow:0 8px 17px rgba(8,123,209,.20)}
+.status-box{display:flex;align-items:center;gap:9px;min-width:220px;justify-content:flex-end}.status-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#20b77b;color:#fff;font-size:12px;font-weight:800}.status-title{font-size:13px;font-weight:800;line-height:1.2}.status{margin:3px 0 0;text-align:left;font-size:11px;color:#718293;white-space:nowrap}
+.search-panel{background:rgba(255,255,255,.93);border:1px solid #e5eef4;border-radius:21px;padding:14px;box-shadow:0 8px 25px rgba(37,112,143,.08);margin-bottom:16px}.search-row{display:flex;gap:10px;align-items:center}.search{background:#fff;border:1px solid #dfe8ef;border-radius:18px;padding:15px 18px;width:100%;font-size:18px;outline:none;box-shadow:0 4px 13px rgba(35,111,144,.06)}.search:focus{border-color:#45b9eb;box-shadow:0 0 0 4px rgba(69,185,235,.13)}.filter-toggle{width:52px;height:52px;padding:0;border-radius:50%;font-size:23px;flex:0 0 52px}.filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.filter-box{background:#fff;padding:10px 12px;border:1px solid #e1eaf0;border-radius:13px;box-shadow:0 3px 10px rgba(33,107,138,.04)}.filter-box label{display:block;font-size:12px;font-weight:800;color:#1b3650;margin:0 0 7px}select{width:100%;font:inherit;border:1px solid #d5e3eb;border-radius:11px;background:#fff;padding:10px 12px;color:#4a6275;outline:none}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 18px}.stat{min-height:92px;background:rgba(255,255,255,.97);padding:12px 13px;border-radius:15px;box-shadow:0 6px 18px rgba(29,112,137,.08);border:1px solid #e1ebf1;display:flex;align-items:center;gap:10px}.stat:before{display:none!important}.stat b{display:block;font-size:22px;color:#173a60;line-height:1.1}.stat span{font-size:12px;color:#68798e;display:block;margin-top:4px}
+.card{background:rgba(255,255,255,.98);padding:15px 18px 11px;border-radius:16px;margin-bottom:12px;border:1px solid #e0e9ef;border-left:4px solid #269ee2;box-shadow:0 7px 20px rgba(30,112,136,.08);position:relative;overflow:hidden}.card:after{content:"";position:absolute;right:-20px;top:-25px;width:90px;height:135px;background:radial-gradient(ellipse,#6fcfa055 0 17%,transparent 18%);transform:rotate(35deg);opacity:.45;pointer-events:none}.card:nth-child(2){border-left-color:#35b991}.card:nth-child(3){border-left-color:#f4ad35}
+.card-main{display:grid;grid-template-columns:70px minmax(180px,1.3fr) repeat(5,minmax(84px,1fr)) auto;gap:13px;align-items:center;position:relative;z-index:1}
+.card{padding-top:34px}
+.pick-box{position:absolute;top:-26px;left:-8px;z-index:5;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #dce7ef;border-radius:8px;padding:3px;box-shadow:0 2px 6px rgba(30,90,120,.1)}
+.pick-box input{width:18px;height:18px;cursor:pointer;accent-color:#087bd1;display:block}
+.card-selected{outline:2px solid #087bd1;outline-offset:-1px;background:#f2f9ff!important}
+.status-badge{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+.status-in{background:#e7faf3;color:#1a9a6b}
+.status-out{background:#fff3df;color:#c87500}.package-icon{width:68px;height:68px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;background:linear-gradient(145deg,#168de0,#0875c4);box-shadow:0 6px 14px rgba(17,120,197,.18)}.card:nth-child(2) .package-icon{background:linear-gradient(145deg,#2ec294,#18a477)}.card:nth-child(3) .package-icon{background:linear-gradient(145deg,#ffab25,#f48600)}
+.code{font-weight:800;word-break:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#162f4c;font-size:16px;line-height:1.2;min-width:0}.copy{padding:6px 9px;font-size:11px;margin-top:7px;border-radius:8px}.share{padding:9px 14px;background:linear-gradient(135deg,#12b7c2,#1aa9bc);color:#fff;border-color:#12b7c2;white-space:nowrap;border-radius:9px}.field{min-width:0}.field-label{display:block;font-size:11px;color:#536277;margin-bottom:7px}.field-value{font-size:13px;color:#1a304b;font-weight:600;word-break:break-word}.history{margin-top:10px;border-top:1px solid #e7eff4;padding:8px 0 0 82px;font-size:11px;position:relative;z-index:1}.history-title{font-weight:700;color:#456476;margin-bottom:4px}.history-item{padding:4px 0;border-bottom:1px dashed #dce8ee}.empty{background:#fff;padding:35px;text-align:center;border-radius:15px;color:#667;box-shadow:0 7px 20px rgba(27,112,156,.08)}
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin:22px 0 4px}.pagination button{width:38px;height:38px;padding:0;border-radius:8px}.pagination button.active{background:#087bd1;color:#fff;border-color:#087bd1}.share-result{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:linear-gradient(135deg,#1178a6,#27a98a);color:#fff;padding:11px 17px;border-radius:13px;box-shadow:0 10px 28px #1178a644;z-index:10;font-size:14px}
+.site-footer{position:relative;margin-top:48px;min-height:145px;overflow:hidden;color:#fff;text-align:center;padding:72px 20px 25px}.site-footer:before{content:"";position:absolute;left:-7%;right:-7%;bottom:-58px;height:130px;background:linear-gradient(105deg,#0a6599,#1687b7 46%,#2d8f92);border-radius:55% 55% 0 0/60% 60% 0 0;transform:rotate(-1.5deg);z-index:-1}.site-footer:after{content:"";position:absolute;left:-8%;right:-8%;bottom:-78px;height:95px;background:rgba(255,255,255,.18);border-radius:55% 55% 0 0/60% 60% 0 0;transform:rotate(2deg);z-index:-1}.site-footer small{font-size:12px;text-shadow:0 1px 4px rgba(0,50,90,.28)}
+
+/* ---------- ICONS + MOTION ---------- */
+.search-wrap{position:relative;flex:1;min-width:0}.search-wrap .search{padding-left:50px}.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:24px;z-index:2;filter:drop-shadow(0 2px 2px rgba(30,70,100,.12));pointer-events:none}.filter-toggle{background:linear-gradient(145deg,#fff,#f4fbff);border:1px solid #dbe8f0;box-shadow:0 7px 18px rgba(42,116,148,.12);position:relative;overflow:hidden}.filter-toggle span{display:block;transition:transform .3s ease}.filter-toggle:hover span{transform:rotate(90deg) scale(1.08)}
+.filter-box{position:relative;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}.filter-box:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(8,123,209,.08),transparent 45%,rgba(46,184,137,.06));opacity:0;transition:opacity .25s ease;pointer-events:none}.filter-box:hover{transform:translateY(-3px);border-color:#c8e3f0;box-shadow:0 9px 20px rgba(38,125,158,.11)}.filter-box:hover:before{opacity:1}.filter-icon,.mini-icon{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;line-height:1}.filter-icon{font-size:15px;margin-right:4px}.filter-icon.pin{font-size:16px}.filter-box label{position:relative;z-index:1}
+select{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}select:focus{border-color:#55b8e5;box-shadow:0 0 0 4px rgba(85,184,229,.12);transform:translateY(-1px)}
+.stat{position:relative;overflow:hidden;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease}.stat:after{content:"";position:absolute;width:85px;height:85px;border-radius:50%;right:-35px;top:-35px;background:rgba(255,255,255,.45);transition:transform .35s ease}.stat:hover{transform:translateY(-5px);box-shadow:0 13px 28px rgba(29,112,137,.14)}.stat:hover:after{transform:scale(1.35)}.stat-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:23px;flex:0 0 50px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.65);transition:transform .35s ease}.stat:hover .stat-icon{transform:rotate(-6deg) scale(1.08)}.stat-blue{border-top:3px solid #269ee2}.stat-green{border-top:3px solid #35b991}.stat-orange{border-top:3px solid #f4ad35}.stat-purple{border-top:3px solid #8c6ce8}.stat-cyan{border-top:3px solid #35b9ba}.stat-blue .stat-icon{background:#e8f3ff}.stat-green .stat-icon{background:#e7faf3}.stat-orange .stat-icon{background:#fff3df}.stat-purple .stat-icon{background:#f0edff}.stat-cyan .stat-icon{background:#e7fbfa}.stat div{position:relative;z-index:1}.stat b{font-variant-numeric:tabular-nums}
+.package-icon{position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}.package-icon:after{content:"";position:absolute;inset:-60%;background:linear-gradient(120deg,transparent 42%,rgba(255,255,255,.28) 50%,transparent 58%);transform:translateX(-35%) rotate(10deg);transition:transform .55s ease}.card:hover .package-icon{transform:translateY(-2px) rotate(-2deg);box-shadow:0 10px 20px rgba(17,120,197,.22)}.card:hover .package-icon:after{transform:translateX(35%) rotate(10deg)}.code{transition:color .2s ease}.card:hover .code{color:#087bd1}.mini-icon{font-size:12px;margin-right:3px}.copy,.share{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}.copy:hover,.share:hover{transform:translateY(-2px);filter:brightness(1.03);box-shadow:0 7px 15px rgba(15,112,145,.15)}.share span{display:inline-block;transition:transform .25s ease}.share:hover span{transform:rotate(15deg) scale(1.12)}.history-title{display:flex;align-items:center;gap:5px}.history-icon{font-size:15px;color:#087bd1;display:inline-block;animation:pulseClock 2s ease-in-out infinite}@keyframes pulseClock{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.12);opacity:1}}
+
+@media(max-width:900px){.card-main{grid-template-columns:62px 1.4fr 1fr 1fr auto;gap:10px}.card-main .field:nth-of-type(3),.card-main .field:nth-of-type(4){display:none}}
+/* Xoay ngang: vẫn hiển thị Mô tả hàng hóa */
+@media (min-width:701px) and (max-width:900px) and (orientation:landscape){.card-main .field:nth-of-type(3){display:block}.card-main .field:nth-of-type(3) .field-value{display:block;white-space:normal;overflow-wrap:anywhere}}
+@media(max-width:700px){header{padding:20px 12px 64px}h1{font-size:23px}.sub{font-size:13px}.wrap{padding:9px 10px}.topbar{margin:-28px 10px 16px;padding:10px 11px}.topbar-inner{gap:8px}.buttons{gap:6px;flex:1;min-width:0}.buttons button{flex:1;min-width:0;padding:9px 5px;font-size:11px}.status-box{min-width:0;gap:5px}.status-dot{width:19px;height:19px;flex:0 0 19px}.status-title{font-size:9px}.status{font-size:8px;max-width:85px;overflow:hidden;text-overflow:ellipsis}.search-panel{padding:10px;border-radius:17px}.search-row{gap:7px}.search{font-size:15px;padding:13px 14px}.filter-toggle{width:46px;height:46px;flex-basis:46px;font-size:20px}.filters{grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.filter-box{padding:8px}.filter-box label{font-size:10px}.filter-box select{font-size:12px;padding:8px}.stats{grid-template-columns:1fr 1fr;gap:7px}.stat{min-height:72px;padding:9px}.stat b{font-size:18px}.stat span{font-size:10px}.card{padding:28px 10px 9px;margin-bottom:9px}.card-main{grid-template-columns:48px minmax(0,1fr) auto;gap:8px}.package-icon{width:46px;height:46px;font-size:20px;border-radius:9px}.card-main .field{grid-column:2/4}.card-main .field:nth-of-type(2){display:block}.card-main .field:nth-of-type(n+3){display:block}.card-main .share-wrap{grid-column:3;grid-row:1}.code{font-size:14px;white-space:nowrap}.copy{padding:5px 8px;font-size:10px;margin-top:5px}.share{padding:7px 9px;font-size:11px}.field-label{font-size:9px;margin-bottom:3px}.field-value{font-size:12px}.history{padding-left:56px;font-size:10px}.pagination{gap:5px}.pagination button{width:34px;height:34px}.site-footer{margin-top:35px;min-height:110px;padding-top:58px}}
+
+@media(max-width:700px){.gas-plant-bg{opacity:.14}.gas-plant-bg svg{width:1050px;height:360px;bottom:0}.gas-plant-glow{width:120px;height:120px;right:3%;bottom:140px}.search-wrap .search{padding-left:43px}.search-icon{left:14px;font-size:21px}.filter-toggle{width:46px;height:46px;flex-basis:46px}.filter-icon{font-size:13px}.stat{gap:9px}.stat-icon{width:42px;height:42px;flex-basis:42px;font-size:19px}.stat b{font-size:20px}.stat span{font-size:11px}.filter-box:hover,.stat:hover{transform:none}.package-icon{transform:none}.card:hover .package-icon{transform:none}.mini-icon{font-size:10px}}
+
+/* ---------- MOBILE CARD CLARITY ---------- */
+@media(max-width:700px){
+  .card-main{
+    grid-template-columns:48px minmax(0,1fr) 88px;
+    gap:8px;
+    align-items:start;
+  }
+  .card-main > div:nth-child(2){
+    grid-column:2;
+    min-width:0;
+  }
+  .card-main .share-wrap{
+    grid-column:3;
+    grid-row:1;
+    justify-self:end;
+    width:88px;
+    min-width:0;
+  }
+  .code{
+    white-space:normal;
+    overflow:visible;
+    text-overflow:clip;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    overflow:hidden;
+    font-size:14px;
+    line-height:1.25;
+    min-height:35px;
+    padding-right:2px;
+  }
+  .copy{margin-top:4px;}
+  .share{
+    width:88px;
+    padding:8px 5px;
+    font-size:11px;
+  }
+  .card-main .field{grid-column:2/4;}
+}
+
+
+/* ---------- BACKGROUND THEO MẪU THAM CHIẾU ---------- */
+.scenery{will-change:transform}
+@media(max-width:700px){
+  .scenery svg{min-width:100%;height:100%}
+  header{padding-top:18px;padding-bottom:72px}
+}
+
+
+.file-modal{
+  position:fixed;inset:0;background:rgba(10,38,60,.48);
+  backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;
+  padding:18px;z-index:100;
+}
+.file-modal.show{display:flex}
+.file-panel{
+  width:min(680px,100%);max-height:min(78vh,720px);overflow:hidden;
+  background:#fff;border:1px solid #dceaf2;border-radius:22px;
+  box-shadow:0 25px 70px rgba(10,67,100,.25);
+}
+.file-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:18px 20px;border-bottom:1px solid #e6eef3;
+  background:linear-gradient(135deg,#f7fcff,#eef9ff);
+}
+.file-title{font-size:18px;font-weight:900;color:#173a60}
+.file-sub{font-size:11px;color:#708296;margin-top:3px}
+.file-close{width:38px;height:38px;padding:0;border-radius:50%;font-size:20px}
+.file-list{padding:12px 14px;overflow:auto;max-height:55vh}
+.file-item{
+  display:flex;align-items:center;gap:12px;padding:12px;
+  border:1px solid #e3edf2;border-radius:14px;margin-bottom:9px;
+  transition:.2s;background:#fff;
+}
+.file-item:hover{transform:translateY(-1px);border-color:#b9ddec;box-shadow:0 7px 18px rgba(28,113,145,.09)}
+.file-icon{
+  width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+  border-radius:11px;background:#eaf6ff;font-size:21px;flex:0 0 42px;
+}
+.file-info{min-width:0;flex:1}
+.file-name{font-size:13px;font-weight:800;color:#173a60;word-break:break-word}
+.file-meta{font-size:10px;color:#7a8b9b;margin-top:3px}
+.file-download{
+  flex:0 0 auto;padding:9px 13px!important;border-radius:10px!important;
+  background:linear-gradient(135deg,#087bd1,#2495df)!important;color:#fff!important;
+  border-color:#087bd1!important;font-size:12px;
+}
+.file-empty{text-align:center;padding:35px 15px;color:#718293}
+@media(max-width:700px){
+  .file-modal{padding:10px}
+  .file-panel{border-radius:18px;max-height:84vh}
+  .file-head{padding:15px}
+  .file-list{max-height:68vh;padding:10px}
+  .file-item{padding:10px;gap:9px}
+  .file-download{padding:8px 10px!important;font-size:11px}
+}
+
+/* ---------- LÀM ĐẸP CÁC NÚT GIỮ NGUYÊN GIAO DIỆN ---------- */
+.topbar .buttons{
+  gap:15px;
+}
+.topbar .buttons button{
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+}
+.topbar .buttons button::after{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  bottom:4px;
+  height:2px;
+  border-radius:99px;
+  background:rgba(255,255,255,.55);
+  opacity:0;
+  transform:scaleX(.35);
+  transition:.25s ease;
+  pointer-events:none;
+}
+.topbar .buttons button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(17,105,143,.14);
+  filter:brightness(1.02);
+}
+.topbar .buttons button:hover::after{
+  opacity:1;
+  transform:scaleX(1);
+}
+.topbar .buttons button:active{
+  transform:translateY(0) scale(.98);
+}
+.topbar .buttons button.primary{
+  box-shadow:0 8px 17px rgba(8,123,209,.20);
+}
+.topbar .buttons button.primary:hover{
+  box-shadow:0 10px 22px rgba(8,123,209,.25);
+}
+@media(max-width:700px){
+  .topbar .buttons{gap:6px}
+  .topbar .buttons button:hover{transform:translateY(-1px)}
+}
+
+/* ---------- LÁ/CỎ CHUYỂN ĐỘNG QUANH VIỀN NÚT ---------- */
+.topbar .buttons button{
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+}
+.topbar .buttons button::before{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border:2px solid rgba(255,255,255,.95);
+  border-radius:15px;
+  pointer-events:none;
+  z-index:-1;
+  box-shadow:0 0 0 1px rgba(68,160,112,.08),0 4px 12px rgba(34,120,83,.08);
+}
+.topbar .buttons button::after{
+  content:"🍃";
+  position:absolute;
+  left:4px;
+  top:-8px;
+  font-size:14px;
+  line-height:1;
+  filter:drop-shadow(0 2px 2px rgba(28,108,67,.18));
+  animation:leafCrawl 5s linear infinite;
+  pointer-events:none;
+  z-index:3;
+}
+.topbar .buttons button:nth-child(2)::after{
+  content:"🌿";
+  animation-delay:-2.5s;
+}
+@keyframes leafCrawl{
+  0%{left:3px;top:-8px;transform:rotate(-25deg) scale(.9)}
+  25%{left:calc(100% - 12px);top:-8px;transform:rotate(25deg) scale(1)}
+  50%{left:calc(100% - 12px);top:calc(100% - 5px);transform:rotate(115deg) scale(.9)}
+  75%{left:3px;top:calc(100% - 5px);transform:rotate(195deg) scale(1)}
+  100%{left:3px;top:-8px;transform:rotate(335deg) scale(.9)}
+}
+.topbar .buttons button:hover::before{
+  box-shadow:0 0 0 1px rgba(46,184,137,.18),0 6px 18px rgba(34,120,83,.13);
+}
+@media(max-width:700px){
+  .topbar .buttons button::after{font-size:11px;top:-7px}
+  .topbar .buttons button::before{inset:-4px;border-radius:13px}
+}
+
+/* ---------- HIỆU ỨNG LÁ/CỎ CHO MỌI TƯƠNG TÁC ---------- */
+.touch-leaf{
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+  font-size:16px;
+  line-height:1;
+  animation:touchLeaf 900ms cubic-bezier(.2,.8,.2,1) forwards;
+  filter:drop-shadow(0 2px 3px rgba(30,110,70,.22));
+}
+@keyframes touchLeaf{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.35) rotate(-20deg)}
+  18%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(5deg)}
+  100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.65) rotate(var(--rot))}
+}
+
+/* Tối ưu hiệu ứng khi vuốt bằng tay trên điện thoại */
+.touch-leaf{
+  will-change:transform,opacity;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.file-tools{padding:12px 14px 4px;display:grid;grid-template-columns:1fr 180px;gap:8px}.file-search,.file-date-filter{width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:10px 12px;font:inherit;font-size:12px;outline:none}.file-search:focus,.file-date-filter:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}.file-sort-note{padding:5px 14px 2px;color:#718293;font-size:10px}.file-pagination{display:flex;justify-content:center;gap:6px;padding:5px 14px 14px}.file-pagination button{min-width:32px;height:32px;padding:0;border-radius:9px;font-size:11px}.file-pagination button.active{background:#087bd1;color:#fff;border-color:#087bd1}@media(max-width:700px){.file-tools{grid-template-columns:1fr;padding:9px 10px 3px}.file-list{max-height:60vh}.file-sort-note{padding:4px 10px}.file-pagination{padding:4px 10px 11px}}
+/* ---------- APP MOBILE UI - NEW BACKGROUND ---------- */
+html,body{background:#f3f7fb!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#172b49}
+body:before,.scenery{display:none!important}
+.wrap{max-width:1040px;margin:auto;padding:12px 20px;position:relative;z-index:2}
+
+/* compact app header: no logo / no introduction */
+.topbar{
+  max-width:1040px;
+  margin:0 auto 14px;
+  padding:10px 12px;
+  background:rgba(255,255,255,.94);
+  border:1px solid #e4ebf2;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(38,73,104,.08);
+  position:relative;
+  z-index:5;
+  backdrop-filter:blur(12px);
+}
+.topbar-inner{display:flex;align-items:center;gap:8px;min-height:48px}
+.topbar .buttons{display:flex;gap:8px;align-items:center;flex:1;min-width:0}
+.topbar .buttons button{
+  flex:1;
+  min-width:0;
+  height:42px;
+  padding:8px 12px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:700;
+  box-shadow:none;
+  white-space:nowrap;
+}
+.topbar .buttons button::before,.topbar .buttons button::after{display:none!important}
+.status-box{
+  flex:0 0 auto;
+  min-width:205px;
+  height:42px;
+  padding:6px 10px;
+  border-radius:12px;
+  background:#f4faf7;
+  border:1px solid #dcefe6;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  justify-content:flex-start;
+}
+.status-dot{width:22px;height:22px;flex:0 0 22px}
+.status-title{font-size:11px;font-weight:800}
+.status{font-size:9px;max-width:145px;overflow:hidden;text-overflow:ellipsis}
+
+/* app-style content */
+.search-panel{
+  background:#fff!important;
+  border:1px solid #e5ebf1!important;
+  border-radius:18px!important;
+  box-shadow:0 5px 18px rgba(38,73,104,.06)!important;
+}
+.stats .stat{
+  background:#fff!important;
+  border:1px solid #e5ebf1!important;
+  border-radius:16px!important;
+  box-shadow:0 4px 14px rgba(38,73,104,.06)!important;
+}
+.card{
+  background:#fff!important;
+  border:1px solid #e4ebf1!important;
+  border-left:4px solid #269ee2!important;
+  border-radius:16px!important;
+  box-shadow:0 5px 16px rgba(38,73,104,.06)!important;
+}
+.site-footer{display:none!important}
+
+/* landscape/mobile: never duplicate or wrap the top actions into another row */
+@media(max-width:700px){
+  .wrap{padding:8px 10px}
+  .topbar{
+    margin:0 10px 12px;
+    padding:8px;
+    border-radius:16px;
+  }
+  .topbar-inner{gap:6px;min-height:44px}
+  .topbar .buttons{gap:6px;flex:1}
+  .topbar .buttons button{
+    height:40px;
+    padding:7px 6px;
+    font-size:10px;
+    border-radius:11px;
+  }
+  .status-box{
+    min-width:0;
+    flex:0 1 34%;
+    height:40px;
+    padding:5px 7px;
+  }
+  .status-dot{width:19px;height:19px;flex-basis:19px;font-size:10px}
+  .status-title{font-size:8px}
+  .status{font-size:7px;max-width:75px}
+}
+@media(max-width:420px){
+  .topbar .buttons button{font-size:9px;padding-left:4px;padding-right:4px}
+  .status-title{font-size:7.5px}
+  .status{display:none}
+  .status-box{flex:0 0 30px;width:30px;padding:0;justify-content:center}
+}
+
+
+/* ---------- NHẤN MẠNH VỊ TRÍ KIỆN HÀNG ---------- */
+.field-location .field-label{font-weight:900;color:#087bd1}
+.location-badge{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:6px 12px;border-radius:999px;background:linear-gradient(135deg,#087bd1,#16a7d8);color:#fff;font-size:15px;font-weight:950;letter-spacing:.5px;box-shadow:0 4px 12px rgba(8,123,209,.28);border:2px solid rgba(255,255,255,.9);text-shadow:0 1px 1px rgba(0,0,0,.12)}
+.location-empty{display:inline-flex;padding:5px 10px;border-radius:999px;background:#fff3df;color:#c87500;font-weight:800;border:1px solid #ffd59b}
+@media(max-width:700px){.location-badge{min-width:54px;padding:5px 10px;font-size:14px}.field-location .field-label{font-size:10px}}
+.extra-info{margin-top:10px;border-top:1px solid #e7eff4;padding:10px 0 0 82px;position:relative;z-index:1}
+.extra-info-title{font-weight:700;color:#456476;margin-bottom:8px;font-size:11px;display:flex;align-items:center;gap:5px}
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px 14px}
+.extra-item{min-width:0}
+.extra-item .field-label{display:block;font-size:10.5px;color:#7488a0;margin-bottom:3px}
+.extra-item .field-value{font-size:12.5px;color:#1a304b;font-weight:600;word-break:break-word}
+@media(max-width:700px){.extra-info{padding-left:0}}
+
+/* ---------- BULK ACTION BAR ---------- */
+.bulk-bar{position:fixed;left:0;right:0;bottom:-100px;z-index:60;display:flex;justify-content:center;transition:bottom .25s ease;padding:0 14px}
+.bulk-bar.show{bottom:16px}
+.bulk-bar-inner{background:#173a60;color:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 14px 34px rgba(10,40,65,.35);display:flex;align-items:center;gap:14px;max-width:680px;width:100%;flex-wrap:wrap}
+.bulk-count{font-size:13px;font-weight:800;white-space:nowrap}
+.bulk-actions{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+.bulk-btn{border:none;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:700;cursor:pointer;color:#fff;white-space:nowrap}
+.bulk-out{background:#f4ad35}
+.bulk-in{background:#2eb889}
+.bulk-loc{background:#087bd1}
+.bulk-clear{background:rgba(255,255,255,.16)}
+@media(max-width:700px){.bulk-bar-inner{padding:10px 12px;gap:8px}.bulk-count{font-size:11px}.bulk-btn{padding:8px 8px;font-size:10.5px}}
+
+/* ---------- FIX: KHÔNG ĐỂ CÁC NÚT TOPBAR CHỒNG/ĐÈ NHAU Ở BẤT KỲ KÍCH THƯỚC MÀN HÌNH NÀO (PC + MOBILE) ---------- */
+.topbar-inner{flex-wrap:wrap;row-gap:8px}
+.topbar .buttons{flex-wrap:wrap;flex:1 1 auto;min-width:260px}
+.topbar .buttons button{flex:1 1 auto;min-width:118px}
+.status-box{flex:0 0 auto}
+@media(max-width:900px){
+  .topbar-inner{gap:8px}
+  .topbar .buttons{min-width:100%;order:2}
+  .status-box{order:1;flex:1 1 100%;width:100%;justify-content:center}
+}
+@media(max-width:700px){
+  .topbar .buttons button{min-width:calc(50% - 3px);flex:0 0 calc(50% - 3px)}
+}
+@media(max-width:420px){
+  .topbar .buttons button{font-size:10.5px;padding:8px 4px;min-width:calc(50% - 3px);flex:0 0 calc(50% - 3px)}
+  .status-box{padding:5px 8px}
+  .status{display:block;max-width:none;font-size:8px}
+}
+
+/* ---------- SỬA THEO P/L: DANH SÁCH TỪNG KIỆN VỚI VỊ TRÍ RIÊNG ---------- */
+.pl-quickfill{display:flex;gap:8px;margin-bottom:12px}
+.pl-quickfill input{flex:1;min-width:0;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:10px 12px;font:inherit;font-size:12px;outline:none}
+.pl-quickfill button{flex:0 0 auto;background:#eaf6ff;border-color:#bfe0f2;color:#087bd1;font-weight:800;font-size:12px;padding:10px 12px;border-radius:11px}
+.pl-items-list{max-height:280px;overflow:auto;border:1px solid #e6eef3;border-radius:14px;padding:8px}
+.pl-item{display:grid;grid-template-columns:1fr 120px;gap:8px;align-items:center;padding:8px 6px;border-bottom:1px dashed #e2ecf2}
+.pl-item:last-child{border-bottom:none}
+.pl-item-info{min-width:0}
+.pl-item-code{font-size:12.5px;font-weight:800;color:#173a60;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-item-desc{font-size:10.5px;color:#708296;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-item-loc{width:100%;border:1px solid #d8e6ee;border-radius:9px;background:#fff;padding:8px 9px;font:inherit;font-size:12px;outline:none}
+.pl-item-loc:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}
+.pl-empty{padding:16px;text-align:center;color:#8091a3;font-size:12px}
+@media(max-width:480px){
+  .pl-quickfill{flex-wrap:wrap}
+  .pl-quickfill button{width:100%}
+  .pl-item{grid-template-columns:1fr 96px}
+}
+
+/* ---------- RESPONSIVE LANDSCAPE FIX 2026-08 ---------- */
+/* Điện thoại xoay ngang / tablet nhỏ: card luôn có cột rõ ràng, không đẩy Trạng thái sang vị trí bất thường. */
+@media (min-width:701px) and (max-width:1100px) and (orientation:landscape){
+  .wrap{padding:10px 14px}
+  .topbar{margin:0 14px 12px;padding:8px 10px}
+  .topbar-inner{
+    flex-wrap:nowrap;
+    align-items:center;
+    gap:10px;
+  }
+  .topbar .buttons{
+    flex:1 1 auto;
+    min-width:0;
+    flex-wrap:nowrap;
+    gap:7px;
+    order:1;
+  }
+  .topbar .buttons button{
+    min-width:0;
+    flex:1 1 0;
+    height:40px;
+    padding:7px 8px;
+    font-size:11px;
+  }
+  .status-box{
+    order:2;
+    flex:0 0 180px;
+    width:180px;
+    min-width:180px;
+    height:40px;
+    padding:5px 8px;
+    justify-content:flex-start;
+  }
+  .status-title{font-size:10px}
+  .status{font-size:8px;max-width:125px}
+
+  /* Chỉ giữ các trường cần nhìn ngay trên màn hình ngang.
+     P/L No. vẫn có trong dữ liệu/chi tiết, không làm vỡ hàng chính. */
+  .card{padding:30px 12px 10px}
+  .card-main{
+    /* Luôn vừa trong chiều ngang điện thoại khi xoay ngang.
+       Không dùng min-width lớn vì sẽ làm tràn card và cắt nút bên phải. */
+    grid-template-columns: 48px minmax(0,1.55fr) minmax(0,1.35fr) minmax(0,.62fr) minmax(0,.72fr) minmax(0,.92fr) 82px;
+    gap:7px;
+    align-items:start;
+    width:100%;
+    min-width:0;
+  }
+  /* Các div con được đặt cột cụ thể, tránh auto-placement làm Trạng thái bị lệch. */
+  .card-main > .package-icon{grid-column:1;grid-row:1}
+  .card-main > div:nth-child(2){grid-column:2;grid-row:1;min-width:0}
+  .card-main > .field:nth-of-type(3){grid-column:3;grid-row:1;display:block;min-width:0}
+  .card-main > .field:nth-of-type(4){display:none}
+  .card-main > .field:nth-of-type(5){grid-column:4;grid-row:1;display:block;min-width:0}
+  .card-main > .field:nth-of-type(6){grid-column:5;grid-row:1;display:block;min-width:0}
+  .card-main > .field:nth-of-type(7){grid-column:6;grid-row:1;display:block;min-width:0}
+  .card-main > .share-wrap{
+    grid-column:7;
+    grid-row:1;
+    width:82px;
+    min-width:0;
+    justify-self:end;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .card-main > .share-wrap .share{
+    width:100% !important;
+    min-width:0;
+    height:34px;
+    margin:0 !important;
+    padding:7px 6px;
+    font-size:11px;
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+  }
+  .field-label{font-size:10px;margin-bottom:4px}
+  .field-value{font-size:11px}
+  .location-badge{min-width:48px;padding:5px 7px;font-size:11px}
+  .status-badge{padding:5px 6px;font-size:10px;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  .field-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .code{font-size:15px;white-space:normal;line-height:1.25}
+  .copy{margin-top:5px}
+
+  /* Không để phần chi tiết chen ngang hàng chính. */
+  .extra-info,.history{padding-left:68px}
+}
+
+/* Nút Chia sẻ và Sửa luôn cùng một khung, không còn trường hợp Sửa có nền dài gấp đôi Chia sẻ. */
+.share-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:6px;
+  width:126px;
+  min-width:126px;
+}
+.share-wrap .share{
+  width:100% !important;
+  min-width:0;
+  height:40px;
+  margin:0 !important;
+  padding:8px 8px;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+}
+@media(max-width:700px){
+  .share-wrap{
+    width:88px;
+    min-width:88px;
+    gap:6px;
+  }
+  .share-wrap .share{
+    width:88px !important;
+    height:38px;
+    padding:7px 5px;
+    font-size:11px;
+  }
+}
+
+/* Màn hình rất hẹp: tránh chữ/khối tình trạng bị tràn khi xoay ngang hoặc thay đổi zoom. */
+@media (min-width:701px) and (max-width:900px){
+  .topbar .buttons button{overflow:hidden;text-overflow:ellipsis}
+}
+
+
+/* ---------- FINAL LANDSCAPE OVERFLOW GUARD ---------- */
+@media (min-width:701px) and (max-width:1100px) and (orientation:landscape){
+  .wrap{padding-left:8px;padding-right:8px}
+  .card{padding-left:9px;padding-right:9px;overflow:hidden}
+  .card-main{
+    width:100%;
+    max-width:100%;
+    grid-template-columns:44px minmax(0,1.55fr) minmax(0,1.3fr) minmax(0,.62fr) minmax(0,.68fr) minmax(0,.88fr) 76px !important;
+    gap:6px !important;
+  }
+  .card-main > *{min-width:0 !important;max-width:100%}
+  .card-main > .share-wrap{width:76px !important;min-width:0 !important}
+  .card-main > .share-wrap .share{width:76px !important;height:32px;padding:5px 3px;font-size:10px}
+  .package-icon{width:44px;height:44px;font-size:20px}
+  .code{font-size:14px}
+  .copy{font-size:10px;padding:5px 6px}
+  .field-label{font-size:9px;margin-bottom:3px}
+  .field-value{font-size:10.5px}
+  .status-badge{font-size:9.5px;padding:5px 5px}
+}
+
+/* ---------- FULL SCREEN / FULL WIDTH ---------- */
+html,body{width:100%;min-width:0;}
+.wrap{width:100%;max-width:none;margin:0 auto;padding-left:clamp(10px,2vw,28px);padding-right:clamp(10px,2vw,28px);}
+.topbar{width:100%;max-width:none;}
+.search-panel,.stats,#list,.pagination,.site-footer{width:100%;max-width:none;}
+.card{width:100%;}
+@media(min-width:901px){
+  .wrap{padding-left:clamp(18px,2.2vw,40px);padding-right:clamp(18px,2.2vw,40px);}
+  .topbar{margin-left:0;margin-right:0;}
+}
+@media(max-width:700px){
+  .wrap{width:100%;padding-left:10px;padding-right:10px;}
+  .topbar{width:100%;margin-left:0;margin-right:0;}
+}
+
+/* =========================================================
+   FULL SCREEN ALL DEVICES — FINAL RESPONSIVE LAYOUT
+   Mọi hướng màn hình đều dùng toàn bộ chiều rộng viewport.
+   Không ép max-width và không tạo horizontal overflow.
+   ========================================================= */
+html, body {
+  width:100%;
+  max-width:none;
+  min-width:0;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+*, *::before, *::after { box-sizing:border-box; }
+
+header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-footer {
+  width:100%;
+  max-width:none !important;
+}
+
+.wrap {
+  width:100%;
+  margin:0;
+  padding-left:clamp(8px, 1.5vw, 24px);
+  padding-right:clamp(8px, 1.5vw, 24px);
+}
+
+.topbar {
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+.search-panel, .stats, #list, .pagination, .site-footer {
+  margin-left:0;
+  margin-right:0;
+}
+
+.card {
+  width:100%;
+  max-width:none;
+}
+
+.card-main {
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+
+.card-main > *, .field, .share-wrap, .card-main > div:nth-child(2) {
+  min-width:0 !important;
+  max-width:100%;
+}
+
+/* PC: các cột tự giãn theo toàn bộ chiều rộng card */
+@media (min-width:1101px) {
+  .wrap {
+    padding-left:clamp(16px, 1.8vw, 36px);
+    padding-right:clamp(16px, 1.8vw, 36px);
+  }
+  .card-main {
+    grid-template-columns:
+      68px
+      minmax(190px, 1.45fr)
+      minmax(170px, 1.35fr)
+      minmax(105px, .72fr)
+      minmax(120px, .85fr)
+      minmax(135px, .95fr)
+      minmax(110px, .75fr)
+      126px;
+    gap:clamp(8px, .9vw, 14px);
+  }
+  .card-main > .field:nth-of-type(2),
+  .card-main > .field:nth-of-type(3),
+  .card-main > .field:nth-of-type(4),
+  .card-main > .field:nth-of-type(5),
+  .card-main > .field:nth-of-type(6),
+  .card-main > .field:nth-of-type(7) {
+    display:block;
+  }
+}
+
+/* Tablet + điện thoại xoay ngang: luôn co vừa viewport */
+@media (min-width:701px) and (max-width:1100px) {
+  .wrap {
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .card-main {
+    width:100%;
+    grid-template-columns:
+      44px
+      minmax(0, 1.55fr)
+      minmax(0, 1.25fr)
+      minmax(0, .62fr)
+      minmax(0, .70fr)
+      minmax(0, .88fr)
+      76px;
+    gap:6px;
+  }
+  .card-main > .package-icon { grid-column:1; grid-row:1; }
+  .card-main > div:nth-child(2) { grid-column:2; grid-row:1; }
+  .card-main > .field:nth-of-type(3) { grid-column:3; grid-row:1; display:block; }
+  .card-main > .field:nth-of-type(4) { display:none; }
+  .card-main > .field:nth-of-type(5) { grid-column:4; grid-row:1; display:block; }
+  .card-main > .field:nth-of-type(6) { grid-column:5; grid-row:1; display:block; }
+  .card-main > .field:nth-of-type(7) { grid-column:6; grid-row:1; display:block; }
+  .card-main > .share-wrap {
+    grid-column:7;
+    grid-row:1;
+    width:76px !important;
+    min-width:0 !important;
+    justify-self:end;
+  }
+  .card-main > .share-wrap .share {
+    width:100% !important;
+    height:32px;
+    padding:5px 3px;
+    font-size:10px;
+  }
+}
+
+/* Điện thoại dọc: full width nhưng xếp nội dung theo chiều dọc, không tràn */
+@media (max-width:700px) {
+  .wrap {
+    width:100%;
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .topbar {
+    width:100%;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  .card {
+    width:100%;
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .card-main {
+    width:100%;
+    grid-template-columns:minmax(44px,48px) minmax(0,1fr) 82px;
+    gap:7px;
+  }
+  .card-main > div:nth-child(2) {
+    grid-column:2;
+    min-width:0;
+  }
+  .card-main .share-wrap {
+    grid-column:3;
+    grid-row:1;
+    width:82px !important;
+    min-width:0 !important;
+    justify-self:end;
+  }
+  .share-wrap .share {
+    width:82px !important;
+    max-width:100%;
+  }
+  .card-main .field {
+    grid-column:2/4;
+    min-width:0;
+    max-width:100%;
+  }
+  .code {
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+}
+
+/* Màn hình cực hẹp */
+@media (max-width:420px) {
+  .wrap { padding-left:6px; padding-right:6px; }
+  .card { padding-left:7px; padding-right:7px; }
+  .card-main { grid-template-columns:42px minmax(0,1fr) 74px; gap:6px; }
+  .card-main .share-wrap, .share-wrap .share { width:74px !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="buttons">
+      <button class="primary" onclick="window.location.reload()">⟳ &nbsp;Cập nhật dữ liệu</button>
+      <button onclick="showDailyFiles()">📂 &nbsp;Danh sách file</button>
+      <button onclick="openUploadModal()">⬆️ &nbsp;Tải file lên</button>
+      <button onclick="openAddModal()">➕ &nbsp;Thêm kiện mới</button>
+      <button onclick="openPLModal()">📄 &nbsp;Sửa theo P/L</button>
+    </div>
+    <div class="status-box">
+      <span class="status-dot">✓</span>
+      <div><div class="status-title">Dữ liệu đã cập nhật</div><div id="ghStatus" class="status">⏳ Đang tải dữ liệu...</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="search-panel">
+    <div class="search-row">
+      <div class="search-wrap"><span class="search-icon">🔎</span><input id="q" class="search" placeholder="Tìm Package No., mô tả hàng hóa, P/L No., vị trí..." oninput="currentPage=1;render()"></div>
+      <button class="filter-toggle" title="Bộ lọc" aria-label="Bộ lọc"><span>☷</span></button>
+    </div>
+    <div class="filters">
+      <div class="filter-box"><label><span class="filter-icon file">📄</span> P/L No.</label><select id="category" onchange="currentPage=1;render()"><option value="">Chọn P/L No.</option></select></div>
+      <div class="filter-box"><label><span class="filter-icon pin">📍</span> Vị trí</label><select id="loc" onchange="currentPage=1;render()"><option value="">Vị trí</option></select></div>
+      <div class="filter-box"><label><span class="filter-icon">📤</span> Trạng thái</label><select id="status" onchange="currentPage=1;render()"><option value="">Trạng thái</option><option value="Trong kho">Trong kho</option><option value="Đã xuất">Đã xuất</option></select></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat stat-blue"><span class="stat-icon">📦</span><div><b id="total">0</b><span>Tổng kiện</span></div></div>
+    <div class="stat stat-green"><span class="stat-icon">👁️</span><div><b id="shown">0</b><span>Đang hiển thị</span></div></div>
+    <div class="stat stat-purple"><span class="stat-icon">📁</span><div><b id="cats">0</b><span>Danh mục</span></div></div>
+    <div class="stat stat-cyan"><span class="stat-icon">📍</span><div><b id="locs">0</b><span>Vị trí</span></div></div>
+    <div class="stat stat-orange"><span class="stat-icon">📤</span><div><b id="exported">0</b><span>Đã xuất kho</span></div></div>
+  </div>
+
+  <div id="list"></div>
+  <div id="pagination" class="pagination"></div>
+</div>
+
+<div id="bulkBar" class="bulk-bar">
+  <div class="bulk-bar-inner">
+    <div class="bulk-count"><span id="bulkCount">0</span> kiện đã chọn</div>
+    <div class="bulk-actions">
+      <button class="bulk-btn bulk-out" onclick="openBulkModal('export')">📤 Xuất kho</button>
+      <button class="bulk-btn bulk-in" onclick="openBulkModal('import')">📥 Nhập lại kho</button>
+      <button class="bulk-btn bulk-loc" onclick="openBulkModal('loc')">📍 Đổi vị trí</button>
+      <button class="bulk-btn bulk-clear" onclick="clearSelection()">✕ Bỏ chọn</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="fileModal" class="file-modal" onclick="if(event.target===this)closeFileModal()">
+  <div class="file-panel" role="dialog" aria-modal="true" aria-labelledby="fileModalTitle">
+    <div class="file-head">
+      <div>
+        <div id="fileModalTitle" class="file-title">📂 Danh sách file</div>
+        <div class="file-sub">Chọn file để tải trực tiếp từ GitHub</div>
+      </div>
+      <button class="file-close" onclick="closeFileModal()" aria-label="Đóng">×</button>
+    </div>
+    <div class="file-tools"><input id="fileSearch" class="file-search" type="search" placeholder="🔎 Tìm tên file..." oninput="fileCurrentPage=1;renderFileList()"><select id="fileDateFilter" class="file-date-filter" onchange="fileCurrentPage=1;renderFileList()"><option value="">📅 Tất cả ngày</option></select></div><div id="fileSortNote" class="file-sort-note"></div><div id="fileList" class="file-list"></div><div id="filePagination" class="file-pagination"></div>
+  </div>
+</div>
+
+<div id="uploadModal" class="file-modal" onclick="if(event.target===this)closeUploadModal()">
+  <div class="file-panel" role="dialog" aria-modal="true" aria-labelledby="uploadModalTitle" style="max-width:440px">
+    <div class="file-head">
+      <div>
+        <div id="uploadModalTitle" class="file-title">⬆️ Tải file Excel lên GitHub</div>
+        <div class="file-sub">File sẽ được đưa vào thư mục /du-lieu</div>
+      </div>
+      <button class="file-close" onclick="closeUploadModal()" aria-label="Đóng">×</button>
+    </div>
+    <div style="padding:16px 18px 20px">
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔑 GitHub Token</label>
+      <input id="ghToken" type="password" placeholder="github_pat_..." style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px" autocomplete="off">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
+        <input id="ghTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
+      </label>
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Chọn file Excel</label>
+      <input id="ghFile" type="file" accept=".xlsx,.xls" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:9px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:16px">
+      <button class="primary" style="width:100%;padding:13px" onclick="doUpload()">⬆️ Tải lên GitHub</button>
+      <div id="uploadStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<div id="editModal" class="file-modal" onclick="if(event.target===this)closeEditModal()">
+  <div class="file-panel" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" style="max-width:440px">
+    <div class="file-head">
+      <div>
+        <div id="editModalTitle" class="file-title">✏️ Sửa thông tin kiện hàng</div>
+        <div class="file-sub">Lưu trực tiếp lên GitHub, không cần Excel</div>
+      </div>
+      <button class="file-close" onclick="closeEditModal()" aria-label="Đóng">×</button>
+    </div>
+    <div style="padding:16px 18px 20px;max-height:70vh;overflow:auto">
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔑 GitHub Token</label>
+      <input id="editGhToken" type="password" placeholder="github_pat_..." style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px" autocomplete="off">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
+        <input id="editGhTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
+      </label>
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📦 Package No.</label>
+      <input id="editCode" type="text" placeholder="VD: PKG-0001" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🏷️ Mô tả hàng hóa</label>
+      <input id="editGroup" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 P/L No.</label>
+      <input id="editCategory" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📍 Vị trí</label>
+      <input id="editLoc" type="text" placeholder="VD: A1-02" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📅 Ngày nhận</label>
+      <input id="editDate" type="text" placeholder="dd/mm/yyyy" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📤 Trạng thái</label>
+      <select id="editTrangThai" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+        <option value="Trong kho">Trong kho</option>
+        <option value="Đã xuất">Đã xuất</option>
+      </select>
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📅 Ngày xuất (nếu đã xuất)</label>
+      <input id="editNgayXuat" type="text" placeholder="dd/mm/yyyy" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:18px">
+
+      <button class="primary" style="width:100%;padding:13px" onclick="saveEdit()">💾 Lưu thay đổi</button>
+      <div id="editStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<div id="bulkModal" class="file-modal" onclick="if(event.target===this)closeBulkModal()">
+  <div class="file-panel" role="dialog" aria-modal="true" style="max-width:440px">
+    <div class="file-head">
+      <div>
+        <div id="bulkModalTitle" class="file-title">📦 Cập nhật hàng loạt</div>
+        <div id="bulkModalSub" class="file-sub"></div>
+      </div>
+      <button class="file-close" onclick="closeBulkModal()" aria-label="Đóng">×</button>
+    </div>
+    <div style="padding:16px 18px 20px">
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔑 GitHub Token</label>
+      <input id="bulkGhToken" type="password" placeholder="github_pat_..." style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px" autocomplete="off">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
+        <input id="bulkGhTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
+      </label>
+      <div id="bulkLocField" style="display:none">
+        <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📍 Vị trí mới</label>
+        <input id="bulkLoc" type="text" placeholder="VD: A1-02" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+      </div>
+      <div id="bulkDateField" style="display:none">
+        <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📅 Ngày xuất</label>
+        <input id="bulkDate" type="text" placeholder="dd/mm/yyyy" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+      </div>
+      <button class="primary" style="width:100%;padding:13px" onclick="confirmBulkModal()">💾 Áp dụng cho tất cả đã chọn</button>
+      <div id="bulkModalStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<div id="plModal" class="file-modal" onclick="if(event.target===this)closePLModal()">
+  <div class="file-panel" role="dialog" aria-modal="true" style="max-width:520px">
+    <div class="file-head">
+      <div>
+        <div class="file-title">📄 Sửa theo P/L No.</div>
+        <div class="file-sub">Xem tất cả kiện thuộc 1 P/L No. và đặt vị trí riêng cho từng kiện</div>
+      </div>
+      <button class="file-close" onclick="closePLModal()" aria-label="Đóng">×</button>
+    </div>
+    <div style="padding:16px 18px 20px;max-height:76vh;overflow:auto">
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Chọn P/L No.</label>
+      <select id="plSelect" onchange="renderPLItems()" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:8px"></select>
+      <div id="plCount" style="font-size:11px;color:#708296;margin-bottom:12px"></div>
+
+      <div class="pl-quickfill">
+        <input id="plQuickLoc" type="text" placeholder="Nhập vị trí rồi bấm Áp dụng để điền nhanh cho tất cả kiện bên dưới">
+        <button type="button" onclick="applyPLQuickLoc()">Áp dụng cho tất cả</button>
+      </div>
+
+      <div id="plItemsList" class="pl-items-list"></div>
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin:14px 0 7px">📤 Trạng thái (áp dụng cho cả P/L, bỏ trống nếu không đổi)</label>
+      <select id="plStatus" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
+        <option value="">— Không đổi —</option>
+        <option value="Trong kho">Trong kho</option>
+        <option value="Đã xuất">Đã xuất</option>
+      </select>
+
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔑 GitHub Token</label>
+      <input id="plGhToken" type="password" placeholder="github_pat_..." style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px" autocomplete="off">
+      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
+        <input id="plGhTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
+      </label>
+
+      <button class="primary" style="width:100%;padding:13px" onclick="applyPLUpdate()">💾 Lưu vị trí cho từng kiện</button>
+      <div id="plStatusMsg" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const DATA_GITHUB_OWNER="quocdaicm";
+const DATA_GITHUB_REPO="tra-cuu-kien-hang";
+const DATA_GITHUB_BRANCH="main";
+const DATA_GITHUB_FOLDER="du-lieu";
+
+let dailyFiles=[];
+let dailyData=[];
+let data=[];
+let moveHistory=[];
+
+function norm(v){return String(v??"").trim();}
+
+// Xử lý ngày Excel tuyệt đối theo lịch, không dùng Date/getDate() để tránh lệch múi giờ.
+function formatDate(v){
+  if(v instanceof Date && !isNaN(v)){
+    // Chỉ dùng thành phần UTC của Date do SheetJS tạo từ serial Excel.
+    return String(v.getUTCDate()).padStart(2,"0")+"/"+String(v.getUTCMonth()+1).padStart(2,"0")+"/"+v.getUTCFullYear();
+  }
+  if(typeof v==="number"){
+    const d=XLSX.SSF.parse_date_code(v);
+    if(d){
+      return String(d.d).padStart(2,"0")+"/"+String(d.m).padStart(2,"0")+"/"+d.y;
+    }
+  }
+  const s=norm(v);
+  // Chuẩn hóa các chuỗi ngày phổ biến nhưng không parse qua new Date().
+  const m=s.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})$/);
+  if(m) return String(+m[3]).padStart(2,"0")+"/"+String(+m[2]).padStart(2,"0")+"/"+m[1];
+  const dmy=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+  if(dmy) return String(+dmy[1]).padStart(2,"0")+"/"+String(+dmy[2]).padStart(2,"0")+"/"+dmy[3];
+  return s;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+/* ---------- UPLOAD FILE LÊN GITHUB ---------- */
+function openUploadModal(){
+  const saved=localStorage.getItem("ghToken");
+  if(saved){document.getElementById("ghToken").value=saved;document.getElementById("ghTokenSave").checked=true;}
+  document.getElementById("uploadStatus").textContent="";
+  document.getElementById("uploadModal").classList.add("show");
+}
+function closeUploadModal(){
+  document.getElementById("uploadModal").classList.remove("show");
+}
+function arrayBufferToBase64(buf){
+  let binary="";
+  const bytes=new Uint8Array(buf);
+  const chunk=0x8000;
+  for(let i=0;i<bytes.length;i+=chunk){
+    binary+=String.fromCharCode.apply(null,bytes.subarray(i,i+chunk));
+  }
+  return btoa(binary);
+}
+async function doUpload(){
+  const statusEl=document.getElementById("uploadStatus");
+  const token=document.getElementById("ghToken").value.trim();
+  const fileInput=document.getElementById("ghFile");
+  const file=fileInput.files[0];
+  const rememberToken=document.getElementById("ghTokenSave").checked;
+
+  if(!token){statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";statusEl.style.color="#c0392b";return;}
+  if(!file){statusEl.textContent="⚠️ Vui lòng chọn file Excel.";statusEl.style.color="#c0392b";return;}
+
+  if(rememberToken)localStorage.setItem("ghToken",token);
+  else localStorage.removeItem("ghToken");
+
+  statusEl.style.color="#536277";
+  statusEl.textContent="⏳ Đang tải lên...";
+
+  try{
+    const path=`${DATA_GITHUB_FOLDER}/${file.name}`;
+    const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${encodeURIComponent(path).replace(/%2F/g,"/")}`;
+
+    // Kiểm tra file đã tồn tại chưa để lấy sha (bắt buộc khi ghi đè)
+    let sha=undefined;
+    const check=await fetch(apiUrl+`?ref=${DATA_GITHUB_BRANCH}`,{
+      headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}
+    });
+    if(check.ok){
+      const info=await check.json();
+      sha=info.sha;
+    }
+
+    const buf=await file.arrayBuffer();
+    const base64Content=arrayBufferToBase64(buf);
+
+    const body={
+      message:(sha?"Cập nhật":"Thêm")+" file "+file.name+" qua web",
+      content:base64Content,
+      branch:DATA_GITHUB_BRANCH
+    };
+    if(sha)body.sha=sha;
+
+    const putRes=await fetch(apiUrl,{
+      method:"PUT",
+      headers:{
+        Authorization:"Bearer "+token,
+        Accept:"application/vnd.github+json",
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(body)
+    });
+
+    if(!putRes.ok){
+      const err=await putRes.json().catch(()=>({}));
+      throw new Error(err.message||("Lỗi HTTP "+putRes.status));
+    }
+
+    statusEl.style.color="#20b77b";
+    statusEl.textContent="✅ Tải lên thành công! Đang tải lại dữ liệu...";
+    fileInput.value="";
+    // Ghi nhớ P/L No. của file vừa tải lên (tên file bỏ đuôi .xlsx/.xls) để
+    // sau khi trang tải lại, danh sách tự động lọc hiển thị đúng các kiện
+    // hàng thuộc P/L này thay vì hiện toàn bộ dữ liệu.
+    localStorage.setItem("justUploadedPL",file.name.replace(/\.(xlsx|xls)$/i,""));
+    setTimeout(()=>window.location.reload(),1400);
+  }catch(e){
+    statusEl.style.color="#c0392b";
+    statusEl.textContent="❌ Lỗi: "+e.message;
+  }
+}
+
+/* ---------- SỬA / THÊM KIỆN HÀNG TRỰC TIẾP ---------- */
+const OVERRIDE_FILE_NAME="chinh-sua-tay.xlsx";
+let editingIsNew=true;
+
+function todayStr(){
+  const d=new Date();
+  return String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0")+"/"+d.getFullYear();
+}
+
+function prefillEditToken(){
+  const saved=localStorage.getItem("ghToken");
+  if(saved){document.getElementById("editGhToken").value=saved;document.getElementById("editGhTokenSave").checked=true;}
+  else{document.getElementById("editGhToken").value="";document.getElementById("editGhTokenSave").checked=false;}
+}
+
+function openEditModal(index){
+  const x=currentFiltered[index];
+  if(!x)return;
+  editingIsNew=false;
+  document.getElementById("editModalTitle").textContent="✏️ Sửa thông tin kiện hàng";
+  document.getElementById("editCode").value=x.code;
+  document.getElementById("editCode").disabled=true;
+  document.getElementById("editGroup").value=x.group||"";
+  document.getElementById("editCategory").value=x.category||"";
+  document.getElementById("editLoc").value=x.loc||"";
+  document.getElementById("editDate").value=x.date||todayStr();
+  document.getElementById("editTrangThai").value=x.trangThai||"Trong kho";
+  document.getElementById("editNgayXuat").value=x.ngayXuat||"";
+  prefillEditToken();
+  document.getElementById("editStatus").textContent="";
+  document.getElementById("editModal").classList.add("show");
+}
+
+function openAddModal(){
+  editingIsNew=true;
+  document.getElementById("editModalTitle").textContent="➕ Thêm kiện hàng mới";
+  document.getElementById("editCode").value="";
+  document.getElementById("editCode").disabled=false;
+  document.getElementById("editGroup").value="";
+  document.getElementById("editCategory").value="";
+  document.getElementById("editLoc").value="";
+  document.getElementById("editDate").value=todayStr();
+  document.getElementById("editTrangThai").value="Trong kho";
+  document.getElementById("editNgayXuat").value="";
+  prefillEditToken();
+  document.getElementById("editStatus").textContent="";
+  document.getElementById("editModal").classList.add("show");
+}
+
+function closeEditModal(){
+  document.getElementById("editModal").classList.remove("show");
+}
+
+async function fetchOverrideRows(){
+  try{
+    const r=await fetch(fileUrl(OVERRIDE_FILE_NAME),{cache:"no-store"});
+    if(!r.ok)return [];
+    const buf=await r.arrayBuffer();
+    const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
+    const ws=wb.Sheets[wb.SheetNames[0]];
+    return XLSX.utils.sheet_to_json(ws,{defval:""});
+  }catch(e){
+    return [];
+  }
+}
+
+const OVERRIDE_HEADERS=["Ngày","Package No.","Mô tả hàng hóa","P/L No.","Vị trí","Trạng thái","Ngày xuất","Ngày cập nhật"];
+
+// Ghi danh sách rows (đã bao gồm mọi thay đổi) lên file override trên GitHub trong 1 lần commit.
+async function commitOverrideRows(rows,message,token){
+  const wb=XLSX.utils.book_new();
+  const ws=XLSX.utils.json_to_sheet(rows,{header:OVERRIDE_HEADERS});
+  XLSX.utils.book_append_sheet(wb,ws,"ChinhSua");
+  const base64Content=XLSX.write(wb,{bookType:"xlsx",type:"base64"});
+
+  const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${DATA_GITHUB_FOLDER}/${OVERRIDE_FILE_NAME}`;
+
+  let sha=undefined;
+  const check=await fetch(apiUrl+`?ref=${DATA_GITHUB_BRANCH}`,{
+    headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}
+  });
+  if(check.ok){
+    const info=await check.json();
+    sha=info.sha;
+  }
+
+  const body={message:message,content:base64Content,branch:DATA_GITHUB_BRANCH};
+  if(sha)body.sha=sha;
+
+  const putRes=await fetch(apiUrl,{
+    method:"PUT",
+    headers:{
+      Authorization:"Bearer "+token,
+      Accept:"application/vnd.github+json",
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(body)
+  });
+
+  if(!putRes.ok){
+    const err=await putRes.json().catch(()=>({}));
+    throw new Error(err.message||("Lỗi HTTP "+putRes.status));
+  }
+}
+
+// Cập nhật (upsert) 1 dòng theo Package No. trong danh sách rows, giữ nguyên các cột không được truyền.
+function upsertRow(rows,code,patch){
+  const idx=rows.findIndex(r=>norm(r["Package No."]).toLowerCase()===code.toLowerCase());
+  const base=idx>=0?rows[idx]:{"Ngày":todayStr(),"Package No.":code,"Mô tả hàng hóa":"","P/L No.":"","Vị trí":"","Trạng thái":"Trong kho","Ngày xuất":"","Ngày cập nhật":""};
+  const merged={...base,...patch,"Package No.":code,"Ngày cập nhật":todayStr()};
+  if(idx>=0) rows[idx]=merged;
+  else rows.push(merged);
+}
+
+/* ---------- CẬP NHẬT NGAY TRÊN GIAO DIỆN (KHÔNG CHỜ GITHUB CDN) ----------
+   raw.githubusercontent.com có bộ nhớ đệm (cache) phía server, nên sau khi
+   commit, việc tải lại file ngay có thể vẫn nhận được dữ liệu CŨ trong vài
+   phút. Để trang chủ hiển thị vị trí mới NGAY LẬP TỨC, ta cập nhật thẳng vào
+   mảng `data` đang hiển thị, đồng thời ghi nhớ thay đổi vào `pendingOverrides`
+   để "ép" giữ giá trị mới cho tới khi GitHub trả về đúng dữ liệu mới. */
+let pendingOverrides=new Map(); // code -> {date?,group?,category?,loc?,trangThai?,ngayXuat?}
+
+function patchToItemFields(patch){
+  const out={};
+  if("Ngày" in patch) out.date=norm(patch["Ngày"]);
+  if("Mô tả hàng hóa" in patch) out.group=norm(patch["Mô tả hàng hóa"]);
+  if("P/L No." in patch) out.category=norm(patch["P/L No."]);
+  if("Vị trí" in patch) out.loc=norm(patch["Vị trí"]);
+  if("Trạng thái" in patch) out.trangThai=norm(patch["Trạng thái"])||"Trong kho";
+  if("Ngày xuất" in patch) out.ngayXuat=norm(patch["Ngày xuất"]);
+  return out;
+}
+
+function optimisticApply(code,patch){
+  const fields=patchToItemFields(patch);
+  pendingOverrides.set(code,{...(pendingOverrides.get(code)||{}),...fields});
+  const item=data.find(x=>x.code===code);
+  if(item) Object.assign(item,fields);
+  else data.push({date:fields.date||todayStr(),code,group:fields.group||"",category:fields.category||"",loc:fields.loc||"",trangThai:fields.trangThai||"Trong kho",ngayXuat:fields.ngayXuat||""});
+}
+
+// Gọi ngay sau khi dựng lại mảng `data` từ dữ liệu GitHub: nếu GitHub đã bắt
+// kịp thay đổi thì bỏ ép; nếu chưa (do cache), tiếp tục ép giá trị mới.
+function reconcilePendingOverrides(){
+  for(const [code,fields] of [...pendingOverrides]){
+    const item=data.find(x=>x.code===code);
+    if(!item){
+      data.push({date:fields.date||todayStr(),code,group:fields.group||"",category:fields.category||"",loc:fields.loc||"",trangThai:fields.trangThai||"Trong kho",ngayXuat:fields.ngayXuat||""});
+      continue;
+    }
+    let matches=true;
+    for(const k in fields){ if(norm(item[k]??"")!==norm(fields[k]??"")){matches=false;break;} }
+    if(matches) pendingOverrides.delete(code);
+    else Object.assign(item,fields);
+  }
+}
+
+async function saveEdit(){
+  const statusEl=document.getElementById("editStatus");
+  const token=document.getElementById("editGhToken").value.trim();
+  const remember=document.getElementById("editGhTokenSave").checked;
+  const code=norm(document.getElementById("editCode").value);
+  const group=norm(document.getElementById("editGroup").value);
+  const category=norm(document.getElementById("editCategory").value);
+  const loc=norm(document.getElementById("editLoc").value);
+  const date=norm(document.getElementById("editDate").value)||todayStr();
+  const trangThai=document.getElementById("editTrangThai").value||"Trong kho";
+  const ngayXuat=norm(document.getElementById("editNgayXuat").value);
+
+  if(!token){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";return;}
+  if(!code){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập Package No.";return;}
+
+  if(remember)localStorage.setItem("ghToken",token);
+  else localStorage.removeItem("ghToken");
+
+  statusEl.style.color="#536277";
+  statusEl.textContent="⏳ Đang lưu...";
+
+  try{
+    let rows=await fetchOverrideRows();
+    const patch={"Ngày":date,"Mô tả hàng hóa":group,"P/L No.":category,"Vị trí":loc,"Trạng thái":trangThai,"Ngày xuất":ngayXuat};
+    upsertRow(rows,code,patch);
+    await commitOverrideRows(rows,(editingIsNew?"Thêm":"Sửa")+" kiện "+code+" qua web",token);
+
+    // Hiển thị thay đổi NGAY trên trang chủ, không chờ GitHub CDN cập nhật.
+    optimisticApply(code,patch);
+    render();
+
+    statusEl.style.color="#20b77b";
+    statusEl.textContent="✅ Đã lưu!";
+    setTimeout(()=>{
+      closeEditModal();
+      reloadGitHubData();
+    },500);
+  }catch(e){
+    statusEl.style.color="#c0392b";
+    statusEl.textContent="❌ Lỗi: "+e.message;
+  }
+}
+
+/* ---------- CHỌN NHIỀU KIỆN + HÀNH ĐỘNG HÀNG LOẠT ---------- */
+let selectedCodes=new Set();
+
+function toggleSelect(code,checked){
+  if(checked)selectedCodes.add(code);
+  else selectedCodes.delete(code);
+  updateBulkBar();
+  // Cập nhật viền highlight của card tương ứng mà không render lại toàn bộ danh sách.
+  render();
+}
+
+function clearSelection(){
+  selectedCodes.clear();
+  render();
+}
+
+function updateBulkBar(){
+  const bar=document.getElementById("bulkBar");
+  const count=selectedCodes.size;
+  document.getElementById("bulkCount").textContent=count;
+  bar.classList.toggle("show",count>0);
+}
+
+let bulkAction="";
+function prefillTokenInto(idToken,idSave){
+  const saved=localStorage.getItem("ghToken");
+  if(saved){document.getElementById(idToken).value=saved;document.getElementById(idSave).checked=true;}
+  else{document.getElementById(idToken).value="";document.getElementById(idSave).checked=false;}
+}
+
+function openBulkModal(kind){
+  if(!selectedCodes.size)return;
+  bulkAction=kind;
+  const titles={export:"📤 Xuất kho hàng loạt",import:"📥 Nhập lại kho hàng loạt",loc:"📍 Đổi vị trí hàng loạt"};
+  document.getElementById("bulkModalTitle").textContent=titles[kind];
+  document.getElementById("bulkModalSub").textContent=selectedCodes.size+" kiện đã chọn";
+  document.getElementById("bulkLocField").style.display=kind==="loc"?"block":"none";
+  document.getElementById("bulkDateField").style.display=kind==="export"?"block":"none";
+  document.getElementById("bulkLoc").value="";
+  document.getElementById("bulkDate").value=todayStr();
+  document.getElementById("bulkModalStatus").textContent="";
+  prefillTokenInto("bulkGhToken","bulkGhTokenSave");
+  document.getElementById("bulkModal").classList.add("show");
+}
+function closeBulkModal(){
+  document.getElementById("bulkModal").classList.remove("show");
+}
+
+async function confirmBulkModal(){
+  const statusEl=document.getElementById("bulkModalStatus");
+  const token=document.getElementById("bulkGhToken").value.trim();
+  const remember=document.getElementById("bulkGhTokenSave").checked;
+  if(!token){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";return;}
+
+  let patch={};
+  let label="";
+  if(bulkAction==="export"){
+    patch={"Trạng thái":"Đã xuất","Ngày xuất":norm(document.getElementById("bulkDate").value)||todayStr()};
+    label="Xuất kho";
+  }else if(bulkAction==="import"){
+    patch={"Trạng thái":"Trong kho","Ngày xuất":""};
+    label="Nhập lại kho";
+  }else if(bulkAction==="loc"){
+    const loc=norm(document.getElementById("bulkLoc").value);
+    if(!loc){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập vị trí mới.";return;}
+    patch={"Vị trí":loc};
+    label="Đổi vị trí";
+  }
+
+  if(remember)localStorage.setItem("ghToken",token);
+  else localStorage.removeItem("ghToken");
+
+  statusEl.style.color="#536277";
+  statusEl.textContent="⏳ Đang lưu "+selectedCodes.size+" kiện...";
+
+  try{
+    let rows=await fetchOverrideRows();
+    const fullPatches=new Map();
+    for(const code of selectedCodes){
+      const existing=data.find(x=>x.code===code)||{};
+      const fullPatch={
+        "Ngày":existing.date||todayStr(),
+        "Mô tả hàng hóa":existing.group||"",
+        "P/L No.":existing.category||"",
+        "Vị trí":existing.loc||"",
+        "Trạng thái":existing.trangThai||"Trong kho",
+        "Ngày xuất":existing.ngayXuat||"",
+        ...patch
+      };
+      upsertRow(rows,code,fullPatch);
+      fullPatches.set(code,fullPatch);
+    }
+    await commitOverrideRows(rows,label+" hàng loạt ("+selectedCodes.size+" kiện) qua web",token);
+
+    // Hiển thị thay đổi NGAY trên trang chủ, không chờ GitHub CDN cập nhật.
+    for(const [code,fullPatch] of fullPatches) optimisticApply(code,fullPatch);
+    render();
+
+    statusEl.style.color="#20b77b";
+    statusEl.textContent="✅ Đã lưu!";
+    setTimeout(()=>{
+      closeBulkModal();
+      selectedCodes.clear();
+      render();
+      reloadGitHubData();
+    },500);
+  }catch(e){
+    statusEl.style.color="#c0392b";
+    statusEl.textContent="❌ Lỗi: "+e.message;
+  }
+}
+
+/* ---------- SỬA THEO P/L NO. (mỗi kiện có thể có vị trí khác nhau) ---------- */
+function openPLModal(){
+  const sel=document.getElementById("plSelect");
+  const cats=unique("category");
+  sel.innerHTML=cats.length
+    ? cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("")
+    : '<option value="">— Chưa có P/L No. —</option>';
+  document.getElementById("plQuickLoc").value="";
+  document.getElementById("plStatus").value="";
+  document.getElementById("plStatusMsg").textContent="";
+  prefillTokenInto("plGhToken","plGhTokenSave");
+  renderPLItems();
+  document.getElementById("plModal").classList.add("show");
+}
+function closePLModal(){
+  document.getElementById("plModal").classList.remove("show");
+}
+
+// Vẽ danh sách TẤT CẢ kiện thuộc P/L đang chọn, mỗi kiện có 1 ô vị trí riêng
+// (điền sẵn vị trí hiện tại) để có thể đặt vị trí khác nhau cho từng kiện.
+function renderPLItems(){
+  const pl=document.getElementById("plSelect").value;
+  const items=data.filter(x=>x.category===pl);
+  document.getElementById("plCount").textContent=pl?`Có ${items.length} kiện thuộc P/L "${pl}" — mỗi kiện có thể đặt vị trí riêng bên dưới`:"";
+  const list=document.getElementById("plItemsList");
+  list.innerHTML=items.length
+    ? items.map(x=>`
+      <div class="pl-item" data-code="${escapeHtml(x.code)}">
+        <div class="pl-item-info">
+          <div class="pl-item-code">📦 ${escapeHtml(x.code)}</div>
+          <div class="pl-item-desc">${escapeHtml(x.group||"—")}${x.loc?" · hiện tại: "+escapeHtml(x.loc):""}</div>
+        </div>
+        <input class="pl-item-loc" type="text" placeholder="VD: A1-02" value="${escapeHtml(x.loc||"")}">
+      </div>`).join("")
+    : (pl?'<div class="pl-empty">Không có kiện nào thuộc P/L này.</div>':'<div class="pl-empty">Chọn một P/L No. để xem danh sách kiện.</div>');
+}
+
+// Điền nhanh 1 vị trí cho tất cả ô đang hiển thị (vẫn có thể sửa lại từng ô sau đó).
+function applyPLQuickLoc(){
+  const loc=norm(document.getElementById("plQuickLoc").value);
+  if(!loc)return;
+  document.querySelectorAll("#plItemsList .pl-item-loc").forEach(inp=>{inp.value=loc;});
+}
+
+async function applyPLUpdate(){
+  const statusEl=document.getElementById("plStatusMsg");
+  const pl=document.getElementById("plSelect").value;
+  const status=document.getElementById("plStatus").value;
+  const token=document.getElementById("plGhToken").value.trim();
+  const remember=document.getElementById("plGhTokenSave").checked;
+
+  if(!pl){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng chọn P/L No.";return;}
+  if(!token){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";return;}
+
+  const targets=data.filter(x=>x.category===pl);
+  if(!targets.length){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Không có kiện nào thuộc P/L này.";return;}
+
+  // Đọc vị trí riêng của từng kiện từ các ô input trong danh sách.
+  const locByCode=new Map();
+  document.querySelectorAll("#plItemsList .pl-item").forEach(row=>{
+    const code=row.getAttribute("data-code");
+    const input=row.querySelector(".pl-item-loc");
+    if(code && input) locByCode.set(code,norm(input.value));
+  });
+
+  if(remember)localStorage.setItem("ghToken",token);
+  else localStorage.removeItem("ghToken");
+
+  statusEl.style.color="#536277";
+  statusEl.textContent="⏳ Đang lưu "+targets.length+" kiện...";
+
+  try{
+    let rows=await fetchOverrideRows();
+    const fullPatches=new Map();
+    for(const item of targets){
+      const newLoc=locByCode.has(item.code)?locByCode.get(item.code):item.loc||"";
+      const patch={
+        "Ngày":item.date||todayStr(),
+        "Mô tả hàng hóa":item.group||"",
+        "P/L No.":item.category||"",
+        "Vị trí":newLoc||item.loc||"",
+        "Trạng thái":status||item.trangThai||"Trong kho",
+        "Ngày xuất":status==="Đã xuất"?(item.ngayXuat||todayStr()):(status==="Trong kho"?"":item.ngayXuat||"")
+      };
+      upsertRow(rows,item.code,patch);
+      fullPatches.set(item.code,patch);
+    }
+    await commitOverrideRows(rows,"Sửa theo P/L "+pl+" ("+targets.length+" kiện) qua web",token);
+
+    // Hiển thị thay đổi NGAY trên trang chủ, không chờ GitHub CDN cập nhật.
+    for(const [code,patch] of fullPatches) optimisticApply(code,patch);
+    render();
+
+    statusEl.style.color="#20b77b";
+    statusEl.textContent="✅ Đã lưu!";
+    setTimeout(()=>{
+      closePLModal();
+      reloadGitHubData();
+    },500);
+  }catch(e){
+    statusEl.style.color="#c0392b";
+    statusEl.textContent="❌ Lỗi: "+e.message;
+  }
+}
+
+function fileUrl(name){
+  return "https://raw.githubusercontent.com/"+DATA_GITHUB_OWNER+"/"+DATA_GITHUB_REPO+"/"+DATA_GITHUB_BRANCH+"/"+DATA_GITHUB_FOLDER+"/"+encodeURIComponent(name);
+}
+
+async function listDailyExcelFiles(){
+  const url=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${DATA_GITHUB_FOLDER}?ref=${DATA_GITHUB_BRANCH}`;
+  const r=await fetch(url,{cache:"no-store"});
+  if(!r.ok)throw new Error("Không đọc được thư mục /du-lieu trên GitHub ("+r.status+").");
+  const items=await r.json();
+  return items
+    .filter(x=>x.type==="file" && /\.(xlsx|xls)$/i.test(x.name))
+    .sort((a,b)=>fileDateKey(b.name)-fileDateKey(a.name) || b.name.localeCompare(a.name,"en",{numeric:true}));
+}
+
+// ---------- ĐỌC FILE "DETAILED PACKING LIST" GỐC TỪ NCC ----------
+// Hỗ trợ 2 kiểu file thường gặp:
+//  1) Kiểu "phẳng": mỗi dòng = 1 kiện, đầy đủ thông tin (loại kiện, kích
+//     thước, trọng lượng...) ngay trên dòng đó. (VD: OM4-P2-LS-0002.xlsx)
+//  2) Kiểu "gộp nhiều mặt hàng/kiện": một kiện có thể chứa NHIỀU mặt hàng
+//     khác nhau, mỗi mặt hàng 1 dòng riêng (cùng chung Package No.), rồi
+//     đến 1 dòng "Sub-Total" chứa loại kiện/kích thước/khối lượng TỔNG của
+//     cả kiện đó. (VD: OM4-DE-IS-0011.xlsx)
+// Cả 2 kiểu đều có 2 dòng tiêu đề (header) nằm giữa các dòng thông tin
+// chung (PL No., Dated...). P/L No. lấy theo TÊN FILE (không dùng ô "PL
+// No." trong sheet vì ô này hay bị lỗi công thức #REF!). Vị trí để trống
+// để nhập/cập nhật sau qua nút "Sửa theo P/L".
+function readDetailedPLFile(item,wb){
+  const sheetName=wb.SheetNames.find(n=>/detailed\s*p\s*\/?\s*l/i.test(n))||wb.SheetNames[0];
+  const ws=wb.Sheets[sheetName];
+  if(!ws)return null;
+  const aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:"",raw:true});
+
+  let headerRow=-1;
+  for(let i=0;i<aoa.length;i++){
+    if((aoa[i]||[]).some(c=>/package\s*no/i.test(norm(c)))){headerRow=i;break;}
+  }
+  if(headerRow<0)return null;
+
+  const row1=aoa[headerRow]||[];
+  const row2=aoa[headerRow+1]||[];
+  function findCol(...regexes){
+    for(const re of regexes){
+      for(let c=0;c<row1.length;c++)if(re.test(norm(row1[c])))return c;
+      for(let c=0;c<row2.length;c++)if(re.test(norm(row2[c])))return c;
+    }
+    return -1;
+  }
+
+  const colCode=findCol(/package\s*no/i);
+  const colDesc=findCol(/description of goods/i);
+  if(colCode<0||colDesc<0)return null; // không đúng định dạng Detailed PL
+
+  const colSupplier=findCol(/supplier/i,/manufacturer/i);
+  const colOrigin=findCol(/c\/o of goods/i,/^c\/o$/i);
+  const colPosSchedule=findCol(/position in price schedule/i);
+  const colQtyNos=findCol(/^nos$/i);
+  const colQtyUnit=findCol(/^unit$/i);
+  const colPackageType=findCol(/package type/i);
+  const colLength=findCol(/length/i);
+  const colWidth=findCol(/width/i);
+  const colHeight=findCol(/height/i);
+  const colVolume=findCol(/volume/i);
+  const colNetWeight=findCol(/net weight/i);
+  const colGrossWeight=findCol(/gross weight/i);
+  const colTagModel=findCol(/tag no.*model/i);
+  const colHazard=findCol(/hazardous/i);
+  const colStorage=findCol(/storage classification/i);
+  const colRemark=findCol(/remark/i);
+
+  // Một số file tách "Description of Goods" thành 2 cột: mô tả chính + quy
+  // cách/kích thước (ô kế bên, không có tiêu đề riêng do bị merge trong
+  // Excel gốc). Chỉ coi cột kế tiếp là "mô tả phụ" khi giữa nó và cột NCC
+  // còn khoảng trống (nếu không, cột kế tiếp chính là cột NCC như file cũ).
+  const colDescDetail=(colSupplier>colDesc+1)?colDesc+1:-1;
+
+  // Đơn vị kích thước (mm/cm...) lấy trực tiếp từ tiêu đề cột "Length" để
+  // hiển thị đúng, vì mỗi file NCC có thể dùng đơn vị khác nhau.
+  const dimHeaderText=colLength>=0?(norm(row2[colLength])||norm(row1[colLength])):"";
+  const dimUnit=(dimHeaderText.match(/\(([a-zA-Z]+)\)/)||[])[1]||"mm";
+
+  const get=(row,c)=>c>=0?norm(row[c]):"";
+  const plNo=norm((item.name||"").replace(/\.(xlsx|xls)$/i,""));
+
+  // Phát hiện định dạng "gộp nhiều mặt hàng": có dòng đánh dấu "Sub-Total".
+  let hasSubtotal=false;
+  for(let r=headerRow+2;r<aoa.length;r++){
+    if((aoa[r]||[]).some(c=>/^sub-?total$/i.test(norm(c)))){hasSubtotal=true;break;}
+  }
+
+  const cols={colDesc,colDescDetail,colSupplier,colOrigin,colPosSchedule,colQtyNos,colQtyUnit,
+    colPackageType,colLength,colWidth,colHeight,colVolume,colNetWeight,colGrossWeight,
+    colTagModel,colHazard,colStorage,colRemark};
+
+  if(hasSubtotal)return parseGroupedPLRows(aoa,headerRow+2,colCode,cols,get,plNo,item,dimUnit);
+  return parseFlatPLRows(aoa,headerRow+2,colCode,cols,get,plNo,item,dimUnit);
+}
+
+function hazardText(v){
+  const t=norm(v).toLowerCase();
+  if(t==="y"||t==="yes")return "Có";
+  if(t==="n"||t==="no")return "Không";
+  return norm(v);
+}
+
+// Kiểu "phẳng": mỗi dòng dữ liệu là 1 kiện đầy đủ thông tin.
+function parseFlatPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
+  const out=[];
+  for(let r=startRow;r<aoa.length;r++){
+    const row=aoa[r]||[];
+    const code=get(row,colCode);
+    if(!code)continue;
+    const desc=[get(row,cols.colDesc),get(row,cols.colDescDetail)].filter(Boolean).join(" ");
+    out.push({
+      date:"",code,group:desc,category:plNo,loc:"",trangThai:"Trong kho",
+      ngayXuat:"",ngayCapNhat:"",
+      supplier:get(row,cols.colSupplier),origin:get(row,cols.colOrigin),
+      posSchedule:get(row,cols.colPosSchedule),
+      qty:get(row,cols.colQtyNos),qtyUnit:get(row,cols.colQtyUnit),
+      packageType:get(row,cols.colPackageType),
+      length:get(row,cols.colLength),width:get(row,cols.colWidth),height:get(row,cols.colHeight),
+      dimUnit:(get(row,cols.colLength)||get(row,cols.colWidth)||get(row,cols.colHeight))?dimUnit:"",
+      volume:get(row,cols.colVolume),
+      netWeight:get(row,cols.colNetWeight),grossWeight:get(row,cols.colGrossWeight),
+      tagModel:get(row,cols.colTagModel),
+      hazard:hazardText(get(row,cols.colHazard)),storage:get(row,cols.colStorage),
+      remark:get(row,cols.colRemark),
+      sourceFile:item.name
+    });
+  }
+  return out;
+}
+
+// Kiểu "gộp nhiều mặt hàng": nhiều dòng cùng Package No. rồi tới dòng
+// "Sub-Total" chứa loại kiện/kích thước/khối lượng tổng của cả kiện.
+function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
+  const out=[];
+  let group=null;
+
+  function finalize(g){
+    const descParts=g.items.map(it=>{
+      const s=[it.desc,it.spec].filter(Boolean).join(" ");
+      const q=[it.qty,it.unit].filter(Boolean).join(" ");
+      return q?`${s} (${q})`:s;
+    }).filter(Boolean);
+
+    const units=[...new Set(g.items.map(it=>it.unit).filter(Boolean))];
+    let qty="",qtyUnit="";
+    if(g.items.length===1){qty=g.items[0].qty;qtyUnit=g.items[0].unit;}
+    else if(units.length===1){
+      const total=g.items.reduce((s,it)=>s+(parseFloat(it.qty)||0),0);
+      qty=total?String(total):"";qtyUnit=units[0];
+    }else qty=g.items.length+" mặt hàng";
+
+    const netWeight=g.netWeight||(()=>{
+      const sum=g.items.reduce((s,it)=>s+(parseFloat(it.netW)||0),0);
+      return sum?String(sum):"";
+    })();
+
+    return {
+      date:"",code:g.code,group:descParts.join("; "),category:plNo,loc:"",
+      trangThai:"Trong kho",ngayXuat:"",ngayCapNhat:"",
+      supplier:g.supplier,origin:g.origin,posSchedule:g.posSchedule,
+      qty,qtyUnit,packageType:g.packageType||"",
+      length:g.length||"",width:g.width||"",height:g.height||"",
+      dimUnit:(g.length||g.width||g.height)?dimUnit:"",
+      volume:g.volume||"",netWeight,grossWeight:g.grossWeight||"",
+      tagModel:"",hazard:hazardText(g.hazard),storage:g.storage||"",remark:"",
+      sourceFile:item.name
+    };
+  }
+
+  for(let r=startRow;r<aoa.length;r++){
+    const row=aoa[r]||[];
+    const isSubtotal=row.some(c=>/^sub-?total$/i.test(norm(c)));
+    const code=get(row,colCode);
+
+    if(isSubtotal){
+      if(group){
+        group.packageType=get(row,cols.colPackageType);
+        group.length=get(row,cols.colLength);
+        group.width=get(row,cols.colWidth);
+        group.height=get(row,cols.colHeight);
+        group.volume=get(row,cols.colVolume);
+        group.netWeight=get(row,cols.colNetWeight);
+        group.grossWeight=get(row,cols.colGrossWeight);
+        group.hazard=get(row,cols.colHazard);
+        group.storage=get(row,cols.colStorage);
+        out.push(finalize(group));
+        group=null;
+      }
+      continue;
+    }
+
+    if(!code)continue; // dòng trống / không thuộc kiện nào
+
+    if(!group||group.code!==code){
+      if(group)out.push(finalize(group)); // nhóm trước thiếu dòng Sub-Total, vẫn lưu với dữ liệu đã có
+      group={code,items:[],supplier:"",origin:"",posSchedule:""};
+    }
+    if(!group.supplier)group.supplier=get(row,cols.colSupplier);
+    if(!group.origin)group.origin=get(row,cols.colOrigin);
+    if(!group.posSchedule)group.posSchedule=get(row,cols.colPosSchedule);
+
+    group.items.push({
+      desc:get(row,cols.colDesc),spec:get(row,cols.colDescDetail),
+      qty:get(row,cols.colQtyNos),unit:get(row,cols.colQtyUnit),
+      netW:get(row,cols.colNetWeight)
+    });
+  }
+  if(group)out.push(finalize(group));
+  return out;
+}
+
+async function readExcelFile(item){
+  const r=await fetch(fileUrl(item.name),{cache:"no-store"});
+  if(!r.ok)throw new Error("Không tải được "+item.name);
+  const buf=await r.arrayBuffer();
+  const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
+
+  // Thử đọc theo định dạng "Detailed Packing List" gốc từ NCC trước.
+  const detailed=readDetailedPLFile(item,wb);
+  if(detailed&&detailed.length)return detailed;
+
+  const ws=wb.Sheets[wb.SheetNames[0]];
+  const rows=XLSX.utils.sheet_to_json(ws,{defval:""});
+
+  if(!rows.length)return [];
+
+  const keys=Object.keys(rows[0]);
+  const findKey=(aliases)=>{
+    const normalized=new Map(keys.map(k=>[norm(k).toLowerCase(),k]));
+    for(const a of aliases){
+      const k=normalized.get(norm(a).toLowerCase());
+      if(k)return k;
+    }
+    return null;
+  };
+
+  const dateKey=findKey(["Ngày","Date"]);
+  const codeKey=findKey(["Package No.","Mã kiện","Package No","Mã kiện hàng"]);
+  const groupKey=findKey(["Mô tả hàng hóa","Nhóm","Loại hàng","Description"]);
+  const categoryKey=findKey(["P/L No.","PL No.","P/L","PL"]);
+  const locKey=findKey(["Vị trí","Location","Loc"]);
+  const statusKey=findKey(["Trạng thái","Status","Tinh trang"]);
+  const exportDateKey=findKey(["Ngày xuất","Ngay xuat","Export Date","Ngày xuất kho"]);
+  const updatedKey=findKey(["Ngày cập nhật","Ngay cap nhat","Updated"]);
+
+  const missing=[];
+  if(!dateKey)missing.push("Ngày");
+  if(!codeKey)missing.push("Package No. / Mã kiện");
+  if(!groupKey)missing.push("Mô tả hàng hóa / Nhóm");
+  if(!categoryKey)missing.push("P/L No.");
+  if(!locKey)missing.push("Vị trí");
+  if(missing.length)throw new Error(item.name+" thiếu cột: "+missing.join(", "));
+
+  return rows.map(row=>({
+    date:formatDate(row[dateKey]),
+    code:norm(row[codeKey]),
+    group:norm(row[groupKey]),
+    category:norm(row[categoryKey]),
+    loc:norm(row[locKey]),
+    trangThai:statusKey?(norm(row[statusKey])||"Trong kho"):"",
+    ngayXuat:exportDateKey?formatDate(row[exportDateKey]):"",
+    ngayCapNhat:updatedKey?formatDate(row[updatedKey]):"",
+    sourceFile:item.name
+  })).filter(x=>x.code);
+}
+
+async function loadAllDailyExcel(){
+  const status=document.getElementById("ghStatus");
+  status.textContent="⏳ Đang đọc dữ liệu trong /du-lieu...";
+
+  dailyFiles=await listDailyExcelFiles();
+  if(!dailyFiles.length){
+    dailyData=[];data=[];moveHistory=[];render();
+    status.textContent="⚠️ Chưa có file Excel trong /du-lieu.";
+    return;
+  }
+
+  const results=await Promise.all(dailyFiles.map(readExcelFile));
+  dailyData=results.flat();
+
+  // Sắp xếp theo ngày; nếu cùng ngày thì theo tên file.
+  // File sửa tay (chinh-sua-tay.xlsx) LUÔN được xếp cuối cùng — dù "Ngày nhận"
+  // ghi trong đó là ngày gì — để việc sửa vị trí/trạng thái bằng tay luôn là
+  // giá trị mới nhất, không bao giờ bị các file nhập hàng ngày (kể cả file có
+  // ngày mới hơn) ghi đè ngược lại.
+  function sortWeight(item){
+    return item.sourceFile===OVERRIDE_FILE_NAME ? Infinity : parseDate(item.date);
+  }
+  dailyData.sort((a,b)=>{
+    const wa=sortWeight(a), wb=sortWeight(b);
+    return (wa-wb) || a.sourceFile.localeCompare(b.sourceFile,"en",{numeric:true});
+  });
+
+  // Gộp tất cả mã kiện. Dòng mới nhất được ưu tiên, nhưng ô Vị trí trống
+  // KHÔNG xóa vị trí đã có. Nhờ vậy file 50 kiện, chỉ 20 kiện có vị trí
+  // vẫn hiển thị đủ 50 kiện và giữ nguyên vị trí của các kiện đã được nhập.
+  const map=new Map();
+  const history=[];
+
+  for(const item of dailyData){
+    const old=map.get(item.code);
+    if(!old){
+      map.set(item.code,{...item,trangThai:item.trangThai||"Trong kho"});
+      continue;
+    }
+
+    const oldLoc=norm(old.loc);
+    const newLoc=norm(item.loc);
+    const oldStatus=norm(old.trangThai)||"Trong kho";
+    const newStatus=norm(item.trangThai);
+
+    if(newLoc && oldLoc!==newLoc){
+      history.push({
+        code:item.code,
+        type:"loc",
+        oldLoc:oldLoc,
+        newLoc:newLoc,
+        time:item.ngayCapNhat||item.date||item.sourceFile
+      });
+    }
+
+    if(newStatus && oldStatus!==newStatus){
+      history.push({
+        code:item.code,
+        type:"status",
+        oldStatus:oldStatus,
+        newStatus:newStatus,
+        time:item.ngayCapNhat||item.ngayXuat||item.date||item.sourceFile
+      });
+    }
+
+    map.set(item.code,{
+      ...old,
+      ...item,
+      date:item.date||old.date,
+      code:item.code,
+      group:item.group||old.group,
+      category:item.category||old.category,
+      // Blank location in a newer file means "not entered yet", not "delete old location".
+      loc:newLoc||oldLoc,
+      trangThai:newStatus||oldStatus,
+      ngayXuat:item.ngayXuat||old.ngayXuat
+    });
+  }
+
+  data=[...map.values()].map(x=>({
+    date:x.date,code:x.code,group:x.group,category:x.category,loc:x.loc,
+    trangThai:norm(x.trangThai)||"Trong kho",ngayXuat:x.ngayXuat||"",
+    // Thông tin mở rộng từ file "Detailed Packing List" gốc của NCC (nếu có)
+    supplier:x.supplier||"",origin:x.origin||"",posSchedule:x.posSchedule||"",
+    qty:x.qty||"",qtyUnit:x.qtyUnit||"",packageType:x.packageType||"",
+    length:x.length||"",width:x.width||"",height:x.height||"",dimUnit:x.dimUnit||"",
+    volume:x.volume||"",netWeight:x.netWeight||"",grossWeight:x.grossWeight||"",
+    tagModel:x.tagModel||"",hazard:x.hazard||"",storage:x.storage||"",remark:x.remark||""
+  }));
+
+  // Nếu vẫn còn thay đổi vừa lưu mà GitHub chưa trả về kịp (do cache CDN),
+  // tiếp tục giữ giá trị mới trên giao diện thay vì hiển thị lại giá trị cũ.
+  reconcilePendingOverrides();
+
+  moveHistory=history;
+  render();
+  applyJustUploadedFilter();
+
+  status.textContent=`✅ Đã đọc ${dailyFiles.length} file Excel — ${dailyData.length} dòng — ${data.length} kiện (kể cả kiện chưa có vị trí).`;
+}
+
+// Nếu vừa tải file P/L mới lên (đánh dấu ở doUpload trước khi reload trang),
+// tự động chọn P/L đó trong bộ lọc và hiển thị đúng các kiện hàng của P/L
+// vừa tải lên, thay vì hiện lẫn toàn bộ dữ liệu như trước.
+function applyJustUploadedFilter(){
+  const pl=localStorage.getItem("justUploadedPL");
+  if(!pl)return;
+  localStorage.removeItem("justUploadedPL");
+  const sel=document.getElementById("category");
+  if(!sel)return;
+  const exists=[...sel.options].some(o=>o.value===pl);
+  if(!exists)return;
+  sel.value=pl;
+  currentPage=1;
+  render();
+  showShareNotice(`📦 Đang hiển thị các kiện hàng vừa tải lên — P/L: ${pl}`);
+}
+
+function parseDate(s){
+  const m=String(s).match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+  if(!m)return 0;
+  // So sánh YYYYMMDD như số, không tạo JavaScript Date để tránh timezone.
+  return (+m[3])*10000+(+m[2])*100+(+m[1]);
+}
+
+function unique(key){
+  const values=[...new Set(data.map(x=>norm(x[key])).filter(Boolean))];
+  return key==="date" ? values.sort((a,b)=>parseDate(b)-parseDate(a)) : values.sort((a,b)=>a.localeCompare(b,"vi"));
+}
+function fileDateKey(name){
+  const s=String(name||"");
+  let m=s.match(/(?:^|[^0-9])(\d{1,2})[._-](\d{1,2})[._-](\d{4})(?:[^0-9]|$)/);
+  if(m)return (+m[3])*10000+(+m[2])*100+(+m[1]);
+  m=s.match(/(?:^|[^0-9])(\d{4})[._-](\d{1,2})[._-](\d{1,2})(?:[^0-9]|$)/);
+  if(m)return (+m[1])*10000+(+m[2])*100+(+m[3]);
+  return 0;
+}
+function fileDateText(name){
+  const k=fileDateKey(name); if(!k)return "Chưa nhận diện ngày";
+  return String(k%100).padStart(2,"0")+"/"+String(Math.floor((k%10000)/100)).padStart(2,"0")+"/"+Math.floor(k/10000);
+}
+
+function filterLabel(id){
+  return ({
+    category:"P/L No.",
+    loc:"Vị trí"
+  })[id] || "Chọn";
+}
+
+function fillFilter(id,values){
+  const el=document.getElementById(id);
+  const old=el.value;
+  el.innerHTML=`<option value="">${filterLabel(id)}</option>`+
+    values.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+  if(values.includes(old))el.value=old;
+}
+
+function refreshFilters(){
+  fillFilter("category",unique("category"));
+  fillFilter("loc",unique("loc"));
+}
+
+function historyHtml(code){
+  const h=moveHistory.filter(x=>x.code===code);
+  if(!h.length)return "";
+  return `<div class="history"><div class="history-title"><span class="history-icon">◷</span> Lịch sử</div>`+
+    h.map(x=>x.type==="status"
+      ? `<div class="history-item">${escapeHtml(x.time)}: 🔄 <b>${escapeHtml(x.oldStatus||"—")}</b> → <b>${escapeHtml(x.newStatus||"")}</b></div>`
+      : `<div class="history-item">${escapeHtml(x.time)}: 📍 <b>${escapeHtml(x.oldLoc||"Chưa có")}</b> → <b>${escapeHtml(x.newLoc||"")}</b></div>`
+    ).join("")+
+    `</div>`;
+}
+
+
+// Hiển thị các cột mở rộng đọc được từ file "Detailed Packing List" gốc
+// (Nhà cung cấp, xuất xứ, số lượng, kích thước, trọng lượng...). Kiện hàng
+// nhập theo file đơn giản (không có các cột này) sẽ không hiện khối này.
+const EXTRA_FIELDS=[
+  ["supplier","🏭","Nhà cung cấp/SX"],
+  ["origin","🌐","Xuất xứ (C/O)"],
+  ["posSchedule","📑","Mục bảng giá"],
+  ["qty","🔢","Số lượng",(x)=>x.qty?(x.qty+(x.qtyUnit?" "+x.qtyUnit:"")):""],
+  ["packageType","📦","Loại kiện"],
+  ["dimension","📐","Kích thước D×R×C",(x)=>(x.length||x.width||x.height)?[x.length,x.width,x.height].filter(Boolean).join(" × ")+(x.dimUnit?" "+x.dimUnit:""):""],
+  ["volume","🧊","Thể tích (cbm)"],
+  ["netWeight","⚖️","Net Weight (kg)"],
+  ["grossWeight","⚖️","Gross Weight (kg)"],
+  ["tagModel","🏷️","Tag No./Model"],
+  ["hazard","☢️","Hàng nguy hiểm"],
+  ["storage","🗄️","Phân loại lưu kho"],
+  ["remark","📝","Remark"]
+];
+function extraInfoHtml(x){
+  const items=EXTRA_FIELDS.map(([key,icon,label,getVal])=>{
+    const val=getVal?getVal(x):x[key];
+    return val?`<div class="extra-item"><span class="field-label">${icon} ${label}</span><span class="field-value">${escapeHtml(val)}</span></div>`:"";
+  }).filter(Boolean);
+  if(!items.length)return "";
+  return `<div class="extra-info"><div class="extra-info-title">📋 Thông tin chi tiết từ Packing List</div><div class="extra-grid">${items.join("")}</div></div>`;
+}
+
+let currentFiltered=[];
+let currentPage=1;
+const pageSize=5;
+
+function render(){
+  refreshFilters();
+  const q=norm(document.getElementById("q").value).toLowerCase();
+  const category=document.getElementById("category").value;
+  const loc=document.getElementById("loc").value;
+  const status=document.getElementById("status").value;
+
+  const filtered=data.filter(x=>{
+    const hay=[x.date,x.code,x.group,x.category,x.loc,x.supplier,x.origin,x.tagModel,x.packageType,x.remark].join(" ").toLowerCase();
+    return (!q||hay.includes(q)) && (!category||x.category===category) && (!loc||x.loc===loc) && (!status||x.trangThai===status);
+  });
+
+  currentFiltered=filtered;
+  const totalPages=Math.max(1,Math.ceil(filtered.length/pageSize));
+  if(currentPage>totalPages) currentPage=totalPages;
+  const start=(currentPage-1)*pageSize;
+  const pageItems=filtered.slice(start,start+pageSize);
+
+  document.getElementById("total").textContent=data.length.toLocaleString("vi-VN");
+  document.getElementById("shown").textContent=filtered.length.toLocaleString("vi-VN");
+  document.getElementById("cats").textContent=unique("category").length;
+  document.getElementById("locs").textContent=unique("loc").length;
+  document.getElementById("exported").textContent=data.filter(x=>x.trangThai==="Đã xuất").length.toLocaleString("vi-VN");
+
+  document.getElementById("list").innerHTML=pageItems.length
+    ? pageItems.map((x,i)=>`
+      <div class="card ${selectedCodes.has(x.code)?'card-selected':''}">
+        <div class="card-main">
+          <div class="package-icon"><span>📦</span></div>
+          <div>
+            <div class="code">${start+i+1}. ${escapeHtml(x.code)}</div>
+            <button class="copy" onclick="copyCode('${escapeHtml(x.code)}')"><span>📋</span> Copy mã</button>
+          </div>
+          <div class="field"><span class="field-label"><span class="mini-icon">🏷️</span> Mô tả hàng hóa</span><span class="field-value">${escapeHtml(x.group||"—")}</span></div>
+          <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
+          <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
+          <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
+          <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">📤 Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">📥 Trong kho</span>`}</span></div>
+          <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button><button class="share" style="display:block;width:100%;margin-top:6px;background:linear-gradient(135deg,#8c6ce8,#a98af0);border-color:#8c6ce8" onclick="openEditModal(${start+i})"><span>✏️</span> Sửa</button></div>
+          <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)" ${selectedCodes.has(x.code)?'checked':''}></label>
+        </div>
+        ${extraInfoHtml(x)}
+        ${historyHtml(x.code)}
+      </div>`).join("")
+    : '<div class="empty">Không tìm thấy kiện hàng.</div>';
+  updateBulkBar();
+
+  const p=document.getElementById("pagination");
+  p.innerHTML=totalPages>1 ? `<button onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(totalPages,5)},(_,i)=>{let n=i+1;return `<button class="${n===currentPage?'active':''}" onclick="goPage(${n})">${n}</button>`}).join("")+`<button onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>` : '';
+}
+function goPage(n){currentPage=Math.max(1,Math.min(n,Math.ceil(currentFiltered.length/pageSize)||1));render();window.scrollTo({top:document.getElementById("list").offsetTop-10,behavior:"smooth"});}
+
+function shareItem(index){
+  const x=currentFiltered[index];
+  if(!x)return;
+
+  const title=`📦 Kiện hàng ${x.code}`;
+  const details=[
+    `Mã kiện: ${x.code||"—"}`,
+    `Mô tả hàng hóa: ${x.group||"—"}`,
+    `P/L No.: ${x.category||"—"}`,
+    `Vị trí: ${x.loc||"Chưa có vị trí"}`,
+    `Ngày nhận: ${x.date||"—"}`
+  ];
+  if(x.supplier)details.push(`Nhà cung cấp/SX: ${x.supplier}`);
+  if(x.origin)details.push(`Xuất xứ (C/O): ${x.origin}`);
+  if(x.qty)details.push(`Số lượng: ${x.qty}${x.qtyUnit?" "+x.qtyUnit:""}`);
+  if(x.packageType)details.push(`Loại kiện: ${x.packageType}`);
+  if(x.length||x.width||x.height)details.push(`Kích thước D×R×C: ${[x.length,x.width,x.height].filter(Boolean).join(" × ")}${x.dimUnit?" "+x.dimUnit:""}`);
+  if(x.volume)details.push(`Thể tích (cbm): ${x.volume}`);
+  if(x.netWeight)details.push(`Net Weight (kg): ${x.netWeight}`);
+  if(x.grossWeight)details.push(`Gross Weight (kg): ${x.grossWeight}`);
+  if(x.tagModel)details.push(`Tag No./Model: ${x.tagModel}`);
+  if(x.hazard)details.push(`Hàng nguy hiểm: ${x.hazard}`);
+  if(x.storage)details.push(`Phân loại lưu kho: ${x.storage}`);
+  if(x.remark)details.push(`Remark: ${x.remark}`);
+  const shareText=`${title}\n${details.join("\n")}`;
+
+  if(navigator.share){
+    navigator.share({
+      title:title,
+      text:shareText,
+      url:location.href
+    }).catch(()=>{});
+  }else{
+    navigator.clipboard?.writeText(shareText).then(()=>{
+      showShareNotice("✅ Đã sao chép kết quả để bạn gửi/chia sẻ.");
+    }).catch(()=>{
+      showShareNotice(shareText);
+    });
+  }
+}
+
+function showShareNotice(message){
+  const old=document.querySelector(".share-result");
+  if(old)old.remove();
+  const el=document.createElement("div");
+  el.className="share-result";
+  el.textContent=message;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),2600);
+}
+
+function copyCode(code){
+  navigator.clipboard?.writeText(code);
+}
+
+function reloadGitHubData(){
+  loadAllDailyExcel().catch(err=>{
+    console.error(err);
+    document.getElementById("ghStatus").textContent="❌ "+err.message;
+  });
+}
+
+let fileCurrentPage=1;
+const filePageSize=7;
+function showDailyFiles(){
+  const modal=document.getElementById("fileModal");
+  if(!dailyFiles.length){document.getElementById("fileList").innerHTML='<div class="file-empty">📂 Chưa có file Excel trong /du-lieu.</div>';modal.classList.add("show");document.body.style.overflow="hidden";return;}
+  const dates=[...new Set(dailyFiles.map(x=>fileDateKey(x.name)).filter(Boolean))].sort((a,b)=>b-a);
+  document.getElementById("fileDateFilter").innerHTML='<option value="">📅 Tất cả ngày</option>'+dates.map(k=>'<option value="'+k+'">📅 '+String(k%100).padStart(2,"0")+'/'+String(Math.floor((k%10000)/100)).padStart(2,"0")+'/'+Math.floor(k/10000)+'</option>').join("");
+  document.getElementById("fileSearch").value=""; document.getElementById("fileDateFilter").value=""; fileCurrentPage=1; renderFileList();
+  modal.classList.add("show"); document.body.style.overflow="hidden";
+}
+function renderFileList(){
+  const q=norm(document.getElementById("fileSearch")?.value).toLowerCase(), dk=Number(document.getElementById("fileDateFilter")?.value||0);
+  const filtered=dailyFiles.filter(x=>(!q||x.name.toLowerCase().includes(q))&&(!dk||fileDateKey(x.name)===dk));
+  const pages=Math.max(1,Math.ceil(filtered.length/filePageSize)); if(fileCurrentPage>pages)fileCurrentPage=pages;
+  const items=filtered.slice((fileCurrentPage-1)*filePageSize,fileCurrentPage*filePageSize);
+  document.getElementById("fileSortNote").textContent=filtered.length+" file • Mới nhất trước";
+  document.getElementById("fileList").innerHTML=items.length?items.map(x=>`<div class="file-item"><div class="file-icon">📊</div><div class="file-info"><div class="file-name">${escapeHtml(x.name)}</div><div class="file-meta">📅 ${fileDateText(x.name)} • ${x.size?formatFileSize(x.size):"Excel"}</div></div><a class="file-download" href="${fileUrl(x.name)}" download="${escapeHtml(x.name)}">⬇ Tải file</a></div>`).join(""):'<div class="file-empty">🔎 Không tìm thấy file phù hợp.</div>';
+  const p=document.getElementById("filePagination"); p.innerHTML=pages>1?`<button onclick="goFilePage(${fileCurrentPage-1})" ${fileCurrentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(pages,5)},(_,i)=>{let n=i+1;if(pages>5&&fileCurrentPage>3)n=Math.min(pages-4+i,pages);return `<button class="${n===fileCurrentPage?'active':''}" onclick="goFilePage(${n})">${n}</button>`}).join("")+`<button onclick="goFilePage(${fileCurrentPage+1})" ${fileCurrentPage===pages?'disabled':''}>›</button>`:"";
+}
+function goFilePage(n){fileCurrentPage=Math.max(1,n);renderFileList();document.getElementById("fileList").scrollTop=0;}
+function closeFileModal(){document.getElementById("fileModal").classList.remove("show");document.body.style.overflow="";}
+function formatFileSize(bytes){if(!bytes)return "";if(bytes<1024)return bytes+" B";if(bytes<1024*1024)return (bytes/1024).toFixed(1)+" KB";return (bytes/1024/1024).toFixed(1)+" MB";}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeFileModal()});
+
+window.addEventListener("load",()=>loadAllDailyExcel().catch(err=>{
+  document.getElementById("ghStatus").textContent="❌ "+err.message;
+}));
+</script>
+<footer class="site-footer"><small>© 2026 DOOSAN Material • Tra cứu kiện hàng</small></footer>
+
+<script>
+/* Hiệu ứng lá/cỏ toàn trang: chạm, kéo và vuốt trên mobile */
+(function(){
+  const leaves=["🍃","🌿","☘️"];
+  let lastX=0,lastY=0,lastTime=0;
+  let active=false;
+  let lastEmit=0;
+
+  function leaf(x,y,dx,dy){
+    const el=document.createElement("span");
+    el.className="touch-leaf";
+    el.textContent=leaves[(Math.random()*leaves.length)|0];
+    el.style.left=x+"px";
+    el.style.top=y+"px";
+    el.style.setProperty("--dx",(dx+(Math.random()*32-16))+"px");
+    el.style.setProperty("--dy",(dy+(Math.random()*32-16))+"px");
+    el.style.setProperty("--rot",((Math.random()*120)-60)+"deg");
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),1050);
+  }
+
+  function emit(x,y){
+    const now=performance.now();
+    if(now-lastEmit<55)return;
+    lastEmit=now;
+    const dx=(x-lastX)*.55;
+    const dy=(y-lastY)*.55;
+    leaf(x,y,dx,dy);
+    if(Math.random()>.45) leaf(x+(Math.random()*10-5),y+(Math.random()*10-5),-dx, -dy);
+    lastX=x;lastY=y;lastTime=now;
+  }
+
+  document.addEventListener("pointerdown",e=>{
+    active=true;
+    lastX=e.clientX;lastY=e.clientY;lastTime=performance.now();
+    emit(e.clientX,e.clientY);
+  },{passive:true});
+
+  document.addEventListener("pointermove",e=>{
+    if(!active)return;
+    emit(e.clientX,e.clientY);
+  },{passive:true});
+
+  document.addEventListener("pointerup",()=>{active=false},{passive:true});
+  document.addEventListener("pointercancel",()=>{active=false},{passive:true});
+  document.addEventListener("pointerleave",()=>{active=false},{passive:true});
+
+  /* Thiết bị cũ không hỗ trợ Pointer Events */
+  document.addEventListener("touchmove",e=>{
+    const t=e.touches[0];
+    if(t)emit(t.clientX,t.clientY);
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
