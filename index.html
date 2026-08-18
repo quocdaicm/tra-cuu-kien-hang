@@ -836,22 +836,6 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
 }
 
 
-<style id="package-detail-style">
-/* ===== CHI TIẾT KIỆN HÀNG ===== */
-.package-detail{margin-top:12px;border:1px solid #dceaf2;border-radius:15px;overflow:hidden;background:#f8fbfd;position:relative;z-index:1}
-.package-detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;background:linear-gradient(135deg,#eef9ff,#f7fcff);border-bottom:1px solid #dceaf2}
-.package-detail-title{font-size:13px;font-weight:950;color:#087bd1;display:flex;align-items:center;gap:5px}
-.package-detail-hint{margin-top:3px;font-size:10px;color:#8294a6;font-weight:600}
-.package-detail-count{flex:0 0 auto;border-radius:999px;background:#e7f4ff;color:#087bd1;padding:5px 8px;font-size:10px;font-weight:900}
-.package-detail-list{background:#fff}
-.package-detail-row{display:grid;grid-template-columns:30px minmax(0,1fr) 130px;align-items:start;gap:9px;padding:9px 13px;border-bottom:1px dashed #e2ecf2}
-.package-detail-row:last-child{border-bottom:none}
-.package-detail-index{width:25px;height:25px;border-radius:8px;background:#eaf6ff;color:#087bd1;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
-.package-detail-name{min-width:0;color:#1a304b;font-size:12.5px;font-weight:700;line-height:1.4;word-break:break-word}
-.package-detail-qty{text-align:right;color:#173a60;font-size:12.5px;font-weight:900;line-height:1.4;word-break:break-word}
-.package-detail-empty{padding:14px;color:#8091a3;font-size:11px}
-@media(max-width:700px){.package-detail{margin-top:10px;border-radius:13px}.package-detail-head{padding:10px}.package-detail-title{font-size:11.5px}.package-detail-hint{font-size:9px}.package-detail-count{font-size:9px;padding:4px 7px}.package-detail-row{grid-template-columns:26px minmax(0,1fr) 90px;gap:7px;padding:9px 10px}.package-detail-index{width:23px;height:23px}.package-detail-name,.package-detail-qty{font-size:11.5px}}
-</style>
 <style id="pick-area-upgrade">
 /* ===== KHU XUẤT HÀNG - giao diện quản lý từng mặt hàng ===== */
 .field-pick-summary .field-label{
@@ -2390,45 +2374,45 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
   return out;
 }
 
-const EXCEL_CACHE_PREFIX="excelParsed_v3_";
-const excelMemoryCache=new Map();
-
-function excelCacheKey(item){
-  // GitHub trả sha/size cho từng file. Chỉ khi file đổi mới đọc lại Excel.
-  return EXCEL_CACHE_PREFIX+encodeURIComponent(item.name)+"_"+(item.sha||item.size||"");
-}
-
-function getExcelCache(item){
-  const key=excelCacheKey(item);
-  if(excelMemoryCache.has(key))return excelMemoryCache.get(key);
+/* ---------- CACHE FILE EXCEL THEO "sha" ĐỂ TẢI TRANG NHANH HƠN ----------
+   Mỗi lần vào trang, trước đây trang luôn TẢI LẠI + PHÂN TÍCH (XLSX.read)
+   TẤT CẢ file Excel trong /du-lieu, kể cả các file đã đọc từ trước và
+   không hề thay đổi -> càng nhiều file càng chậm, nhất là trên điện thoại.
+   GitHub cho biết "sha" hiện tại của mỗi file (từ listDailyExcelFiles).
+   Nếu sha không đổi so với lần trước, dữ liệu đã phân tích được lấy thẳng
+   từ bộ nhớ tạm (localStorage) — bỏ qua bước tải + phân tích file rất tốn
+   thời gian. File nào có sha mới (vừa sửa/upload) mới thực sự tải lại. */
+const EXCEL_CACHE_PREFIX="xlsCache:";
+function loadExcelCache(name){
   try{
-    const raw=sessionStorage.getItem(key);
-    if(raw){
-      const parsed=JSON.parse(raw);
-      if(Array.isArray(parsed)){
-        excelMemoryCache.set(key,parsed);
-        return parsed;
-      }
+    const raw=localStorage.getItem(EXCEL_CACHE_PREFIX+name);
+    return raw?JSON.parse(raw):null;
+  }catch(e){ return null; }
+}
+function saveExcelCache(name,sha,rows){
+  try{
+    localStorage.setItem(EXCEL_CACHE_PREFIX+name,JSON.stringify({sha,rows}));
+  }catch(e){ /* Hết dung lượng lưu tạm của trình duyệt: bỏ qua, trang vẫn chạy bình thường. */ }
+}
+// Dọn cache của các file Excel không còn tồn tại trong /du-lieu nữa, tránh
+// bộ nhớ tạm phình to mãi theo thời gian.
+function pruneExcelCache(validNames){
+  try{
+    const keep=new Set(validNames.map(n=>EXCEL_CACHE_PREFIX+n));
+    for(let i=localStorage.length-1;i>=0;i--){
+      const k=localStorage.key(i);
+      if(k&&k.indexOf(EXCEL_CACHE_PREFIX)===0&&!keep.has(k))localStorage.removeItem(k);
     }
   }catch(e){}
-  return null;
-}
-
-function setExcelCache(item,value){
-  const key=excelCacheKey(item);
-  excelMemoryCache.set(key,value);
-  try{
-    sessionStorage.setItem(key,JSON.stringify(value));
-  }catch(e){
-    // Bộ nhớ trình duyệt có thể đầy; vẫn giữ cache RAM và tiếp tục bình thường.
-  }
 }
 
 async function readExcelFile(item){
-  const cached=getExcelCache(item);
-  if(cached)return cached;
+  const cached=loadExcelCache(item.name);
+  if(cached&&cached.sha&&item.sha&&cached.sha===item.sha&&Array.isArray(cached.rows)){
+    return cached.rows;
+  }
 
-  const r=await fetch(fileUrl(item.name),{cache:"force-cache"});
+  const r=await fetch(fileUrl(item.name),{cache:"no-store"});
   if(!r.ok)throw new Error("Không tải được "+item.name);
   const buf=await r.arrayBuffer();
   const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
@@ -2436,7 +2420,7 @@ async function readExcelFile(item){
   // Thử đọc theo định dạng "Detailed Packing List" gốc từ NCC trước.
   const detailed=readDetailedPLFile(item,wb);
   if(detailed&&detailed.length){
-    setExcelCache(item,detailed);
+    saveExcelCache(item.name,item.sha,detailed);
     return detailed;
   }
 
@@ -2492,7 +2476,7 @@ async function readExcelFile(item){
   if(!locKey)missing.push("Vị trí");
   if(missing.length)throw new Error(item.name+" thiếu cột: "+missing.join(", "));
 
-  const parsed=rows.map(row=>({
+  const parsedRows=rows.map(row=>({
     date:formatDate(row[dateKey]),
     code:norm(row[codeKey]),
     group:norm(row[groupKey]),
@@ -2521,8 +2505,9 @@ async function readExcelFile(item){
     detail:detailKey?norm(row[detailKey]):"",
     sourceFile:item.name
   })).filter(x=>x.code);
-  setExcelCache(item,parsed);
-  return parsed;
+
+  saveExcelCache(item.name,item.sha,parsedRows);
+  return parsedRows;
 }
 
 async function loadAllDailyExcel(){
@@ -2536,20 +2521,8 @@ async function loadAllDailyExcel(){
     return;
   }
 
-  // Không Promise.all toàn bộ file: trên iPhone, đọc/giải mã hàng chục file
-  // Excel cùng lúc làm CPU/RAM tăng mạnh và khiến trang có cảm giác bị treo.
-  // Tối đa 3 file được đọc song song; các file chưa đổi sẽ lấy từ cache.
-  const results=new Array(dailyFiles.length);
-  let nextIndex=0;
-  const worker=async()=>{
-    while(true){
-      const i=nextIndex++;
-      if(i>=dailyFiles.length)return;
-      results[i]=await readExcelFile(dailyFiles[i]);
-    }
-  };
-  const workerCount=Math.min(3,dailyFiles.length);
-  await Promise.all(Array.from({length:workerCount},()=>worker()));
+  pruneExcelCache(dailyFiles.map(f=>f.name));
+  const results=await Promise.all(dailyFiles.map(readExcelFile));
   dailyData=results.flat();
 
   // Sắp xếp theo ngày; nếu cùng ngày thì theo tên file.
@@ -2634,7 +2607,6 @@ async function loadAllDailyExcel(){
   reconcilePendingOverrides();
 
   moveHistory=history;
-  filterOptionsDirty=true;
   render();
   applyJustUploadedFilter();
 
@@ -2848,132 +2820,88 @@ function getItemDetail(x){
   });
 }
 
-function packageDetailHtml(x){
-  const allDetail=getItemDetail(x);
-
-  // PKG ở cấp này là đơn vị của CHÍNH KIỆN HÀNG, không phải một mặt hàng
-  // nằm bên trong kiện. Vì vậy không đưa dòng "... (1 PKG)" vào danh sách
-  // chi tiết; chỉ hiển thị các mặt hàng thực tế bên trong kiện.
-  const packageRows=allDetail.filter(it=>normalizeUnit(it.unit)==="PKG");
-  const detail=allDetail.filter(it=>normalizeUnit(it.unit)!=="PKG");
-  const packageQty=packageRows.reduce((sum,it)=>sum+(Number(it.qty)||0),0);
-  const packageLabel=packageQty>0 ? `${packageQty} kiện hàng` : "1 kiện hàng";
-
-  if(!detail.length){
-    return `<div class="package-detail">
-      <div class="package-detail-head">
-        <div>
-          <div class="package-detail-title">📋 Chi tiết kiện hàng</div>
-          <div class="package-detail-hint">${escapeHtml(packageLabel)} • PKG là đơn vị của kiện, không phải hàng bên trong</div>
-        </div>
-        <div class="package-detail-count">0 dòng</div>
-      </div>
-      <div class="package-detail-empty">Chưa có chi tiết hàng hóa bên trong kiện.</div>
-    </div>`;
-  }
-
-  return `<div class="package-detail">
-    <div class="package-detail-head">
-      <div>
-        <div class="package-detail-title">📋 Chi tiết kiện hàng</div>
-        <div class="package-detail-hint">${escapeHtml(packageLabel)} • Hiển thị đầy đủ từng dòng hàng bên trong kiện</div>
-      </div>
-      <div class="package-detail-count">${detail.length} dòng</div>
-    </div>
-    <div class="package-detail-list">
-      ${detail.map((it,i)=>{
-        const qty=it.qty!=null && it.qty!=="" ? `${escapeHtml(it.qty)}${it.unit?" "+escapeHtml(it.unit):""}` : "—";
-        return `<div class="package-detail-row">
-          <div class="package-detail-index">${i+1}</div>
-          <div class="package-detail-name">${escapeHtml(it.name||"Hàng hóa")}</div>
-          <div class="package-detail-qty">${qty}</div>
-        </div>`;
-      }).join("")}
-    </div>
-  </div>`;
-}
-
-// Đọc số lượng người dùng nhập trong ô ở khu xuất hàng (mặc định 1 nếu bỏ trống/không hợp lệ).
-function pickInputVal(code,idx){
-  const el=document.getElementById("pickIn_"+code+"_"+idx);
-  const v=el?parseFloat(String(el.value).replace(/,/g,".")):NaN;
-  return (!isNaN(v)&&v>0)?v:1;
-}
-
-// Trừ/cộng số lượng trong KHU XUẤT HÀNG rồi lưu lên GitHub.
-// − = xuất theo số lượng đã nhập (mặc định 1), + = trả lại theo số lượng đã nhập.
-let pickBusy=new Set();
-async function pickItem(code,idx,delta){
-  const key=code+"|"+idx;
-  if(pickBusy.has(key))return;
-
-  const x=data.find(d=>d.code===code);
-  if(!x)return;
-
+// Tóm tắt số lượng hiển thị ở đầu thẻ (chỉ đọc — không còn +/- xuất hàng ở
+// đây nữa, mọi mặt hàng và số lượng gốc trong kiện vẫn được giữ đầy đủ).
+function pickSummaryHtml(x){
   const detail=getItemDetail(x);
-  const it=detail[idx];
-  if(!it||it.qty==null)return;
-
-  const oldRemaining=Number(it.remaining)||0;
-  const maxQty=Number(it.qty)||0;
-  const next=Math.max(0,Math.min(maxQty,oldRemaining+delta));
-  if(next===oldRemaining)return;
-
-  let token=localStorage.getItem("ghToken");
-  if(!token){
-    token=window.prompt("Nhập GitHub Token để lưu thay đổi số lượng (sẽ được ghi nhớ cho lần sau):");
-    if(!token)return;
-    localStorage.setItem("ghToken",token);
+  const rows=detail.filter(it=>it.qty!=null);
+  if(!rows.length){
+    return `<span class="pick-summary-empty">Chưa có số lượng chi tiết</span>`;
   }
 
-  const prevDetailJson=x.detail||"";
+  // Cộng dồn theo TỪNG đơn vị (m, EA, PKG...) vì các mặt hàng trong cùng 1
+  // kiện có thể có đơn vị khác nhau — không được gộp lẫn vào 1 tổng số.
+  const byUnit=new Map();
+  rows.forEach(it=>{
+    const u=it.unit||"EA";
+    byUnit.set(u,(byUnit.get(u)||0)+(Number(it.qty)||0));
+  });
+  const totalsText=[...byUnit.entries()].map(([u,q])=>`${q.toLocaleString("vi-VN")} ${u}`).join(" • ");
 
-  it.log=[{
-    time:new Date().toLocaleString("vi-VN"),
-    change:next-oldRemaining,
-    after:next
-  },...(it.log||[])].slice(0,50);
+  return `
+    <div class="pick-summary">
+      <div class="pick-summary-top">
+        <span class="pick-summary-title">📋 ${rows.length} mặt hàng</span>
+      </div>
+      <div class="pick-summary-bottom">
+        <span>Tổng số lượng: <b>${escapeHtml(totalsText)}</b></span>
+      </div>
+    </div>`;
+}
 
-  it.remaining=next;
-  const detailJson=JSON.stringify(detail);
-  x.detail=detailJson;
+// Bảng CHI TIẾT từng mặt hàng trong kiện — CHỈ HIỂN THỊ (không có nút +/-
+// xuất/trả hàng nữa). Số lượng và đơn vị được tự động tách/lọc từ mô tả
+// hàng hóa hoặc từ cột Số lượng/Đơn vị SL trong file Excel gốc (VD dây cáp
+// tự nhận đơn vị "M", vật tư rời tự nhận đơn vị "EA"...).
+function pickAreaHtml(x){
+  const detail=getItemDetail(x);
+  if(!detail.length)return "";
 
-  pickBusy.add(key);
-  render();
+  return `<div class="pick-area">
+    <div class="pick-area-head">
+      <div>
+        <div class="pick-area-title"><span class="mini-icon">📋</span> CHI TIẾT MẶT HÀNG</div>
+        <div class="pick-area-hint">Toàn bộ mặt hàng và số lượng theo Packing List</div>
+      </div>
+      <div class="pick-area-count">${detail.length} dòng</div>
+    </div>
 
-  try{
-    await queueWrite(async()=>{
-      let rows=await fetchOverrideRows();
-      const patch={"Chi tiết xuất kho":detailJson};
-      upsertRow(rows,code,patch);
+    <div class="pick-table-head">
+      <span>Mặt hàng</span>
+      <span>Số lượng</span>
+    </div>
 
-      await commitOverrideRows(
-        rows,
-        (delta<0?"Xuất ":"Nhập trả ")+Math.abs(delta)+" "+(it.unit||"")+" "+it.name+" - kiện "+code,
-        token
-      );
+    ${detail.map((it,i)=>{
+      if(it.qty==null){
+        return `<div class="pick-row pick-row-plain">
+          <span class="pick-index">${i+1}</span>
+          <span class="pick-name">${escapeHtml(it.name)}</span>
+        </div>`;
+      }
 
-      optimisticApply(code,patch);
-    });
-  }catch(e){
-    x.detail=prevDetailJson;
-    alert("❌ Lỗi khi lưu số lượng: "+e.message);
-  }finally{
-    pickBusy.delete(key);
-    render();
-  }
+      return `<div class="pick-row">
+        <div class="pick-item-main">
+          <span class="pick-index">${i+1}</span>
+          <div class="pick-item-text">
+            <span class="pick-name">${escapeHtml(it.name)}</span>
+          </div>
+        </div>
+
+        <div class="pick-qty-box">
+          <span class="pick-qty">${Number(it.qty).toLocaleString("vi-VN")}</span>
+          <small>${escapeHtml(it.unit)}</small>
+        </div>
+      </div>`;
+    }).join("")}
+  </div>`;
 }
 
 let currentFiltered=[];
 let currentPage=1;
 const pageSize=10;
-let filterOptionsDirty=true;
 
 function render(){
-  if(filterOptionsDirty){
-    refreshFilters();
-    filterOptionsDirty=false;
-  }
+  refreshFilters();
   const q=norm(document.getElementById("q").value).toLowerCase();
   const category=document.getElementById("category").value;
   const loc=document.getElementById("loc").value;
@@ -3005,6 +2933,7 @@ function render(){
             <div class="code">${start+i+1}. ${escapeHtml(x.code)}</div>
             <button class="copy" onclick="copyCode('${escapeHtml(x.code)}')"><span>📋</span> Copy mã</button>
           </div>
+          <div class="field field-pick-summary"><span class="field-label"><span class="mini-icon">📋</span> Chi tiết hàng hóa</span>${pickSummaryHtml(x)}</div>
           <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
           <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
@@ -3012,7 +2941,7 @@ function render(){
           <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button><button class="share" style="display:block;width:100%;margin-top:6px;background:linear-gradient(135deg,#8c6ce8,#a98af0);border-color:#8c6ce8" onclick="openEditModal(${start+i})"><span>✏️</span> Sửa</button></div>
           <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
-        ${packageDetailHtml(x)}
+        ${pickAreaHtml(x)}
         ${extraInfoHtml(x)}
         ${historyHtml(x.code)}
       </div>`).join("")
