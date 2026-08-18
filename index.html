@@ -2390,15 +2390,55 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
   return out;
 }
 
+const EXCEL_CACHE_PREFIX="excelParsed_v3_";
+const excelMemoryCache=new Map();
+
+function excelCacheKey(item){
+  // GitHub trả sha/size cho từng file. Chỉ khi file đổi mới đọc lại Excel.
+  return EXCEL_CACHE_PREFIX+encodeURIComponent(item.name)+"_"+(item.sha||item.size||"");
+}
+
+function getExcelCache(item){
+  const key=excelCacheKey(item);
+  if(excelMemoryCache.has(key))return excelMemoryCache.get(key);
+  try{
+    const raw=sessionStorage.getItem(key);
+    if(raw){
+      const parsed=JSON.parse(raw);
+      if(Array.isArray(parsed)){
+        excelMemoryCache.set(key,parsed);
+        return parsed;
+      }
+    }
+  }catch(e){}
+  return null;
+}
+
+function setExcelCache(item,value){
+  const key=excelCacheKey(item);
+  excelMemoryCache.set(key,value);
+  try{
+    sessionStorage.setItem(key,JSON.stringify(value));
+  }catch(e){
+    // Bộ nhớ trình duyệt có thể đầy; vẫn giữ cache RAM và tiếp tục bình thường.
+  }
+}
+
 async function readExcelFile(item){
-  const r=await fetch(fileUrl(item.name),{cache:"no-store"});
+  const cached=getExcelCache(item);
+  if(cached)return cached;
+
+  const r=await fetch(fileUrl(item.name),{cache:"force-cache"});
   if(!r.ok)throw new Error("Không tải được "+item.name);
   const buf=await r.arrayBuffer();
   const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
 
   // Thử đọc theo định dạng "Detailed Packing List" gốc từ NCC trước.
   const detailed=readDetailedPLFile(item,wb);
-  if(detailed&&detailed.length)return detailed;
+  if(detailed&&detailed.length){
+    setExcelCache(item,detailed);
+    return detailed;
+  }
 
   const ws=wb.Sheets[wb.SheetNames[0]];
   const rows=XLSX.utils.sheet_to_json(ws,{defval:""});
@@ -2452,7 +2492,7 @@ async function readExcelFile(item){
   if(!locKey)missing.push("Vị trí");
   if(missing.length)throw new Error(item.name+" thiếu cột: "+missing.join(", "));
 
-  return rows.map(row=>({
+  const parsed=rows.map(row=>({
     date:formatDate(row[dateKey]),
     code:norm(row[codeKey]),
     group:norm(row[groupKey]),
@@ -2481,6 +2521,8 @@ async function readExcelFile(item){
     detail:detailKey?norm(row[detailKey]):"",
     sourceFile:item.name
   })).filter(x=>x.code);
+  setExcelCache(item,parsed);
+  return parsed;
 }
 
 async function loadAllDailyExcel(){
@@ -2494,7 +2536,20 @@ async function loadAllDailyExcel(){
     return;
   }
 
-  const results=await Promise.all(dailyFiles.map(readExcelFile));
+  // Không Promise.all toàn bộ file: trên iPhone, đọc/giải mã hàng chục file
+  // Excel cùng lúc làm CPU/RAM tăng mạnh và khiến trang có cảm giác bị treo.
+  // Tối đa 3 file được đọc song song; các file chưa đổi sẽ lấy từ cache.
+  const results=new Array(dailyFiles.length);
+  let nextIndex=0;
+  const worker=async()=>{
+    while(true){
+      const i=nextIndex++;
+      if(i>=dailyFiles.length)return;
+      results[i]=await readExcelFile(dailyFiles[i]);
+    }
+  };
+  const workerCount=Math.min(3,dailyFiles.length);
+  await Promise.all(Array.from({length:workerCount},()=>worker()));
   dailyData=results.flat();
 
   // Sắp xếp theo ngày; nếu cùng ngày thì theo tên file.
@@ -2579,6 +2634,7 @@ async function loadAllDailyExcel(){
   reconcilePendingOverrides();
 
   moveHistory=history;
+  filterOptionsDirty=true;
   render();
   applyJustUploadedFilter();
 
@@ -2799,7 +2855,7 @@ function packageDetailHtml(x){
   // nằm bên trong kiện. Vì vậy không đưa dòng "... (1 PKG)" vào danh sách
   // chi tiết; chỉ hiển thị các mặt hàng thực tế bên trong kiện.
   const packageRows=allDetail.filter(it=>normalizeUnit(it.unit)==="PKG");
-  const detail=allDetail.filter(it=>normalizeUnit(it.unit)!==="PKG");
+  const detail=allDetail.filter(it=>normalizeUnit(it.unit)!=="PKG");
   const packageQty=packageRows.reduce((sum,it)=>sum+(Number(it.qty)||0),0);
   const packageLabel=packageQty>0 ? `${packageQty} kiện hàng` : "1 kiện hàng";
 
@@ -2911,9 +2967,13 @@ async function pickItem(code,idx,delta){
 let currentFiltered=[];
 let currentPage=1;
 const pageSize=10;
+let filterOptionsDirty=true;
 
 function render(){
-  refreshFilters();
+  if(filterOptionsDirty){
+    refreshFilters();
+    filterOptionsDirty=false;
+  }
   const q=norm(document.getElementById("q").value).toLowerCase();
   const category=document.getElementById("category").value;
   const loc=document.getElementById("loc").value;
