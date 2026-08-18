@@ -836,6 +836,22 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
 }
 
 
+<style id="package-detail-style">
+/* ===== CHI TIẾT KIỆN HÀNG ===== */
+.package-detail{margin-top:12px;border:1px solid #dceaf2;border-radius:15px;overflow:hidden;background:#f8fbfd;position:relative;z-index:1}
+.package-detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;background:linear-gradient(135deg,#eef9ff,#f7fcff);border-bottom:1px solid #dceaf2}
+.package-detail-title{font-size:13px;font-weight:950;color:#087bd1;display:flex;align-items:center;gap:5px}
+.package-detail-hint{margin-top:3px;font-size:10px;color:#8294a6;font-weight:600}
+.package-detail-count{flex:0 0 auto;border-radius:999px;background:#e7f4ff;color:#087bd1;padding:5px 8px;font-size:10px;font-weight:900}
+.package-detail-list{background:#fff}
+.package-detail-row{display:grid;grid-template-columns:30px minmax(0,1fr) 130px;align-items:start;gap:9px;padding:9px 13px;border-bottom:1px dashed #e2ecf2}
+.package-detail-row:last-child{border-bottom:none}
+.package-detail-index{width:25px;height:25px;border-radius:8px;background:#eaf6ff;color:#087bd1;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
+.package-detail-name{min-width:0;color:#1a304b;font-size:12.5px;font-weight:700;line-height:1.4;word-break:break-word}
+.package-detail-qty{text-align:right;color:#173a60;font-size:12.5px;font-weight:900;line-height:1.4;word-break:break-word}
+.package-detail-empty{padding:14px;color:#8091a3;font-size:11px}
+@media(max-width:700px){.package-detail{margin-top:10px;border-radius:13px}.package-detail-head{padding:10px}.package-detail-title{font-size:11.5px}.package-detail-hint{font-size:9px}.package-detail-count{font-size:9px;padding:4px 7px}.package-detail-row{grid-template-columns:26px minmax(0,1fr) 90px;gap:7px;padding:9px 10px}.package-detail-index{width:23px;height:23px}.package-detail-name,.package-detail-qty{font-size:11.5px}}
+</style>
 <style id="pick-area-upgrade">
 /* ===== KHU XUẤT HÀNG - giao diện quản lý từng mặt hàng ===== */
 .field-pick-summary .field-label{
@@ -2776,97 +2792,30 @@ function getItemDetail(x){
   });
 }
 
-function pickSummaryHtml(x){
+function packageDetailHtml(x){
   const detail=getItemDetail(x);
-  const rows=detail.filter(it=>it.qty!=null);
-  if(!rows.length){
-    return `<span class="pick-summary-empty">Chưa có số lượng để xuất</span>`;
+  if(!detail.length){
+    return `<div class="package-detail"><div class="package-detail-title">📋 Chi tiết kiện hàng</div><div class="package-detail-empty">Chưa có chi tiết hàng hóa.</div></div>`;
   }
 
-  const totalOriginal=rows.reduce((s,it)=>s+(Number(it.qty)||0),0);
-  const totalRemaining=rows.reduce((s,it)=>s+(Number(it.remaining)||0),0);
-  const totalPicked=totalOriginal-totalRemaining;
-
-  return `
-    <div class="pick-summary">
-      <div class="pick-summary-top">
-        <span class="pick-summary-title">📤 ${rows.length} mặt hàng</span>
-        <span class="pick-summary-status">${totalPicked>0?`Đã xuất ${totalPicked}`:`Sẵn sàng xuất`}</span>
-      </div>
-      <div class="pick-summary-bottom">
-        <span>Còn lại: <b>${totalRemaining}</b></span>
-        <span>Tổng: <b>${totalOriginal}</b></span>
-      </div>
-    </div>`;
-}
-
-function pickAreaHtml(x){
-  const detail=getItemDetail(x);
-  const rows=detail.filter(it=>it.qty!=null);
-  if(!rows.length)return "";
-
-  return `<div class="pick-area">
-    <div class="pick-area-head">
+  return `<div class="package-detail">
+    <div class="package-detail-head">
       <div>
-        <div class="pick-area-title"><span class="mini-icon">📤</span> KHU XUẤT HÀNG</div>
-        <div class="pick-area-hint">Mỗi dòng là 1 mặt hàng • − khi lấy hàng • + khi trả lại</div>
+        <div class="package-detail-title">📋 Chi tiết kiện hàng</div>
+        <div class="package-detail-hint">Hiển thị đầy đủ từng dòng hàng và số lượng trong kiện</div>
       </div>
-      <div class="pick-area-count">${rows.length} dòng</div>
+      <div class="package-detail-count">${detail.length} dòng</div>
     </div>
-
-    <div class="pick-table-head">
-      <span>Mặt hàng</span>
-      <span>Số lượng còn</span>
-    </div>
-
-    ${detail.map((it,i)=>{
-      if(it.qty==null){
-        return `<div class="pick-row pick-row-plain">
-          <span class="pick-name">${escapeHtml(it.name)}</span>
+    <div class="package-detail-list">
+      ${detail.map((it,i)=>{
+        const qty=it.qty!=null && it.qty!=="" ? `${escapeHtml(it.qty)}${it.unit?" "+escapeHtml(it.unit):""}` : "—";
+        return `<div class="package-detail-row">
+          <div class="package-detail-index">${i+1}</div>
+          <div class="package-detail-name">${escapeHtml(it.name||"Hàng hóa")}</div>
+          <div class="package-detail-qty">${qty}</div>
         </div>`;
-      }
-
-      const original=Number(it.qty)||0;
-      const remaining=Number(it.remaining)||0;
-      const picked=Math.max(0,original-remaining);
-      const pct=original>0?Math.round((remaining/original)*100):0;
-      const low=remaining<=0;
-
-      return `<div class="pick-row ${low?'pick-row-empty':''}">
-        <div class="pick-item-main">
-          <span class="pick-index">${i+1}</span>
-          <div class="pick-item-text">
-            <span class="pick-name">${escapeHtml(it.name)}</span>
-            <span class="pick-item-meta">${picked>0?`Đã xuất ${picked} ${escapeHtml(it.unit)}`:`Chưa xuất`} • Tổng ${original} ${escapeHtml(it.unit)}</span>
-          </div>
-        </div>
-
-        <div class="pick-controls">
-          <input type="number" class="pick-qty-input" id="pickIn_${escapeHtml(x.code)}_${i}"
-                 value="1" min="0.001" step="any" inputmode="decimal"
-                 aria-label="Số lượng xuất/trả mỗi lần bấm" title="Nhập số lượng rồi bấm − hoặc +">
-
-          <button class="pick-btn pick-minus"
-                  aria-label="Xuất ${escapeHtml(it.unit)}"
-                  title="Lấy hàng theo số lượng đã nhập"
-                  onclick="pickItem('${escapeHtml(x.code)}',${i},-pickInputVal('${escapeHtml(x.code)}',${i}))"
-                  ${remaining<=0?'disabled':''}>−</button>
-
-          <div class="pick-qty-box">
-            <span class="pick-qty ${low?'pick-qty-low':''}">${remaining}</span>
-            <small>${escapeHtml(it.unit)}</small>
-          </div>
-
-          <button class="pick-btn pick-plus"
-                  aria-label="Trả lại ${escapeHtml(it.unit)}"
-                  title="Trả hàng theo số lượng đã nhập"
-                  onclick="pickItem('${escapeHtml(x.code)}',${i},pickInputVal('${escapeHtml(x.code)}',${i}))"
-                  ${remaining>=original?'disabled':''}>+</button>
-        </div>
-
-        <div class="pick-bar"><div class="pick-bar-fill" style="width:${pct}%"></div></div>
-      </div>`;
-    }).join("")}
+      }).join("")}
+    </div>
   </div>`;
 }
 
@@ -2943,7 +2892,7 @@ async function pickItem(code,idx,delta){
 
 let currentFiltered=[];
 let currentPage=1;
-const pageSize=20;
+const pageSize=10;
 
 function render(){
   refreshFilters();
@@ -2978,7 +2927,6 @@ function render(){
             <div class="code">${start+i+1}. ${escapeHtml(x.code)}</div>
             <button class="copy" onclick="copyCode('${escapeHtml(x.code)}')"><span>📋</span> Copy mã</button>
           </div>
-          <div class="field field-pick-summary"><span class="field-label"><span class="mini-icon">📤</span> Khu xuất hàng</span>${pickSummaryHtml(x)}</div>
           <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
           <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
@@ -2986,7 +2934,7 @@ function render(){
           <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button><button class="share" style="display:block;width:100%;margin-top:6px;background:linear-gradient(135deg,#8c6ce8,#a98af0);border-color:#8c6ce8" onclick="openEditModal(${start+i})"><span>✏️</span> Sửa</button></div>
           <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
-        ${pickAreaHtml(x)}
+        ${packageDetailHtml(x)}
         ${extraInfoHtml(x)}
         ${historyHtml(x.code)}
       </div>`).join("")
