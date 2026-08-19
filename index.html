@@ -1754,6 +1754,12 @@ function readDetailedPLSheet(item,wb,sheetName){
   // "Breakdown CI" có cột "Vị Trí"). Nếu file có cột này, đọc thẳng vị trí
   // từ đây — không cần nhập tay/qua nút "Sửa theo P/L" nữa.
   const colLoc=findCol(/vị\s*trí/i,/^location$/i,/^loc\.?$/i);
+  // Cột "Ngày Nhận" (ngày nhận hàng của TỪNG kiện, do người dùng tự thêm vào
+  // sheet — VD "Break Down CI" có cột "Ngày Nhận") — khác với ô "Dated" ở
+  // đầu sheet (đó là ngày phát hành cả bộ Packing List, không phải ngày
+  // nhận riêng từng kiện) nên KHÔNG dùng regex "dated"/"date" chung chung ở
+  // đây để tránh nhận nhầm cột/ô khác.
+  const colDate=findCol(/ngày\s*nhận/i,/received\s*date/i,/date\s*received/i);
   const colSupplier=findCol(/supplier/i,/manufacturer/i);
   const colOrigin=findCol(/c\/o of goods/i,/^c\/o$/i);
   const colPosSchedule=findCol(/position in price schedule/i);
@@ -1791,7 +1797,7 @@ function readDetailedPLSheet(item,wb,sheetName){
     if((aoa[r]||[]).some(c=>/^sub-?total$/i.test(norm(c)))){hasSubtotal=true;break;}
   }
 
-  const cols={colDesc,colDescDetail,colLoc,colSupplier,colOrigin,colPosSchedule,colQtyNos,colQtyUnit,
+  const cols={colDesc,colDescDetail,colLoc,colDate,colSupplier,colOrigin,colPosSchedule,colQtyNos,colQtyUnit,
     colPackageType,colLength,colWidth,colHeight,colVolume,colNetWeight,colGrossWeight,
     colTagModel,colHazard,colStorage,colRemark};
 
@@ -1815,7 +1821,7 @@ function parseFlatPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
     if(!code)continue;
     const desc=[get(row,cols.colDesc),get(row,cols.colDescDetail)].filter(Boolean).join(" ");
     out.push({
-      date:"",code,group:desc,category:plNo,loc:get(row,cols.colLoc),trangThai:"Trong kho",
+      date:cols.colDate>=0?formatDate(row[cols.colDate]):"",code,group:desc,category:plNo,loc:get(row,cols.colLoc),trangThai:"Trong kho",
       ngayXuat:"",ngayCapNhat:"",
       supplier:get(row,cols.colSupplier),origin:get(row,cols.colOrigin),
       posSchedule:get(row,cols.colPosSchedule),
@@ -1865,6 +1871,10 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
   function applyPackageInfo(g,row){
     const rowLoc=get(row,cols.colLoc);
     if(rowLoc)g.loc=rowLoc;
+    if(cols.colDate>=0){
+      const d=formatDate(row[cols.colDate]);
+      if(d)g.date=d;
+    }
     if(!g.packageType)g.packageType=get(row,cols.colPackageType);
     if(!g.length)g.length=get(row,cols.colLength);
     if(!g.width)g.width=get(row,cols.colWidth);
@@ -1907,7 +1917,7 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
     })();
 
     return {
-      date:"",code:g.code,group:descParts.join("; "),category:plNo,loc:g.loc||"",
+      date:g.date||"",code:g.code,group:descParts.join("; "),category:plNo,loc:g.loc||"",
       packageDesc:g.selfDesc||"",
       trangThai:"Trong kho",ngayXuat:"",ngayCapNhat:"",
       supplier:g.supplier,origin:g.origin,posSchedule:g.posSchedule,
@@ -1940,15 +1950,19 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
 
     if(!group||group.code!==code){
       if(group)out.push(finalize(group)); // nhóm trước thiếu dòng Sub-Total, vẫn lưu với dữ liệu đã có
-      group={code,items:[],supplier:"",origin:"",posSchedule:"",loc:""};
+      group={code,items:[],supplier:"",origin:"",posSchedule:"",loc:"",date:""};
     }
     if(!group.supplier)group.supplier=get(row,cols.colSupplier);
     if(!group.origin)group.origin=get(row,cols.colOrigin);
     if(!group.posSchedule)group.posSchedule=get(row,cols.colPosSchedule);
-    // Cột "Vị trí" (nếu có trong file) có thể chỉ ghi ở dòng đầu của kiện,
-    // lấy như supplier/origin — không phụ thuộc dòng đó có phải dòng "thông
-    // tin kiện" hay không.
+    // Cột "Vị trí"/"Ngày Nhận" (nếu có trong file) có thể chỉ ghi ở dòng đầu
+    // của kiện, lấy như supplier/origin — không phụ thuộc dòng đó có phải
+    // dòng "thông tin kiện" hay không.
     if(!group.loc)group.loc=get(row,cols.colLoc);
+    if(!group.date&&cols.colDate>=0){
+      const d=formatDate(row[cols.colDate]);
+      if(d)group.date=d;
+    }
 
     if(isPackageInfoRow(row,cols,get)){
       // Đây là dòng thông tin của CHÍNH kiện hàng (Qty=1, Unit=PKG, kèm
@@ -1982,7 +1996,7 @@ const EXCEL_CACHE_PREFIX="xlsCache:";
 // (kết quả phân tích SAI theo logic cũ) sẽ không bao giờ tự làm mới, khiến
 // người dùng vẫn thấy lỗi cũ dù code đã sửa. Đổi số version ép đọc lại 1
 // lần cho mọi người sau khi deploy bản sửa lỗi logic đọc file.
-const PARSER_LOGIC_VERSION="5";
+const PARSER_LOGIC_VERSION="6";
 function loadExcelCache(name){
   try{
     const raw=localStorage.getItem(EXCEL_CACHE_PREFIX+name);
