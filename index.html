@@ -2467,15 +2467,25 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
    từ bộ nhớ tạm (localStorage) — bỏ qua bước tải + phân tích file rất tốn
    thời gian. File nào có sha mới (vừa sửa/upload) mới thực sự tải lại. */
 const EXCEL_CACHE_PREFIX="xlsCache:";
+// Tăng số này mỗi khi LOGIC đọc/phân tích file Excel (readDetailedPLFile,
+// parseGroupedPLRows...) được sửa. Cache cũ lưu theo "sha" của file — nếu
+// chỉ sửa logic đọc mà không đổi file Excel, sha không đổi nên cache cũ
+// (kết quả phân tích SAI theo logic cũ) sẽ không bao giờ tự làm mới, khiến
+// người dùng vẫn thấy lỗi cũ dù code đã sửa. Đổi số version ép đọc lại 1
+// lần cho mọi người sau khi deploy bản sửa lỗi logic đọc file.
+const PARSER_LOGIC_VERSION="2";
 function loadExcelCache(name){
   try{
     const raw=localStorage.getItem(EXCEL_CACHE_PREFIX+name);
-    return raw?JSON.parse(raw):null;
+    if(!raw)return null;
+    const data=JSON.parse(raw);
+    if(data.ver!==PARSER_LOGIC_VERSION)return null; // logic đọc đã đổi -> bỏ cache cũ, đọc lại
+    return data;
   }catch(e){ return null; }
 }
 function saveExcelCache(name,sha,rows){
   try{
-    localStorage.setItem(EXCEL_CACHE_PREFIX+name,JSON.stringify({sha,rows}));
+    localStorage.setItem(EXCEL_CACHE_PREFIX+name,JSON.stringify({sha,rows,ver:PARSER_LOGIC_VERSION}));
   }catch(e){ /* Hết dung lượng lưu tạm của trình duyệt: bỏ qua, trang vẫn chạy bình thường. */ }
 }
 // Dọn cache của các file Excel không còn tồn tại trong /du-lieu nữa, tránh
@@ -3099,6 +3109,55 @@ function reloadGitHubData(){
   });
 }
 
+/* ---------- TẢI FILE GỐC KÈM VỊ TRÍ HIỆN TẠI ----------
+   File Excel gốc do NCC gửi (upload lúc đầu) không có cột "Vị trí", vì vị trí
+   chỉ được nhập/cập nhật SAU NÀY trên trang (lưu riêng ở file
+   chinh-sua-tay.xlsx, không đụng tới file gốc). Nếu bấm "Tải file" mà chỉ tải
+   thẳng file gốc thì sẽ KHÔNG có vị trí mới nhất.
+   -> Khi bấm tải, lấy file gốc, rồi CHÈN THÊM 1 sheet "Vị trí kiện hàng" liệt
+   kê vị trí/trạng thái HIỆN TẠI (đọc từ mảng `data` đang hiển thị trên trang,
+   đã gồm mọi chỉnh sửa) của các kiện thuộc đúng file đó, rồi mới tải về —
+   không sửa/xoá bất kỳ sheet/nội dung gốc nào, chỉ thêm sheet mới.
+*/
+async function downloadFileWithLocation(name){
+  try{
+    const r=await fetch(fileUrl(name),{cache:"no-store"});
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    const buf=await r.arrayBuffer();
+    const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
+
+    const rows=data.filter(x=>x.sourceFile===name).map(x=>({
+      "Package No.":x.code,
+      "Mô tả hàng hóa":x.group||"",
+      "Vị trí":x.loc||"",
+      "Trạng thái":x.trangThai||"",
+      "Ngày cập nhật":x.ngayCapNhat||""
+    }));
+
+    if(rows.length){
+      const sheetName="Vị trí kiện hàng";
+      const wsLoc=XLSX.utils.json_to_sheet(rows,{header:["Package No.","Mô tả hàng hóa","Vị trí","Trạng thái","Ngày cập nhật"]});
+      // Thêm vào ĐẦU danh sách sheet để mở file là thấy ngay, không đè lên sheet nào có sẵn.
+      if(!wb.Sheets[sheetName]){
+        wb.SheetNames.unshift(sheetName);
+        wb.Sheets[sheetName]=wsLoc;
+      }
+    }
+
+    const out=XLSX.write(wb,{bookType:"xlsx",type:"array"});
+    const blob=new Blob([out],{type:"application/octet-stream"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url; a.download=name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),4000);
+  }catch(e){
+    console.error(e);
+    // Nếu có lỗi (mạng, file hỏng...) vẫn cho tải file gốc như trước, không chặn người dùng.
+    window.location.href=fileUrl(name);
+  }
+}
+
 let fileCurrentPage=1;
 const filePageSize=7;
 function showDailyFiles(){
@@ -3115,7 +3174,10 @@ function renderFileList(){
   const pages=Math.max(1,Math.ceil(filtered.length/filePageSize)); if(fileCurrentPage>pages)fileCurrentPage=pages;
   const items=filtered.slice((fileCurrentPage-1)*filePageSize,fileCurrentPage*filePageSize);
   document.getElementById("fileSortNote").textContent=filtered.length+" file • Mới nhất trước";
-  document.getElementById("fileList").innerHTML=items.length?items.map(x=>`<div class="file-item"><div class="file-icon">📊</div><div class="file-info"><div class="file-name">${escapeHtml(x.name)}</div><div class="file-meta">📅 ${fileDateText(x.name)} • ${x.size?formatFileSize(x.size):"Excel"}</div></div><a class="file-download" href="${fileUrl(x.name)}" download="${escapeHtml(x.name)}">⬇ Tải file</a></div>`).join(""):'<div class="file-empty">🔎 Không tìm thấy file phù hợp.</div>';
+  document.getElementById("fileList").innerHTML=items.length?items.map(x=>`<div class="file-item"><div class="file-icon">📊</div><div class="file-info"><div class="file-name">${escapeHtml(x.name)}</div><div class="file-meta">📅 ${fileDateText(x.name)} • ${x.size?formatFileSize(x.size):"Excel"}</div></div><button type="button" class="file-download" data-filename="${escapeHtml(x.name)}">⬇ Tải file</button></div>`).join(""):'<div class="file-empty">🔎 Không tìm thấy file phù hợp.</div>';
+  document.getElementById("fileList").querySelectorAll(".file-download").forEach(btn=>{
+    btn.addEventListener("click",()=>downloadFileWithLocation(btn.dataset.filename));
+  });
   const p=document.getElementById("filePagination"); p.innerHTML=pages>1?`<button onclick="goFilePage(${fileCurrentPage-1})" ${fileCurrentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(pages,5)},(_,i)=>{let n=i+1;if(pages>5&&fileCurrentPage>3)n=Math.min(pages-4+i,pages);return `<button class="${n===fileCurrentPage?'active':''}" onclick="goFilePage(${n})">${n}</button>`}).join("")+`<button onclick="goFilePage(${fileCurrentPage+1})" ${fileCurrentPage===pages?'disabled':''}>›</button>`:"";
 }
 function goFilePage(n){fileCurrentPage=Math.max(1,n);renderFileList();document.getElementById("fileList").scrollTop=0;}
