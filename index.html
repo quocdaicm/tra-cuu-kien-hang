@@ -1881,12 +1881,17 @@ async function saveEdit(){
 /* ---------- CHỌN NHIỀU KIỆN + HÀNH ĐỘNG HÀNG LOẠT ---------- */
 let selectedCodes=new Set();
 
-function toggleSelect(code,checked){
+function toggleSelect(code,checked,cb){
   if(checked)selectedCodes.add(code);
   else selectedCodes.delete(code);
   updateBulkBar();
-  // Cập nhật viền highlight của card tương ứng mà không render lại toàn bộ danh sách.
-  render();
+  // Chỉ cập nhật viền highlight của card tương ứng, KHÔNG gọi render() để dựng
+  // lại toàn bộ danh sách — trước đây code ghi chú vậy nhưng vẫn gọi render()
+  // đầy đủ, khiến tick chọn nhiều kiện liên tiếp trên điện thoại bị giật/lag
+  // không cần thiết (toàn bộ HTML của trang, kể cả các card không đổi, bị vẽ
+  // lại mỗi lần tick).
+  const card=cb?cb.closest(".card"):null;
+  if(card)card.classList.toggle("card-selected",checked);
 }
 
 function clearSelection(){
@@ -3033,7 +3038,7 @@ function render(){
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">Trong kho</span>`}</span></div>
           <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button><button class="share" style="display:block;width:100%;margin-top:6px;background:linear-gradient(135deg,#8c6ce8,#a98af0);border-color:#8c6ce8" onclick="openEditModal(${start+i})"><span>✏️</span> Sửa</button></div>
-          <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)" ${selectedCodes.has(x.code)?'checked':''}></label>
+          <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked,this)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
         ${pickAreaHtml(x)}
         ${extraInfoHtml(x)}
@@ -3042,8 +3047,12 @@ function render(){
     : '<div class="empty">Không tìm thấy kiện hàng.</div>';
   updateBulkBar();
 
+  // Cửa sổ số trang phải TRƯỢT theo currentPage (giống hệt logic phân trang ở
+  // "Danh sách file" bên dưới) — trước đây luôn cố định hiện trang 1..5 dù
+  // đang ở trang bao nhiêu, khiến không thể bấm số để nhảy tới trang >5, phải
+  // bấm "›" từng trang một rất bất tiện với danh sách nhiều trang.
   const p=document.getElementById("pagination");
-  p.innerHTML=totalPages>1 ? `<button onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(totalPages,5)},(_,i)=>{let n=i+1;return `<button class="${n===currentPage?'active':''}" onclick="goPage(${n})">${n}</button>`}).join("")+`<button onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>` : '';
+  p.innerHTML=totalPages>1 ? `<button onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(totalPages,5)},(_,i)=>{let n=i+1;if(totalPages>5&&currentPage>3)n=Math.min(totalPages-4+i,totalPages);return `<button class="${n===currentPage?'active':''}" onclick="goPage(${n})">${n}</button>`}).join("")+`<button onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>` : '';
 }
 function goPage(n){currentPage=Math.max(1,Math.min(n,Math.ceil(currentFiltered.length/pageSize)||1));render();window.scrollTo({top:document.getElementById("list").offsetTop-10,behavior:"smooth"});}
 
@@ -3126,7 +3135,16 @@ async function downloadFileWithLocation(name){
     const buf=await r.arrayBuffer();
     const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
 
-    const rows=data.filter(x=>x.sourceFile===name).map(x=>({
+    // LƯU Ý: không lọc theo `sourceFile`. Sau khi 1 kiện được sửa qua web,
+    // sourceFile của kiện đó trong `data` đổi thành "chinh-sua-tay.xlsx" (vì
+    // file sửa tay luôn được merge SAU CÙNG — xem loadAllDailyExcel). Nếu lọc
+    // theo sourceFile===name thì đúng những kiện ĐÃ CÓ vị trí (đã từng sửa)
+    // sẽ bị loại khỏi sheet vị trí — ngược với mục đích của tính năng này.
+    // P/L No. (category) mới là giá trị luôn được giữ đúng theo tên file gốc,
+    // kể cả sau khi kiện đã được sửa (xem readDetailedPLSheet: "P/L No. lấy
+    // theo TÊN FILE").
+    const plNo=norm(name.replace(/\.(xlsx|xls)$/i,""));
+    const rows=data.filter(x=>x.category===plNo).map(x=>({
       "Package No.":x.code,
       "Mô tả hàng hóa":x.group||"",
       "Vị trí":x.loc||"",
