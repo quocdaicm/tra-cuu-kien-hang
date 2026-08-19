@@ -2403,6 +2403,15 @@ function getItemDetail(x){
 
 // Tóm tắt số lượng hiển thị ở đầu thẻ (chỉ đọc — không còn +/- xuất hàng ở
 // đây nữa, mọi mặt hàng và số lượng gốc trong kiện vẫn được giữ đầy đủ).
+// Mô tả kiện hàng thực tế chỉ là PHẦN ĐẦU TIÊN của "Mô tả hàng hóa" (trước
+// dấu ";" đầu tiên) — các phần sau dấu ";" là chi tiết từng mặt hàng con bên
+// trong kiện (đã hiển thị riêng ở bảng "Chi tiết mặt hàng"), không phải là
+// một phần của tên/mô tả kiện hàng nên không được gộp chung khi hiển thị.
+function packageDescription(x){
+  const parsed=parseGroupItems(x.group);
+  return (parsed[0] && parsed[0].name) ? parsed[0].name : (x.group||"");
+}
+
 function pickSummaryHtml(x){
   const detail=getItemDetail(x);
   const rows=detail.filter(it=>it.qty!=null);
@@ -2517,7 +2526,7 @@ function render(){
           <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
           <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
-          <div class="field"><span class="field-label"><span class="mini-icon">📝</span> Mô tả kiện hàng</span><span class="field-value">${escapeHtml(x.group||"—")}</span></div>
+          <div class="field"><span class="field-label"><span class="mini-icon">📝</span> Mô tả kiện hàng</span><span class="field-value">${escapeHtml(packageDescription(x)||"—")}</span></div>
           <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button></div>
           <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked,this)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
@@ -2544,7 +2553,7 @@ function shareItem(index){
   const title=`📦 Kiện hàng ${x.code}`;
   const details=[
     `Mã kiện: ${x.code||"—"}`,
-    `Mô tả hàng hóa: ${x.group||"—"}`,
+    `Mô tả kiện hàng: ${packageDescription(x)||"—"}`,
     `P/L No.: ${x.category||"—"}`,
     `Vị trí: ${x.loc||"Chưa có vị trí"}`,
     `Ngày nhận: ${x.date||"—"}`
