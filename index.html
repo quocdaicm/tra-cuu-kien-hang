@@ -3,9 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <title>DOOSAN Material</title>
 
 <!-- Preview khi chia sẻ link -->
@@ -49,10 +46,11 @@ button{font:inherit;border:1px solid #d0dee8;border-radius:12px;background:#fff;
 .pick-box{position:absolute;top:-26px;left:-8px;z-index:5;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #dce7ef;border-radius:8px;padding:3px;box-shadow:0 2px 6px rgba(30,90,120,.1)}
 .pick-box input{width:18px;height:18px;cursor:pointer;accent-color:#087bd1;display:block}
 .card-selected{outline:2px solid #087bd1;outline-offset:-1px;background:#f2f9ff!important}
-.status-badge{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
+.status-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 7px}
 .status-in{background:#e7faf3;color:#1a9a6b}
 .status-out{background:#fff3df;color:#c87500}.package-icon{width:68px;height:68px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;background:linear-gradient(145deg,#168de0,#0875c4);box-shadow:0 6px 14px rgba(17,120,197,.18)}.card:nth-child(2) .package-icon{background:linear-gradient(145deg,#2ec294,#18a477)}.card:nth-child(3) .package-icon{background:linear-gradient(145deg,#ffab25,#f48600)}
-.code{font-weight:800;word-break:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#162f4c;font-size:16px;line-height:1.2;min-width:0}.copy{padding:6px 9px;font-size:11px;margin-top:7px;border-radius:8px}.share{padding:9px 14px;background:linear-gradient(135deg,#12b7c2,#1aa9bc);color:#fff;border-color:#12b7c2;white-space:nowrap;border-radius:9px}.field{min-width:0}.field-label{display:block;font-size:11px;color:#536277;margin-bottom:7px}.field-value{font-size:13px;color:#1a304b;font-weight:600;word-break:break-word}.history{margin-top:10px;border-top:1px solid #e7eff4;padding:8px 0 0 82px;font-size:11px;position:relative;z-index:1}.history-title{font-weight:700;color:#456476;margin-bottom:4px}.history-item{padding:4px 0;border-bottom:1px dashed #dce8ee}.empty{background:#fff;padding:35px;text-align:center;border-radius:15px;color:#667;box-shadow:0 7px 20px rgba(27,112,156,.08)}
+.code{font-weight:800;word-break:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#162f4c;font-size:16px;line-height:1.2;min-width:0}.copy{padding:6px 9px;font-size:11px;margin-top:7px;border-radius:8px}.share{padding:9px 14px;background:linear-gradient(135deg,#12b7c2,#1aa9bc);color:#fff;border-color:#12b7c2;white-space:nowrap;border-radius:9px}.field{min-width:0}.field-label{display:block;font-size:11px;color:#536277;margin-bottom:7px}.field-value{font-size:13px;color:#1a304b;font-weight:600;word-break:break-word}.history{margin-top:12px;padding:0;background:#f8fbfd;border:1px solid #dceaf2;border-radius:15px;overflow:hidden;font-size:11px;position:relative;z-index:1}.history-title{margin:0;font-weight:900;color:#087bd1;font-size:13px;display:flex;align-items:center;gap:6px;padding:11px 13px;background:linear-gradient(135deg,#eef9ff,#f7fcff);border-bottom:1px solid #dceaf2}.history-item{padding:8px 13px;border-bottom:1px dashed #e5eef3}.history-item:last-child{border-bottom:none}.empty{background:#fff;padding:35px;text-align:center;border-radius:15px;color:#667;box-shadow:0 7px 20px rgba(27,112,156,.08)}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin:22px 0 4px}.pagination button{width:38px;height:38px;padding:0;border-radius:8px}.pagination button.active{background:#087bd1;color:#fff;border-color:#087bd1}.share-result{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:linear-gradient(135deg,#1178a6,#27a98a);color:#fff;padding:11px 17px;border-radius:13px;box-shadow:0 10px 28px #1178a644;z-index:10;font-size:14px}
 .site-footer{position:relative;margin-top:48px;min-height:145px;overflow:hidden;color:#fff;text-align:center;padding:72px 20px 25px}.site-footer:before{content:"";position:absolute;left:-7%;right:-7%;bottom:-58px;height:130px;background:linear-gradient(105deg,#0a6599,#1687b7 46%,#2d8f92);border-radius:55% 55% 0 0/60% 60% 0 0;transform:rotate(-1.5deg);z-index:-1}.site-footer:after{content:"";position:absolute;left:-8%;right:-8%;bottom:-78px;height:95px;background:rgba(255,255,255,.18);border-radius:55% 55% 0 0/60% 60% 0 0;transform:rotate(2deg);z-index:-1}.site-footer small{font-size:12px;text-shadow:0 1px 4px rgba(0,50,90,.28)}
 
@@ -66,7 +64,7 @@ select{transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}s
 @media(max-width:900px){.card-main{grid-template-columns:62px 1.4fr 1fr 1fr auto;gap:10px}.card-main .field:nth-of-type(3),.card-main .field:nth-of-type(4){display:none}}
 /* Xoay ngang: vẫn hiển thị Mô tả hàng hóa */
 @media (min-width:701px) and (max-width:900px) and (orientation:landscape){.card-main .field:nth-of-type(3){display:block}.card-main .field:nth-of-type(3) .field-value{display:block;white-space:normal;overflow-wrap:anywhere}}
-@media(max-width:700px){header{padding:20px 12px 64px}h1{font-size:23px}.sub{font-size:13px}.wrap{padding:9px 10px}.topbar{margin:-28px 10px 16px;padding:10px 11px}.topbar-inner{gap:8px}.buttons{gap:6px;flex:1;min-width:0}.buttons button{flex:1;min-width:0;padding:9px 5px;font-size:11px}.status-box{min-width:0;gap:5px}.status-dot{width:19px;height:19px;flex:0 0 19px}.status-title{font-size:9px}.status{font-size:8px;max-width:85px;overflow:hidden;text-overflow:ellipsis}.search-panel{padding:10px;border-radius:17px}.search-row{gap:7px}.search{font-size:15px;padding:13px 14px}.filter-toggle{width:46px;height:46px;flex-basis:46px;font-size:20px}.filters{grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.filter-box{padding:8px}.filter-box label{font-size:10px}.filter-box select{font-size:12px;padding:8px}.stats{grid-template-columns:1fr 1fr;gap:7px}.stat{min-height:72px;padding:9px}.stat b{font-size:18px}.stat span{font-size:10px}.card{padding:28px 10px 9px;margin-bottom:9px}.card-main{grid-template-columns:48px minmax(0,1fr) auto;gap:8px}.package-icon{width:46px;height:46px;font-size:20px;border-radius:9px}.card-main .field{grid-column:2/4}.card-main .field:nth-of-type(2){display:block}.card-main .field:nth-of-type(n+3){display:block}.card-main .share-wrap{grid-column:3;grid-row:1}.code{font-size:14px;white-space:nowrap}.copy{padding:5px 8px;font-size:10px;margin-top:5px}.share{padding:7px 9px;font-size:11px}.field-label{font-size:9px;margin-bottom:3px}.field-value{font-size:12px}.history{padding-left:56px;font-size:10px}.pagination{gap:5px}.pagination button{width:34px;height:34px}.site-footer{margin-top:35px;min-height:110px;padding-top:58px}}
+@media(max-width:700px){header{padding:20px 12px 64px}h1{font-size:23px}.sub{font-size:13px}.wrap{padding:9px 10px}.topbar{margin:-28px 10px 16px;padding:10px 11px}.topbar-inner{gap:8px}.buttons{gap:6px;flex:1;min-width:0}.buttons button{flex:1;min-width:0;padding:9px 5px;font-size:11px}.status-box{min-width:0;gap:5px}.status-dot{width:19px;height:19px;flex:0 0 19px}.status-title{font-size:9px}.status{font-size:8px;max-width:85px;overflow:hidden;text-overflow:ellipsis}.search-panel{padding:10px;border-radius:17px}.search-row{gap:7px}.search{font-size:15px;padding:13px 14px}.filter-toggle{width:46px;height:46px;flex-basis:46px;font-size:20px}.filters{grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.filter-box{padding:8px}.filter-box label{font-size:10px}.filter-box select{font-size:12px;padding:8px}.stats{grid-template-columns:1fr 1fr;gap:7px}.stat{min-height:72px;padding:9px}.stat b{font-size:18px}.stat span{font-size:10px}.card{padding:28px 10px 9px;margin-bottom:9px}.card-main{grid-template-columns:48px minmax(0,1fr) auto;gap:8px}.package-icon{width:46px;height:46px;font-size:20px;border-radius:9px}.card-main .field{grid-column:2/4}.card-main .field:nth-of-type(2){display:block}.card-main .field:nth-of-type(n+3){display:block}.card-main .share-wrap{grid-column:3;grid-row:1}.code{font-size:14px;white-space:nowrap}.copy{padding:5px 8px;font-size:10px;margin-top:5px}.share{padding:7px 9px;font-size:11px}.field-label{font-size:9px;margin-bottom:3px}.field-value{font-size:12px}.pagination{gap:5px}.pagination button{width:34px;height:34px}.site-footer{margin-top:35px;min-height:110px;padding-top:58px}}
 
 @media(max-width:700px){.gas-plant-bg{opacity:.14}.gas-plant-bg svg{width:1050px;height:360px;bottom:0}.gas-plant-glow{width:120px;height:120px;right:3%;bottom:140px}.search-wrap .search{padding-left:43px}.search-icon{left:14px;font-size:21px}.filter-toggle{width:46px;height:46px;flex-basis:46px}.filter-icon{font-size:13px}.stat{gap:9px}.stat-icon{width:42px;height:42px;flex-basis:42px;font-size:19px}.stat b{font-size:20px}.stat span{font-size:11px}.filter-box:hover,.stat:hover{transform:none}.package-icon{transform:none}.card:hover .package-icon{transform:none}.mini-icon{font-size:10px}}
 
@@ -396,13 +394,12 @@ body:before,.scenery{display:none!important}
 .location-badge{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:6px 12px;border-radius:999px;background:linear-gradient(135deg,#087bd1,#16a7d8);color:#fff;font-size:15px;font-weight:950;letter-spacing:.5px;box-shadow:0 4px 12px rgba(8,123,209,.28);border:2px solid rgba(255,255,255,.9);text-shadow:0 1px 1px rgba(0,0,0,.12)}
 .location-empty{display:inline-flex;padding:5px 10px;border-radius:999px;background:#fff3df;color:#c87500;font-weight:800;border:1px solid #ffd59b}
 @media(max-width:700px){.location-badge{min-width:54px;padding:5px 10px;font-size:14px}.field-location .field-label{font-size:10px}}
-.extra-info{margin-top:10px;border-top:1px solid #e7eff4;padding:10px 0 0 82px;position:relative;z-index:1}
-.extra-info-title{font-weight:700;color:#456476;margin-bottom:8px;font-size:11px;display:flex;align-items:center;gap:5px}
-.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px 14px}
+.extra-info{margin-top:12px;padding:0;background:#f8fbfd;border:1px solid #dceaf2;border-radius:15px;overflow:hidden;position:relative;z-index:1}
+.extra-info-title{margin:0;font-weight:950;letter-spacing:.4px;color:#087bd1;margin-bottom:0;font-size:13px;display:flex;align-items:center;gap:5px;padding:11px 13px;background:linear-gradient(135deg,#eef9ff,#f7fcff);border-bottom:1px solid #dceaf2}
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px 16px;padding:13px}
 .extra-item{min-width:0}
-.extra-item .field-label{display:block;font-size:10.5px;color:#7488a0;margin-bottom:3px}
-.extra-item .field-value{font-size:12.5px;color:#1a304b;font-weight:600;word-break:break-word}
-@media(max-width:700px){.extra-info{padding-left:0}}
+.extra-item .field-label{display:block;font-size:10.5px;color:#7488a0;margin-bottom:4px;font-weight:700}
+.extra-item .field-value{font-size:12.5px;color:#1a304b;font-weight:700;word-break:break-word}
 .pick-area{margin-top:10px;border-top:1px solid #e7eff4;padding:10px 0 4px 82px;position:relative;z-index:1}
 .pick-area-title{font-weight:700;color:#456476;margin-bottom:8px;font-size:11px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .pick-area-hint{font-weight:500;color:#93a3b6;font-size:10px}
@@ -431,7 +428,6 @@ body:before,.scenery{display:none!important}
 .bulk-btn{border:none;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:700;cursor:pointer;color:#fff;white-space:nowrap}
 .bulk-out{background:#f4ad35}
 .bulk-in{background:#2eb889}
-.bulk-loc{background:#087bd1}
 .bulk-clear{background:rgba(255,255,255,.16)}
 @media(max-width:700px){.bulk-bar-inner{padding:10px 12px;gap:8px}.bulk-count{font-size:11px}.bulk-btn{padding:8px 8px;font-size:10.5px}}
 
@@ -452,48 +448,6 @@ body:before,.scenery{display:none!important}
   .topbar .buttons button{font-size:10.5px;padding:8px 4px;min-width:calc(50% - 3px);flex:0 0 calc(50% - 3px)}
   .status-box{padding:5px 8px}
   .status{display:block;max-width:none;font-size:8px}
-}
-
-/* ---------- SỬA THEO P/L: DANH SÁCH TỪNG KIỆN VỚI VỊ TRÍ RIÊNG ---------- */
-.pl-quickfill{display:flex;gap:8px;margin-bottom:12px}
-.pl-quickfill input{flex:1;min-width:0;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:10px 12px;font:inherit;font-size:12px;outline:none}
-.pl-quickfill button{flex:0 0 auto;background:#eaf6ff;border-color:#bfe0f2;color:#087bd1;font-weight:800;font-size:12px;padding:10px 12px;border-radius:11px}
-.pl-items-list{max-height:280px;overflow:auto;border:1px solid #e6eef3;border-radius:14px;padding:8px}
-.pl-select-wrap{position:relative;margin-bottom:8px}
-.pl-select-wrap input{width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 38px 11px 12px;font:inherit;font-size:13px;outline:none}
-.pl-select-wrap input:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}
-.pl-select-wrap .pl-select-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:15px;color:#93a3b5;pointer-events:none}
-.pl-options-list{position:absolute;left:0;right:0;top:calc(100% + 4px);background:#fff;border:1px solid #d8e6ee;border-radius:12px;max-height:220px;overflow:auto;box-shadow:0 12px 26px rgba(20,80,110,.16);z-index:30;display:none}
-.pl-options-list.show{display:block}
-.pl-option{padding:10px 12px;font-size:12.5px;font-weight:700;color:#1a304b;cursor:pointer;border-bottom:1px solid #f0f5f8}
-.pl-option:last-child{border-bottom:none}
-.pl-option:hover,.pl-option.pl-option-active{background:#eaf6ff;color:#087bd1}
-.pl-option-empty{color:#93a3b5;font-weight:600;cursor:default}
-.pl-option-empty:hover{background:none;color:#93a3b5}
-.pl-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.pl-row2 label{display:block;font-size:11px;font-weight:800;color:#1b3650;margin-bottom:7px}
-.pl-row2 input{width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;box-sizing:border-box}
-.pl-row2 input:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}
-.pl-row2-fill{display:flex;gap:6px}
-.pl-row2-fill input{flex:1;min-width:0}
-.pl-row2-fill button{flex:0 0 auto;background:#eaf6ff;border-color:#bfe0f2;color:#087bd1;font-weight:800;font-size:11px;padding:0 10px;border-radius:11px}
-@media(max-width:480px){.pl-row2{grid-template-columns:1fr}}
-.pl-item{display:grid;grid-template-columns:20px 1fr 120px;gap:8px;align-items:center;padding:8px 6px;border-bottom:1px dashed #e2ecf2}
-.edit-mini-input{width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 10px;font:inherit;font-size:13px;outline:none}
-.edit-mini-input:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}
-.pl-item-check{width:17px;height:17px;cursor:pointer;accent-color:#087bd1}
-.pl-item.pl-item-unchecked{opacity:.5}
-.pl-item:last-child{border-bottom:none}
-.pl-item-info{min-width:0}
-.pl-item-code{font-size:12.5px;font-weight:800;color:#173a60;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pl-item-desc{font-size:10.5px;color:#708296;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pl-item-loc{width:100%;border:1px solid #d8e6ee;border-radius:9px;background:#fff;padding:8px 9px;font:inherit;font-size:12px;outline:none}
-.pl-item-loc:focus{border-color:#45b9eb;box-shadow:0 0 0 3px rgba(69,185,235,.12)}
-.pl-empty{padding:16px;text-align:center;color:#8091a3;font-size:12px}
-@media(max-width:480px){
-  .pl-quickfill{flex-wrap:wrap}
-  .pl-quickfill button{width:100%}
-  .pl-item{grid-template-columns:18px 1fr 96px}
 }
 
 /* ---------- RESPONSIVE LANDSCAPE FIX 2026-08 ---------- */
@@ -581,8 +535,11 @@ body:before,.scenery{display:none!important}
   .code{font-size:15px;white-space:normal;line-height:1.25}
   .copy{margin-top:5px}
 
-  /* Không để phần chi tiết chen ngang hàng chính. */
-  .extra-info,.history{padding-left:68px}
+  /* Khu vực chi tiết/lịch sử giờ là khung riêng, không cần chừa lề trái theo icon kiện nữa. */
+  .extra-info,.history{margin-top:9px;border-radius:13px}
+  .extra-info-title,.history-title{font-size:11.5px;padding:9px 10px}
+  .extra-grid{padding:10px;gap:10px 12px}
+  .history-item{padding:7px 10px;font-size:10px}
 }
 
 /* Nút Chia sẻ và Sửa luôn cùng một khung, không còn trường hợp Sửa có nền dài gấp đôi Chia sẻ. */
@@ -1117,8 +1074,6 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
       <button class="primary" onclick="window.location.reload()">⟳ &nbsp;Cập nhật dữ liệu</button>
       <button onclick="showDailyFiles()">📂 &nbsp;Danh sách file</button>
       <button onclick="openUploadModal()">⬆️ &nbsp;Tải file lên</button>
-      <button onclick="openAddModal()">➕ &nbsp;Thêm kiện mới</button>
-      <button onclick="openPLModal()">📄 &nbsp;Sửa theo P/L</button>
     </div>
     <div class="status-box">
       <span class="status-dot">✓</span>
@@ -1158,7 +1113,6 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
     <div class="bulk-actions">
       <button class="bulk-btn bulk-out" onclick="openBulkModal('export')">📤 Xuất kho</button>
       <button class="bulk-btn bulk-in" onclick="openBulkModal('import')">📥 Nhập lại kho</button>
-      <button class="bulk-btn bulk-loc" onclick="openBulkModal('loc')">📍 Đổi vị trí</button>
       <button class="bulk-btn bulk-clear" onclick="clearSelection()">✕ Bỏ chọn</button>
     </div>
   </div>
@@ -1193,109 +1147,11 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
       <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
         <input id="ghTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
       </label>
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Chọn file Excel</label>
-      <input id="ghFile" type="file" accept=".xlsx,.xls" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:9px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:16px">
+      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Chọn file Excel (có thể chọn nhiều file cùng lúc)</label>
+      <input id="ghFile" type="file" accept=".xlsx,.xls" multiple onchange="renderGhFileList()" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:9px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px">
+      <div id="ghFileList" style="font-size:11px;color:#708296;margin-bottom:16px"></div>
       <button class="primary" style="width:100%;padding:13px" onclick="doUpload()">⬆️ Tải lên GitHub</button>
       <div id="uploadStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
-    </div>
-  </div>
-</div>
-
-<div id="editModal" class="file-modal" onclick="if(event.target===this)closeEditModal()">
-  <div class="file-panel" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" style="max-width:440px">
-    <div class="file-head">
-      <div>
-        <div id="editModalTitle" class="file-title">✏️ Sửa thông tin kiện hàng</div>
-        <div class="file-sub">Lưu trực tiếp lên GitHub, không cần Excel</div>
-      </div>
-      <button class="file-close" onclick="closeEditModal()" aria-label="Đóng">×</button>
-    </div>
-    <div style="padding:16px 18px 20px;max-height:70vh;overflow:auto">
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔑 GitHub Token</label>
-      <input id="editGhToken" type="password" placeholder="github_pat_..." style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px" autocomplete="off">
-      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
-        <input id="editGhTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
-      </label>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📦 Package No.</label>
-      <input id="editCode" type="text" placeholder="VD: PKG-0001" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🏷️ Mô tả hàng hóa</label>
-      <input id="editGroup" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 P/L No.</label>
-      <input id="editCategory" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📍 Vị trí</label>
-      <input id="editLoc" type="text" placeholder="VD: A1-02" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📅 Ngày nhận</label>
-      <input id="editDate" type="text" placeholder="dd/mm/yyyy" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📤 Trạng thái</label>
-      <select id="editTrangThai" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-        <option value="Trong kho">Trong kho</option>
-        <option value="Đã xuất">Đã xuất</option>
-      </select>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📅 Ngày xuất (nếu đã xuất)</label>
-      <input id="editNgayXuat" type="text" placeholder="dd/mm/yyyy" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:18px">
-
-      <div style="border-top:1px dashed #dce7ef;margin:4px 0 16px;padding-top:14px;font-size:12px;font-weight:800;color:#1b3650">📋 Thông tin chi tiết từ Packing List <span style="font-weight:600;color:#93a3b5">(tùy chọn — giống thông tin đọc từ file Excel)</span></div>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🏭 Nhà cung cấp/SX</label>
-      <input id="editSupplier" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🌐 Xuất xứ (C/O)</label>
-      <input id="editOrigin" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📑 Mục bảng giá</label>
-      <input id="editPosSchedule" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔢 Số lượng</label>
-      <div style="display:grid;grid-template-columns:1fr 100px;gap:8px;margin-bottom:14px">
-        <input id="editQty" type="text" placeholder="VD: 50" class="edit-mini-input">
-        <input id="editQtyUnit" type="text" placeholder="Đơn vị (EA, SET...)" class="edit-mini-input">
-      </div>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📦 Loại kiện</label>
-      <input id="editPackageType" type="text" placeholder="VD: Wooden" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📐 Kích thước D×R×C</label>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 70px;gap:8px;margin-bottom:14px">
-        <input id="editLength" type="text" placeholder="Dài" class="edit-mini-input">
-        <input id="editWidth" type="text" placeholder="Rộng" class="edit-mini-input">
-        <input id="editHeight" type="text" placeholder="Cao" class="edit-mini-input">
-        <input id="editDimUnit" type="text" placeholder="cm" class="edit-mini-input">
-      </div>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🧊 Thể tích (cbm)</label>
-      <input id="editVolume" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">⚖️ Net Weight / Gross Weight (kg)</label>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-        <input id="editNetWeight" type="text" placeholder="Net Weight" class="edit-mini-input">
-        <input id="editGrossWeight" type="text" placeholder="Gross Weight" class="edit-mini-input">
-      </div>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🏷️ Tag No./Model</label>
-      <input id="editTagModel" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">☢️ Hàng nguy hiểm</label>
-      <select id="editHazard" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-        <option value="">— Không rõ —</option>
-        <option value="Không">Không</option>
-        <option value="Có">Có</option>
-      </select>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🗄️ Phân loại lưu kho</label>
-      <input id="editStorage" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📝 Remark</label>
-      <input id="editRemark" type="text" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:18px">
-
-      <button class="primary" style="width:100%;padding:13px" onclick="saveEdit()">💾 Lưu thay đổi</button>
-      <div id="editStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
     </div>
   </div>
 </div>
@@ -1315,73 +1171,12 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
       <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
         <input id="bulkGhTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
       </label>
-      <div id="bulkLocField" style="display:none">
-        <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📍 Vị trí mới</label>
-        <input id="bulkLoc" type="text" placeholder="VD: A1-02" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-      </div>
       <div id="bulkDateField" style="display:none">
         <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📅 Ngày xuất</label>
         <input id="bulkDate" type="text" placeholder="dd/mm/yyyy" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
       </div>
       <button class="primary" style="width:100%;padding:13px" onclick="confirmBulkModal()">💾 Áp dụng cho tất cả đã chọn</button>
       <div id="bulkModalStatus" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
-    </div>
-  </div>
-</div>
-
-<div id="plModal" class="file-modal" onclick="if(event.target===this)closePLModal()">
-  <div class="file-panel" role="dialog" aria-modal="true" style="max-width:520px">
-    <div class="file-head">
-      <div>
-        <div class="file-title">📄 Sửa theo P/L No.</div>
-        <div class="file-sub">Xem tất cả kiện thuộc 1 P/L No., tích chọn kiện muốn áp dụng và đặt vị trí riêng cho từng kiện</div>
-      </div>
-      <button class="file-close" onclick="closePLModal()" aria-label="Đóng">×</button>
-    </div>
-    <div style="padding:16px 18px 20px;max-height:76vh;overflow:auto">
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">📄 Tìm & chọn P/L No.</label>
-      <div class="pl-select-wrap" id="plSelectWrap">
-        <input id="plSelect" type="text" autocomplete="off" placeholder="🔎 Gõ để tìm P/L No..." oninput="filterPLOptions()" onfocus="filterPLOptions()">
-        <span class="pl-select-icon">▾</span>
-        <div id="plOptionsList" class="pl-options-list"></div>
-      </div>
-      <div id="plCount" style="font-size:11px;color:#708296;margin-bottom:12px"></div>
-
-      <div class="pl-row2">
-        <div>
-          <label>📍 Vị trí (áp dụng nhanh cho tất cả)</label>
-          <div class="pl-row2-fill">
-            <input id="plQuickLoc" type="text" placeholder="VD: A1-02">
-            <button type="button" onclick="applyPLQuickLoc()">Áp dụng</button>
-          </div>
-        </div>
-        <div>
-          <label>📅 Ngày nhận (bỏ trống nếu không đổi)</label>
-          <input id="plDate" type="text" placeholder="dd/mm/yyyy">
-        </div>
-      </div>
-
-      <label style="display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#1b3650;margin:0 0 8px">
-        <input id="plSelectAll" type="checkbox" checked onchange="togglePLSelectAll(this.checked)"> Chọn tất cả kiện (bỏ tích để chỉ áp dụng cho kiện đã chọn)
-      </label>
-
-      <div id="plItemsList" class="pl-items-list"></div>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin:14px 0 7px">📤 Trạng thái (áp dụng cho các kiện đã tích chọn, bỏ trống nếu không đổi)</label>
-      <select id="plStatus" style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:14px">
-        <option value="">— Không đổi —</option>
-        <option value="Trong kho">Trong kho</option>
-        <option value="Đã xuất">Đã xuất</option>
-      </select>
-
-      <label style="display:block;font-size:12px;font-weight:800;color:#1b3650;margin-bottom:7px">🔑 GitHub Token</label>
-      <input id="plGhToken" type="password" placeholder="github_pat_..." style="width:100%;border:1px solid #d8e6ee;border-radius:11px;background:#fff;padding:11px 12px;font:inherit;font-size:13px;outline:none;margin-bottom:6px" autocomplete="off">
-      <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#708296;margin-bottom:16px">
-        <input id="plGhTokenSave" type="checkbox"> Ghi nhớ token trên thiết bị này
-      </label>
-
-      <button class="primary" style="width:100%;padding:13px" onclick="applyPLUpdate()">💾 Lưu vị trí cho từng kiện</button>
-      <div id="plStatusMsg" style="margin-top:12px;font-size:12px;color:#536277;text-align:center"></div>
     </div>
   </div>
 </div>
@@ -1444,198 +1239,127 @@ function arrayBufferToBase64(buf){
   }
   return btoa(binary);
 }
+// Hiển thị danh sách tên các file đã chọn (khi tải nhiều file cùng lúc)
+// để người dùng biết chắc mình đã chọn đúng/đủ file trước khi bấm tải lên.
+function renderGhFileList(){
+  const fileInput=document.getElementById("ghFile");
+  const listEl=document.getElementById("ghFileList");
+  const files=fileInput.files;
+  if(!files||!files.length){listEl.textContent="";return;}
+  if(files.length===1){listEl.textContent="Đã chọn: "+files[0].name;return;}
+  listEl.innerHTML="Đã chọn "+files.length+" file: "+
+    Array.from(files).map(f=>escapeHtml(f.name)).join(", ");
+}
+
+// Tải lên GitHub 1 file, trả về sha mới (dùng để log/hiển thị nếu cần).
+async function uploadOneFile(file,token){
+  const path=`${DATA_GITHUB_FOLDER}/${file.name}`;
+  const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${encodeURIComponent(path).replace(/%2F/g,"/")}`;
+
+  // Kiểm tra file đã tồn tại chưa để lấy sha (bắt buộc khi ghi đè)
+  let sha=undefined;
+  const check=await fetch(apiUrl+`?ref=${DATA_GITHUB_BRANCH}`,{
+    headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}
+  });
+  if(check.ok){
+    const info=await check.json();
+    sha=info.sha;
+  }
+
+  const buf=await file.arrayBuffer();
+  const base64Content=arrayBufferToBase64(buf);
+
+  const body={
+    message:(sha?"Cập nhật":"Thêm")+" file "+file.name+" qua web",
+    content:base64Content,
+    branch:DATA_GITHUB_BRANCH
+  };
+  if(sha)body.sha=sha;
+
+  const putRes=await fetch(apiUrl,{
+    method:"PUT",
+    headers:{
+      Authorization:"Bearer "+token,
+      Accept:"application/vnd.github+json",
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(body)
+  });
+
+  if(!putRes.ok){
+    const err=await putRes.json().catch(()=>({}));
+    throw new Error(err.message||("Lỗi HTTP "+putRes.status));
+  }
+}
+
 async function doUpload(){
   const statusEl=document.getElementById("uploadStatus");
   const token=document.getElementById("ghToken").value.trim();
   const fileInput=document.getElementById("ghFile");
-  const file=fileInput.files[0];
+  const files=Array.from(fileInput.files||[]);
   const rememberToken=document.getElementById("ghTokenSave").checked;
 
   if(!token){statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";statusEl.style.color="#c0392b";return;}
-  if(!file){statusEl.textContent="⚠️ Vui lòng chọn file Excel.";statusEl.style.color="#c0392b";return;}
+  if(!files.length){statusEl.textContent="⚠️ Vui lòng chọn ít nhất 1 file Excel.";statusEl.style.color="#c0392b";return;}
 
   if(rememberToken)localStorage.setItem("ghToken",token);
   else localStorage.removeItem("ghToken");
 
-  statusEl.style.color="#536277";
-  statusEl.textContent="⏳ Đang tải lên...";
-
-  try{
-    const path=`${DATA_GITHUB_FOLDER}/${file.name}`;
-    const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${encodeURIComponent(path).replace(/%2F/g,"/")}`;
-
-    // Kiểm tra file đã tồn tại chưa để lấy sha (bắt buộc khi ghi đè)
-    let sha=undefined;
-    const check=await fetch(apiUrl+`?ref=${DATA_GITHUB_BRANCH}`,{
-      headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json"}
-    });
-    if(check.ok){
-      const info=await check.json();
-      sha=info.sha;
+  // Tải TUẦN TỰ từng file (không tải song song) để tránh xung đột API rate
+  // limit của GitHub và để mỗi file lấy đúng "sha" hiện tại của chính nó
+  // trước khi ghi đè (tải song song có thể làm sha bị lệch giữa các request).
+  const failed=[];
+  let lastSuccessName=null;
+  for(let i=0;i<files.length;i++){
+    const file=files[i];
+    statusEl.style.color="#536277";
+    statusEl.textContent=`⏳ Đang tải lên (${i+1}/${files.length}): ${file.name}...`;
+    try{
+      await uploadOneFile(file,token);
+      lastSuccessName=file.name;
+    }catch(e){
+      failed.push(file.name+": "+e.message);
     }
-
-    const buf=await file.arrayBuffer();
-    const base64Content=arrayBufferToBase64(buf);
-
-    const body={
-      message:(sha?"Cập nhật":"Thêm")+" file "+file.name+" qua web",
-      content:base64Content,
-      branch:DATA_GITHUB_BRANCH
-    };
-    if(sha)body.sha=sha;
-
-    const putRes=await fetch(apiUrl,{
-      method:"PUT",
-      headers:{
-        Authorization:"Bearer "+token,
-        Accept:"application/vnd.github+json",
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(body)
-    });
-
-    if(!putRes.ok){
-      const err=await putRes.json().catch(()=>({}));
-      throw new Error(err.message||("Lỗi HTTP "+putRes.status));
-    }
-
-    statusEl.style.color="#20b77b";
-    statusEl.textContent="✅ Tải lên thành công! Đang tải lại dữ liệu...";
-    fileInput.value="";
-    // Ghi nhớ P/L No. của file vừa tải lên (tên file bỏ đuôi .xlsx/.xls) để
-    // sau khi trang tải lại, danh sách tự động lọc hiển thị đúng các kiện
-    // hàng thuộc P/L này thay vì hiện toàn bộ dữ liệu.
-    localStorage.setItem("justUploadedPL",file.name.replace(/\.(xlsx|xls)$/i,""));
-    // GitHub đã trả 200 cho PUT nhưng CDN/raw có thể cần thêm một nhịp đồng bộ.
-    // Trang sẽ tự kiểm tra metadata mới rồi mới reload, tránh hiện dữ liệu cũ.
-    const waitForFreshData=async()=>{
-      const checkUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${DATA_GITHUB_FOLDER}/${encodeURIComponent(file.name)}?ref=${DATA_GITHUB_BRANCH}`;
-      for(let i=0;i<10;i++){
-        try{
-          const rr=await fetch(checkUrl+`&_=${Date.now()}`,{cache:"no-store"});
-          if(rr.ok){
-            const info=await rr.json();
-            if(info?.sha){
-              const u=new URL(window.location.href);
-              u.searchParams.set("v",Date.now());
-              window.location.replace(u.toString());
-              return;
-            }
-          }
-        }catch(_){}
-        await new Promise(r=>setTimeout(r,300));
-      }
-      const u=new URL(window.location.href);
-      u.searchParams.set("v",Date.now());
-      window.location.replace(u.toString());
-    };
-    waitForFreshData();
-  }catch(e){
-    statusEl.style.color="#c0392b";
-    statusEl.textContent="❌ Lỗi: "+e.message;
   }
+
+  if(failed.length){
+    statusEl.style.color="#c0392b";
+    statusEl.textContent="❌ Lỗi ở "+failed.length+"/"+files.length+" file — "+failed.join(" | ");
+    if(!lastSuccessName)return; // không có file nào thành công, dừng lại, không reload trang
+  }else{
+    statusEl.style.color="#20b77b";
+    statusEl.textContent="✅ Tải lên thành công "+files.length+" file! Đang tải lại dữ liệu...";
+  }
+
+  fileInput.value="";
+  document.getElementById("ghFileList").textContent="";
+  // Ghi nhớ P/L No. của file vừa tải lên (tên file bỏ đuôi .xlsx/.xls) để
+  // sau khi trang tải lại, danh sách tự động lọc hiển thị đúng các kiện
+  // hàng thuộc P/L này thay vì hiện toàn bộ dữ liệu. Khi tải nhiều file,
+  // chỉ còn giữ được P/L của file THÀNH CÔNG CUỐI CÙNG.
+  if(lastSuccessName){
+    localStorage.setItem("justUploadedPL",lastSuccessName.replace(/\.(xlsx|xls)$/i,""));
+  }
+  setTimeout(()=>window.location.reload(),1400);
 }
 
-/* ---------- SỬA / THÊM KIỆN HÀNG TRỰC TIẾP ---------- */
+/* ---------- GHI THAY ĐỔI TRẠNG THÁI XUẤT/NHẬP LÊN GITHUB ---------- */
 const OVERRIDE_FILE_NAME="chinh-sua-tay.xlsx";
-let editingIsNew=true;
 
 function todayStr(){
   const d=new Date();
   return String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0")+"/"+d.getFullYear();
 }
 
-function prefillEditToken(){
-  const saved=localStorage.getItem("ghToken");
-  if(saved){document.getElementById("editGhToken").value=saved;document.getElementById("editGhTokenSave").checked=true;}
-  else{document.getElementById("editGhToken").value="";document.getElementById("editGhTokenSave").checked=false;}
-}
-
-function openEditModal(index){
-  const x=currentFiltered[index];
-  if(!x)return;
-  editingIsNew=false;
-  document.getElementById("editModalTitle").textContent="✏️ Sửa thông tin kiện hàng";
-  document.getElementById("editCode").value=x.code;
-  document.getElementById("editCode").disabled=true;
-  document.getElementById("editGroup").value=x.group||"";
-  document.getElementById("editCategory").value=x.category||"";
-  document.getElementById("editLoc").value=x.loc||"";
-  document.getElementById("editDate").value=x.date||todayStr();
-  document.getElementById("editTrangThai").value=x.trangThai||"Trong kho";
-  document.getElementById("editNgayXuat").value=x.ngayXuat||"";
-  document.getElementById("editSupplier").value=x.supplier||"";
-  document.getElementById("editOrigin").value=x.origin||"";
-  document.getElementById("editPosSchedule").value=x.posSchedule||"";
-  document.getElementById("editQty").value=x.qty||"";
-  document.getElementById("editQtyUnit").value=x.qtyUnit||"";
-  document.getElementById("editPackageType").value=x.packageType||"";
-  document.getElementById("editLength").value=x.length||"";
-  document.getElementById("editWidth").value=x.width||"";
-  document.getElementById("editHeight").value=x.height||"";
-  document.getElementById("editDimUnit").value=x.dimUnit||"";
-  document.getElementById("editVolume").value=x.volume||"";
-  document.getElementById("editNetWeight").value=x.netWeight||"";
-  document.getElementById("editGrossWeight").value=x.grossWeight||"";
-  document.getElementById("editTagModel").value=x.tagModel||"";
-  document.getElementById("editHazard").value=x.hazard||"";
-  document.getElementById("editStorage").value=x.storage||"";
-  document.getElementById("editRemark").value=x.remark||"";
-  prefillEditToken();
-  document.getElementById("editStatus").textContent="";
-  document.getElementById("editModal").classList.add("show");
-}
-
-function openAddModal(){
-  editingIsNew=true;
-  document.getElementById("editModalTitle").textContent="➕ Thêm kiện hàng mới";
-  document.getElementById("editCode").value="";
-  document.getElementById("editCode").disabled=false;
-  document.getElementById("editGroup").value="";
-  document.getElementById("editCategory").value="";
-  document.getElementById("editLoc").value="";
-  document.getElementById("editDate").value=todayStr();
-  document.getElementById("editTrangThai").value="Trong kho";
-  document.getElementById("editNgayXuat").value="";
-  document.getElementById("editSupplier").value="";
-  document.getElementById("editOrigin").value="";
-  document.getElementById("editPosSchedule").value="";
-  document.getElementById("editQty").value="";
-  document.getElementById("editQtyUnit").value="";
-  document.getElementById("editPackageType").value="";
-  document.getElementById("editLength").value="";
-  document.getElementById("editWidth").value="";
-  document.getElementById("editHeight").value="";
-  document.getElementById("editDimUnit").value="";
-  document.getElementById("editVolume").value="";
-  document.getElementById("editNetWeight").value="";
-  document.getElementById("editGrossWeight").value="";
-  document.getElementById("editTagModel").value="";
-  document.getElementById("editHazard").value="";
-  document.getElementById("editStorage").value="";
-  document.getElementById("editRemark").value="";
-  prefillEditToken();
-  document.getElementById("editStatus").textContent="";
-  document.getElementById("editModal").classList.add("show");
-}
-
-function closeEditModal(){
-  document.getElementById("editModal").classList.remove("show");
-}
-
 async function fetchOverrideRows(){
   try{
-    const apiUrl=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${DATA_GITHUB_FOLDER}/${encodeURIComponent(OVERRIDE_FILE_NAME)}?ref=${DATA_GITHUB_BRANCH}`;
-    const meta=await fetch(apiUrl,{cache:"no-store"}).then(r=>r.ok?r.json():null);
-    if(!meta?.sha)return [];
-    const r=await fetch(fileUrl(OVERRIDE_FILE_NAME,meta.sha),{cache:"no-store"});
+    const r=await fetch(fileUrl(OVERRIDE_FILE_NAME),{cache:"no-store"});
     if(!r.ok)return [];
     const buf=await r.arrayBuffer();
     const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
     const ws=wb.Sheets[wb.SheetNames[0]];
     return XLSX.utils.sheet_to_json(ws,{defval:""});
   }catch(e){
-    console.error("fetchOverrideRows",e);
     return [];
   }
 }
@@ -1802,82 +1526,20 @@ function reconcilePendingOverrides(){
   }
 }
 
-async function saveEdit(){
-  const statusEl=document.getElementById("editStatus");
-  const token=document.getElementById("editGhToken").value.trim();
-  const remember=document.getElementById("editGhTokenSave").checked;
-  const code=norm(document.getElementById("editCode").value);
-  const group=norm(document.getElementById("editGroup").value);
-  const category=norm(document.getElementById("editCategory").value);
-  const loc=norm(document.getElementById("editLoc").value);
-  const date=norm(document.getElementById("editDate").value)||todayStr();
-  const trangThai=document.getElementById("editTrangThai").value||"Trong kho";
-  const ngayXuat=norm(document.getElementById("editNgayXuat").value);
-  const supplier=norm(document.getElementById("editSupplier").value);
-  const origin=norm(document.getElementById("editOrigin").value);
-  const posSchedule=norm(document.getElementById("editPosSchedule").value);
-  const qty=norm(document.getElementById("editQty").value);
-  const qtyUnit=norm(document.getElementById("editQtyUnit").value);
-  const packageType=norm(document.getElementById("editPackageType").value);
-  const length=norm(document.getElementById("editLength").value);
-  const width=norm(document.getElementById("editWidth").value);
-  const height=norm(document.getElementById("editHeight").value);
-  const dimUnit=norm(document.getElementById("editDimUnit").value);
-  const volume=norm(document.getElementById("editVolume").value);
-  const netWeight=norm(document.getElementById("editNetWeight").value);
-  const grossWeight=norm(document.getElementById("editGrossWeight").value);
-  const tagModel=norm(document.getElementById("editTagModel").value);
-  const hazard=document.getElementById("editHazard").value;
-  const storage=norm(document.getElementById("editStorage").value);
-  const remark=norm(document.getElementById("editRemark").value);
-
-  if(!token){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";return;}
-  if(!code){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập Package No.";return;}
-
-  if(remember)localStorage.setItem("ghToken",token);
-  else localStorage.removeItem("ghToken");
-
-  statusEl.style.color="#536277";
-  statusEl.textContent="⏳ Đang lưu...";
-
-  try{
-    await queueWrite(async()=>{
-      let rows=await fetchOverrideRows();
-      const patch={"Ngày":date,"Mô tả hàng hóa":group,"P/L No.":category,"Vị trí":loc,"Trạng thái":trangThai,"Ngày xuất":ngayXuat,
-        "Nhà cung cấp/SX":supplier,"Xuất xứ (C/O)":origin,"Mục bảng giá":posSchedule,
-        "Số lượng":qty,"Đơn vị SL":qtyUnit,"Loại kiện":packageType,
-        "Dài":length,"Rộng":width,"Cao":height,"Đơn vị kích thước":dimUnit,
-        "Thể tích (cbm)":volume,"Net Weight (kg)":netWeight,"Gross Weight (kg)":grossWeight,
-        "Tag No./Model":tagModel,"Hàng nguy hiểm":hazard,"Phân loại lưu kho":storage,"Remark":remark};
-      upsertRow(rows,code,patch);
-      await commitOverrideRows(rows,(editingIsNew?"Thêm":"Sửa")+" kiện "+code+" qua web",token);
-
-      // Hiển thị thay đổi NGAY trên trang chủ, không chờ GitHub CDN cập nhật.
-      optimisticApply(code,patch);
-    });
-    render();
-
-    statusEl.style.color="#20b77b";
-    statusEl.textContent="✅ Đã lưu!";
-    setTimeout(()=>{
-      closeEditModal();
-      reloadGitHubData();
-    },500);
-  }catch(e){
-    statusEl.style.color="#c0392b";
-    statusEl.textContent="❌ Lỗi: "+e.message;
-  }
-}
-
 /* ---------- CHỌN NHIỀU KIỆN + HÀNH ĐỘNG HÀNG LOẠT ---------- */
 let selectedCodes=new Set();
 
-function toggleSelect(code,checked){
+function toggleSelect(code,checked,cb){
   if(checked)selectedCodes.add(code);
   else selectedCodes.delete(code);
   updateBulkBar();
-  // Cập nhật viền highlight của card tương ứng mà không render lại toàn bộ danh sách.
-  render();
+  // Chỉ cập nhật viền highlight của card tương ứng, KHÔNG gọi render() để dựng
+  // lại toàn bộ danh sách — trước đây code ghi chú vậy nhưng vẫn gọi render()
+  // đầy đủ, khiến tick chọn nhiều kiện liên tiếp trên điện thoại bị giật/lag
+  // không cần thiết (toàn bộ HTML của trang, kể cả các card không đổi, bị vẽ
+  // lại mỗi lần tick).
+  const card=cb?cb.closest(".card"):null;
+  if(card)card.classList.toggle("card-selected",checked);
 }
 
 function clearSelection(){
@@ -1902,12 +1564,10 @@ function prefillTokenInto(idToken,idSave){
 function openBulkModal(kind){
   if(!selectedCodes.size)return;
   bulkAction=kind;
-  const titles={export:"📤 Xuất kho hàng loạt",import:"📥 Nhập lại kho hàng loạt",loc:"📍 Đổi vị trí hàng loạt"};
+  const titles={export:"📤 Xuất kho hàng loạt",import:"📥 Nhập lại kho hàng loạt"};
   document.getElementById("bulkModalTitle").textContent=titles[kind];
   document.getElementById("bulkModalSub").textContent=selectedCodes.size+" kiện đã chọn";
-  document.getElementById("bulkLocField").style.display=kind==="loc"?"block":"none";
   document.getElementById("bulkDateField").style.display=kind==="export"?"block":"none";
-  document.getElementById("bulkLoc").value="";
   document.getElementById("bulkDate").value=todayStr();
   document.getElementById("bulkModalStatus").textContent="";
   prefillTokenInto("bulkGhToken","bulkGhTokenSave");
@@ -1931,11 +1591,6 @@ async function confirmBulkModal(){
   }else if(bulkAction==="import"){
     patch={"Trạng thái":"Trong kho","Ngày xuất":""};
     label="Nhập lại kho";
-  }else if(bulkAction==="loc"){
-    const loc=norm(document.getElementById("bulkLoc").value);
-    if(!loc){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập vị trí mới.";return;}
-    patch={"Vị trí":loc};
-    label="Đổi vị trí";
   }
 
   if(remember)localStorage.setItem("ghToken",token);
@@ -1983,183 +1638,12 @@ async function confirmBulkModal(){
   }
 }
 
-/* ---------- SỬA THEO P/L NO. (mỗi kiện có thể có vị trí khác nhau) ---------- */
-let plAllCats=[];
-
-function openPLModal(){
-  plAllCats=unique("category");
-  const inp=document.getElementById("plSelect");
-  inp.value="";
-  hidePLOptions();
-  document.getElementById("plQuickLoc").value="";
-  document.getElementById("plDate").value="";
-  document.getElementById("plStatus").value="";
-  document.getElementById("plStatusMsg").textContent="";
-  prefillTokenInto("plGhToken","plGhTokenSave");
-  renderPLItems();
-  document.getElementById("plModal").classList.add("show");
-}
-function closePLModal(){
-  document.getElementById("plModal").classList.remove("show");
-  hidePLOptions();
-}
-
-// Vẽ danh sách gợi ý P/L No. khớp với từ khóa đang gõ trong ô tìm kiếm.
-function renderPLOptionsBox(cats){
-  const box=document.getElementById("plOptionsList");
-  box.innerHTML=cats.length
-    ? cats.map(c=>`<div class="pl-option" data-value="${escapeHtml(c)}">${escapeHtml(c)}</div>`).join("")
-    : '<div class="pl-option pl-option-empty">Không tìm thấy P/L No. phù hợp</div>';
-}
-
-function filterPLOptions(){
-  const q=norm(document.getElementById("plSelect").value).toLowerCase();
-  const filtered=q?plAllCats.filter(c=>c.toLowerCase().includes(q)):plAllCats;
-  renderPLOptionsBox(filtered);
-  document.getElementById("plOptionsList").classList.add("show");
-}
-
-function hidePLOptions(){
-  document.getElementById("plOptionsList").classList.remove("show");
-}
-
-function selectPLOption(value){
-  document.getElementById("plSelect").value=value;
-  hidePLOptions();
-  renderPLItems();
-}
-
-document.addEventListener("click",e=>{
-  const wrap=document.getElementById("plSelectWrap");
-  if(wrap && !wrap.contains(e.target)) hidePLOptions();
-});
-document.getElementById("plOptionsList")?.addEventListener("click",e=>{
-  const opt=e.target.closest(".pl-option[data-value]");
-  if(opt) selectPLOption(opt.getAttribute("data-value"));
-});
-
-// Vẽ danh sách TẤT CẢ kiện thuộc P/L đang chọn, mỗi kiện có 1 ô vị trí riêng
-// (điền sẵn vị trí hiện tại) để có thể đặt vị trí khác nhau cho từng kiện.
-function renderPLItems(){
-  const pl=document.getElementById("plSelect").value;
-  const items=data.filter(x=>x.category===pl);
-  document.getElementById("plCount").textContent=pl?`Có ${items.length} kiện thuộc P/L "${pl}" — tích chọn kiện muốn áp dụng, mỗi kiện có thể đặt vị trí riêng bên dưới`:"";
-  const selectAll=document.getElementById("plSelectAll");
-  selectAll.checked=true;
-  const list=document.getElementById("plItemsList");
-  list.innerHTML=items.length
-    ? items.map(x=>`
-      <div class="pl-item" data-code="${escapeHtml(x.code)}">
-        <input class="pl-item-check" type="checkbox" checked onchange="onPLItemCheckChange(this)">
-        <div class="pl-item-info">
-          <div class="pl-item-code">📦 ${escapeHtml(x.code)}</div>
-          <div class="pl-item-desc">${escapeHtml(x.group||"—")}${x.loc?" · hiện tại: "+escapeHtml(x.loc):""}</div>
-        </div>
-        <input class="pl-item-loc" type="text" placeholder="VD: A1-02" value="${escapeHtml(x.loc||"")}">
-      </div>`).join("")
-    : (pl?'<div class="pl-empty">Không có kiện nào thuộc P/L này.</div>':'<div class="pl-empty">Chọn một P/L No. để xem danh sách kiện.</div>');
-}
-
-// Bật/tắt tích chọn cho TẤT CẢ kiện đang hiển thị cùng lúc.
-function togglePLSelectAll(checked){
-  document.querySelectorAll("#plItemsList .pl-item-check").forEach(cb=>{
-    cb.checked=checked;
-    cb.closest(".pl-item").classList.toggle("pl-item-unchecked",!checked);
-  });
-}
-
-// Khi người dùng tự bỏ tích 1 kiện, cập nhật lại trạng thái checkbox "Chọn tất cả".
-function onPLItemCheckChange(cb){
-  cb.closest(".pl-item").classList.toggle("pl-item-unchecked",!cb.checked);
-  const all=document.querySelectorAll("#plItemsList .pl-item-check");
-  const allChecked=[...all].every(x=>x.checked);
-  document.getElementById("plSelectAll").checked=allChecked;
-}
-
-// Điền nhanh 1 vị trí cho tất cả ô đang hiển thị (vẫn có thể sửa lại từng ô sau đó).
-function applyPLQuickLoc(){
-  const loc=norm(document.getElementById("plQuickLoc").value);
-  if(!loc)return;
-  document.querySelectorAll("#plItemsList .pl-item-loc").forEach(inp=>{inp.value=loc;});
-}
-
-async function applyPLUpdate(){
-  const statusEl=document.getElementById("plStatusMsg");
-  const pl=document.getElementById("plSelect").value;
-  const status=document.getElementById("plStatus").value;
-  const newDate=norm(document.getElementById("plDate").value);
-  const token=document.getElementById("plGhToken").value.trim();
-  const remember=document.getElementById("plGhTokenSave").checked;
-
-  if(!pl){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng chọn P/L No.";return;}
-  if(!token){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Vui lòng nhập GitHub Token.";return;}
-
-  // Chỉ lấy các kiện đang được tích chọn trong danh sách (checkbox "Chọn tất cả"
-  // hoặc từng ô riêng lẻ), thay vì luôn áp dụng cho toàn bộ P/L.
-  const selectedCodes=new Set();
-  const locByCode=new Map();
-  document.querySelectorAll("#plItemsList .pl-item").forEach(row=>{
-    const code=row.getAttribute("data-code");
-    const check=row.querySelector(".pl-item-check");
-    const input=row.querySelector(".pl-item-loc");
-    if(code && input) locByCode.set(code,norm(input.value));
-    if(code && check && check.checked) selectedCodes.add(code);
-  });
-
-  const targets=data.filter(x=>x.category===pl && selectedCodes.has(x.code));
-  if(!targets.length){statusEl.style.color="#c0392b";statusEl.textContent="⚠️ Chưa chọn kiện nào để áp dụng.";return;}
-
-  if(remember)localStorage.setItem("ghToken",token);
-  else localStorage.removeItem("ghToken");
-
-  statusEl.style.color="#536277";
-  statusEl.textContent="⏳ Đang lưu "+targets.length+" kiện...";
-
-  try{
-    await queueWrite(async()=>{
-      let rows=await fetchOverrideRows();
-      const fullPatches=new Map();
-      for(const item of targets){
-        const newLoc=locByCode.has(item.code)?locByCode.get(item.code):item.loc||"";
-        const patch={
-          "Ngày":newDate||item.date||todayStr(),
-          "Mô tả hàng hóa":item.group||"",
-          "P/L No.":item.category||"",
-          "Vị trí":newLoc||item.loc||"",
-          "Trạng thái":status||item.trangThai||"Trong kho",
-          "Ngày xuất":status==="Đã xuất"?(item.ngayXuat||todayStr()):(status==="Trong kho"?"":item.ngayXuat||"")
-        };
-        upsertRow(rows,item.code,patch);
-        fullPatches.set(item.code,patch);
-      }
-      await commitOverrideRows(rows,"Sửa theo P/L "+pl+" ("+targets.length+" kiện) qua web",token);
-
-      // Hiển thị thay đổi NGAY trên trang chủ, không chờ GitHub CDN cập nhật.
-      for(const [code,patch] of fullPatches) optimisticApply(code,patch);
-    });
-    render();
-
-    statusEl.style.color="#20b77b";
-    statusEl.textContent="✅ Đã lưu!";
-    setTimeout(()=>{
-      closePLModal();
-      reloadGitHubData();
-    },500);
-  }catch(e){
-    statusEl.style.color="#c0392b";
-    statusEl.textContent="❌ Lỗi: "+e.message;
-  }
-}
-
-// SHA của file được dùng làm cache-key. Khi Excel được sửa trên GitHub,
-// SHA đổi => URL raw đổi => không bị trả lại file Excel cũ từ CDN.
-function fileUrl(name,version=""){
-  const base="https://raw.githubusercontent.com/"+DATA_GITHUB_OWNER+"/"+DATA_GITHUB_REPO+"/"+DATA_GITHUB_BRANCH+"/"+DATA_GITHUB_FOLDER+"/"+encodeURIComponent(name);
-  return base+(version?"?v="+encodeURIComponent(version):"?v="+Date.now());
+function fileUrl(name){
+  return "https://raw.githubusercontent.com/"+DATA_GITHUB_OWNER+"/"+DATA_GITHUB_REPO+"/"+DATA_GITHUB_BRANCH+"/"+DATA_GITHUB_FOLDER+"/"+encodeURIComponent(name);
 }
 
 async function listDailyExcelFiles(){
-  const url=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${DATA_GITHUB_FOLDER}?ref=${DATA_GITHUB_BRANCH}&_=${Date.now()}`;
+  const url=`https://api.github.com/repos/${DATA_GITHUB_OWNER}/${DATA_GITHUB_REPO}/contents/${DATA_GITHUB_FOLDER}?ref=${DATA_GITHUB_BRANCH}`;
   const r=await fetch(url,{cache:"no-store"});
   if(!r.ok)throw new Error("Không đọc được thư mục /du-lieu trên GitHub ("+r.status+").");
   const items=await r.json();
@@ -2246,6 +1730,10 @@ function readDetailedPLSheet(item,wb,sheetName){
   const colDesc=findCol(/description of goods/i);
   if(colCode<0||colDesc<0)return null; // không đúng định dạng Detailed PL
 
+  // Cột "Vị trí" (Location) do người dùng tự thêm vào file PL gốc (VD: sheet
+  // "Breakdown CI" có cột "Vị Trí"). Nếu file có cột này, đọc thẳng vị trí
+  // từ đây — không cần nhập tay/qua nút "Sửa theo P/L" nữa.
+  const colLoc=findCol(/vị\s*trí/i,/^location$/i,/^loc\.?$/i);
   const colSupplier=findCol(/supplier/i,/manufacturer/i);
   const colOrigin=findCol(/c\/o of goods/i,/^c\/o$/i);
   const colPosSchedule=findCol(/position in price schedule/i);
@@ -2283,7 +1771,7 @@ function readDetailedPLSheet(item,wb,sheetName){
     if((aoa[r]||[]).some(c=>/^sub-?total$/i.test(norm(c)))){hasSubtotal=true;break;}
   }
 
-  const cols={colDesc,colDescDetail,colSupplier,colOrigin,colPosSchedule,colQtyNos,colQtyUnit,
+  const cols={colDesc,colDescDetail,colLoc,colSupplier,colOrigin,colPosSchedule,colQtyNos,colQtyUnit,
     colPackageType,colLength,colWidth,colHeight,colVolume,colNetWeight,colGrossWeight,
     colTagModel,colHazard,colStorage,colRemark};
 
@@ -2307,7 +1795,7 @@ function parseFlatPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
     if(!code)continue;
     const desc=[get(row,cols.colDesc),get(row,cols.colDescDetail)].filter(Boolean).join(" ");
     out.push({
-      date:"",code,group:desc,category:plNo,loc:"",trangThai:"Trong kho",
+      date:"",code,group:desc,category:plNo,loc:get(row,cols.colLoc),trangThai:"Trong kho",
       ngayXuat:"",ngayCapNhat:"",
       supplier:get(row,cols.colSupplier),origin:get(row,cols.colOrigin),
       posSchedule:get(row,cols.colPosSchedule),
@@ -2328,32 +1816,78 @@ function parseFlatPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
 
 // Kiểu "gộp nhiều mặt hàng": nhiều dòng cùng Package No. rồi tới dòng
 // "Sub-Total" chứa loại kiện/kích thước/khối lượng tổng của cả kiện.
+//
+// LƯU Ý QUAN TRỌNG: một số file NCC không có dòng "Sub-Total" RIÊNG cho
+// từng kiện — thay vào đó, dòng ĐẦU TIÊN của mỗi kiện chính là dòng "thông
+// tin của kiện" (Qty=1, Unit="PKG", kèm Package Type/kích thước/trọng
+// lượng của CẢ kiện), rồi các dòng theo sau mới là từng mặt hàng thật bên
+// trong kiện (Unit là EA/PCS/...). Dòng "Sub-Total" (nếu có) trong các file
+// này chỉ là dòng TỔNG CUỐI CÙNG của toàn bộ file/sheet, không phải của
+// riêng từng kiện — nếu coi dòng Qty=1 Unit=PKG đó là 1 "mặt hàng" như
+// trước đây thì kiện hàng sẽ hiện sai: bị tính dư 1 mặt hàng (chính là
+// kiện hàng), thiếu thông tin kích thước/trọng lượng cho gần hết các kiện
+// (chỉ kiện cuối cùng, đứng trước dòng Sub-Total thật, mới có).
+// Vì vậy: bất kỳ dòng nào có Unit = "PKG" VÀ có kèm ít nhất 1 trong các
+// trường Package Type/kích thước/trọng lượng đều được coi là dòng THÔNG TIN
+// KIỆN (không phải mặt hàng) — lấy ngay các trường đó cho cả kiện, KHÔNG
+// đưa dòng này vào danh sách mặt hàng bên trong.
+function isPackageInfoRow(row,cols,get){
+  const unit=get(row,cols.colQtyUnit).toUpperCase();
+  if(unit!=="PKG")return false;
+  return !!(get(row,cols.colPackageType)||get(row,cols.colLength)||get(row,cols.colWidth)||
+    get(row,cols.colHeight)||get(row,cols.colVolume)||get(row,cols.colNetWeight)||get(row,cols.colGrossWeight));
+}
+
 function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
   const out=[];
   let group=null;
 
+  function applyPackageInfo(g,row){
+    const rowLoc=get(row,cols.colLoc);
+    if(rowLoc)g.loc=rowLoc;
+    if(!g.packageType)g.packageType=get(row,cols.colPackageType);
+    if(!g.length)g.length=get(row,cols.colLength);
+    if(!g.width)g.width=get(row,cols.colWidth);
+    if(!g.height)g.height=get(row,cols.colHeight);
+    if(!g.volume)g.volume=get(row,cols.colVolume);
+    if(!g.netWeight)g.netWeight=get(row,cols.colNetWeight);
+    if(!g.grossWeight)g.grossWeight=get(row,cols.colGrossWeight);
+    if(!g.hazard)g.hazard=get(row,cols.colHazard);
+    if(!g.storage)g.storage=get(row,cols.colStorage);
+    // Giữ lại mô tả/số lượng của chính dòng kiện, phòng khi kiện không có
+    // mặt hàng con nào tách riêng được (dùng làm dự phòng ở finalize()).
+    if(!g.selfDesc)g.selfDesc=get(row,cols.colDesc);
+    if(!g.selfQty)g.selfQty=get(row,cols.colQtyNos);
+  }
+
   function finalize(g){
-    const descParts=g.items.map(it=>{
+    // Dự phòng: kiện không có mặt hàng con nào (mọi dòng đều là dòng thông
+    // tin kiện) — vẫn hiển thị được bằng chính mô tả/số lượng của kiện đó.
+    const items=g.items.length?g.items:[{
+      desc:g.selfDesc||"",spec:"",qty:g.selfQty||"",unit:"PKG",netW:g.netWeight||""
+    }];
+
+    const descParts=items.map(it=>{
       const s=[it.desc,it.spec].filter(Boolean).join(" ");
       const q=[it.qty,it.unit].filter(Boolean).join(" ");
       return q?`${s} (${q})`:s;
     }).filter(Boolean);
 
-    const units=[...new Set(g.items.map(it=>it.unit).filter(Boolean))];
+    const units=[...new Set(items.map(it=>it.unit).filter(Boolean))];
     let qty="",qtyUnit="";
-    if(g.items.length===1){qty=g.items[0].qty;qtyUnit=g.items[0].unit;}
+    if(items.length===1){qty=items[0].qty;qtyUnit=items[0].unit;}
     else if(units.length===1){
-      const total=g.items.reduce((s,it)=>s+(parseFloat(it.qty)||0),0);
+      const total=items.reduce((s,it)=>s+(parseFloat(it.qty)||0),0);
       qty=total?String(total):"";qtyUnit=units[0];
-    }else qty=g.items.length+" mặt hàng";
+    }else qty=items.length+" mặt hàng";
 
     const netWeight=g.netWeight||(()=>{
-      const sum=g.items.reduce((s,it)=>s+(parseFloat(it.netW)||0),0);
+      const sum=items.reduce((s,it)=>s+(parseFloat(it.netW)||0),0);
       return sum?String(sum):"";
     })();
 
     return {
-      date:"",code:g.code,group:descParts.join("; "),category:plNo,loc:"",
+      date:"",code:g.code,group:descParts.join("; "),category:plNo,loc:g.loc||"",
       trangThai:"Trong kho",ngayXuat:"",ngayCapNhat:"",
       supplier:g.supplier,origin:g.origin,posSchedule:g.posSchedule,
       qty,qtyUnit,packageType:g.packageType||"",
@@ -2371,16 +1905,10 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
     const code=get(row,colCode);
 
     if(isSubtotal){
+      // Dòng "Sub-Total" ghi đè (nếu có giá trị) lên thông tin đã lấy được
+      // từ dòng kiện ở trên — coi đây là nguồn chính xác/cuối cùng nếu có.
       if(group){
-        group.packageType=get(row,cols.colPackageType);
-        group.length=get(row,cols.colLength);
-        group.width=get(row,cols.colWidth);
-        group.height=get(row,cols.colHeight);
-        group.volume=get(row,cols.colVolume);
-        group.netWeight=get(row,cols.colNetWeight);
-        group.grossWeight=get(row,cols.colGrossWeight);
-        group.hazard=get(row,cols.colHazard);
-        group.storage=get(row,cols.colStorage);
+        applyPackageInfo(group,row);
         out.push(finalize(group));
         group=null;
       }
@@ -2391,11 +1919,22 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
 
     if(!group||group.code!==code){
       if(group)out.push(finalize(group)); // nhóm trước thiếu dòng Sub-Total, vẫn lưu với dữ liệu đã có
-      group={code,items:[],supplier:"",origin:"",posSchedule:""};
+      group={code,items:[],supplier:"",origin:"",posSchedule:"",loc:""};
     }
     if(!group.supplier)group.supplier=get(row,cols.colSupplier);
     if(!group.origin)group.origin=get(row,cols.colOrigin);
     if(!group.posSchedule)group.posSchedule=get(row,cols.colPosSchedule);
+    // Cột "Vị trí" (nếu có trong file) có thể chỉ ghi ở dòng đầu của kiện,
+    // lấy như supplier/origin — không phụ thuộc dòng đó có phải dòng "thông
+    // tin kiện" hay không.
+    if(!group.loc)group.loc=get(row,cols.colLoc);
+
+    if(isPackageInfoRow(row,cols,get)){
+      // Đây là dòng thông tin của CHÍNH kiện hàng (Qty=1, Unit=PKG, kèm
+      // kích thước/trọng lượng cả kiện) — không phải 1 mặt hàng bên trong.
+      applyPackageInfo(group,row);
+      continue;
+    }
 
     group.items.push({
       desc:get(row,cols.colDesc),spec:get(row,cols.colDescDetail),
@@ -2407,15 +1946,65 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
   return out;
 }
 
+/* ---------- CACHE FILE EXCEL THEO "sha" ĐỂ TẢI TRANG NHANH HƠN ----------
+   Mỗi lần vào trang, trước đây trang luôn TẢI LẠI + PHÂN TÍCH (XLSX.read)
+   TẤT CẢ file Excel trong /du-lieu, kể cả các file đã đọc từ trước và
+   không hề thay đổi -> càng nhiều file càng chậm, nhất là trên điện thoại.
+   GitHub cho biết "sha" hiện tại của mỗi file (từ listDailyExcelFiles).
+   Nếu sha không đổi so với lần trước, dữ liệu đã phân tích được lấy thẳng
+   từ bộ nhớ tạm (localStorage) — bỏ qua bước tải + phân tích file rất tốn
+   thời gian. File nào có sha mới (vừa sửa/upload) mới thực sự tải lại. */
+const EXCEL_CACHE_PREFIX="xlsCache:";
+// Tăng số này mỗi khi LOGIC đọc/phân tích file Excel (readDetailedPLFile,
+// parseGroupedPLRows...) được sửa. Cache cũ lưu theo "sha" của file — nếu
+// chỉ sửa logic đọc mà không đổi file Excel, sha không đổi nên cache cũ
+// (kết quả phân tích SAI theo logic cũ) sẽ không bao giờ tự làm mới, khiến
+// người dùng vẫn thấy lỗi cũ dù code đã sửa. Đổi số version ép đọc lại 1
+// lần cho mọi người sau khi deploy bản sửa lỗi logic đọc file.
+const PARSER_LOGIC_VERSION="3";
+function loadExcelCache(name){
+  try{
+    const raw=localStorage.getItem(EXCEL_CACHE_PREFIX+name);
+    if(!raw)return null;
+    const data=JSON.parse(raw);
+    if(data.ver!==PARSER_LOGIC_VERSION)return null; // logic đọc đã đổi -> bỏ cache cũ, đọc lại
+    return data;
+  }catch(e){ return null; }
+}
+function saveExcelCache(name,sha,rows){
+  try{
+    localStorage.setItem(EXCEL_CACHE_PREFIX+name,JSON.stringify({sha,rows,ver:PARSER_LOGIC_VERSION}));
+  }catch(e){ /* Hết dung lượng lưu tạm của trình duyệt: bỏ qua, trang vẫn chạy bình thường. */ }
+}
+// Dọn cache của các file Excel không còn tồn tại trong /du-lieu nữa, tránh
+// bộ nhớ tạm phình to mãi theo thời gian.
+function pruneExcelCache(validNames){
+  try{
+    const keep=new Set(validNames.map(n=>EXCEL_CACHE_PREFIX+n));
+    for(let i=localStorage.length-1;i>=0;i--){
+      const k=localStorage.key(i);
+      if(k&&k.indexOf(EXCEL_CACHE_PREFIX)===0&&!keep.has(k))localStorage.removeItem(k);
+    }
+  }catch(e){}
+}
+
 async function readExcelFile(item){
-  const r=await fetch(fileUrl(item.name,item.sha),{cache:"no-store"});
+  const cached=loadExcelCache(item.name);
+  if(cached&&cached.sha&&item.sha&&cached.sha===item.sha&&Array.isArray(cached.rows)){
+    return cached.rows;
+  }
+
+  const r=await fetch(fileUrl(item.name),{cache:"no-store"});
   if(!r.ok)throw new Error("Không tải được "+item.name);
   const buf=await r.arrayBuffer();
   const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
 
   // Thử đọc theo định dạng "Detailed Packing List" gốc từ NCC trước.
   const detailed=readDetailedPLFile(item,wb);
-  if(detailed&&detailed.length)return detailed;
+  if(detailed&&detailed.length){
+    saveExcelCache(item.name,item.sha,detailed);
+    return detailed;
+  }
 
   const ws=wb.Sheets[wb.SheetNames[0]];
   const rows=XLSX.utils.sheet_to_json(ws,{defval:""});
@@ -2469,7 +2058,7 @@ async function readExcelFile(item){
   if(!locKey)missing.push("Vị trí");
   if(missing.length)throw new Error(item.name+" thiếu cột: "+missing.join(", "));
 
-  return rows.map(row=>({
+  const parsedRows=rows.map(row=>({
     date:formatDate(row[dateKey]),
     code:norm(row[codeKey]),
     group:norm(row[groupKey]),
@@ -2498,6 +2087,9 @@ async function readExcelFile(item){
     detail:detailKey?norm(row[detailKey]):"",
     sourceFile:item.name
   })).filter(x=>x.code);
+
+  saveExcelCache(item.name,item.sha,parsedRows);
+  return parsedRows;
 }
 
 async function loadAllDailyExcel(){
@@ -2511,6 +2103,7 @@ async function loadAllDailyExcel(){
     return;
   }
 
+  pruneExcelCache(dailyFiles.map(f=>f.name));
   const results=await Promise.all(dailyFiles.map(readExcelFile));
   dailyData=results.flat();
 
@@ -2809,174 +2402,85 @@ function getItemDetail(x){
   });
 }
 
+// Tóm tắt số lượng hiển thị ở đầu thẻ (chỉ đọc — không còn +/- xuất hàng ở
+// đây nữa, mọi mặt hàng và số lượng gốc trong kiện vẫn được giữ đầy đủ).
 function pickSummaryHtml(x){
   const detail=getItemDetail(x);
   const rows=detail.filter(it=>it.qty!=null);
   if(!rows.length){
-    return `<span class="pick-summary-empty">Chưa có số lượng để xuất</span>`;
+    return `<span class="pick-summary-empty">Chưa có số lượng chi tiết</span>`;
   }
 
-  const totalOriginal=rows.reduce((s,it)=>s+(Number(it.qty)||0),0);
-  const totalRemaining=rows.reduce((s,it)=>s+(Number(it.remaining)||0),0);
-  const totalPicked=totalOriginal-totalRemaining;
+  // Cộng dồn theo TỪNG đơn vị (m, EA, PKG...) vì các mặt hàng trong cùng 1
+  // kiện có thể có đơn vị khác nhau — không được gộp lẫn vào 1 tổng số.
+  const byUnit=new Map();
+  rows.forEach(it=>{
+    const u=it.unit||"EA";
+    byUnit.set(u,(byUnit.get(u)||0)+(Number(it.qty)||0));
+  });
+  const totalsText=[...byUnit.entries()].map(([u,q])=>`${q.toLocaleString("vi-VN")} ${u}`).join(" • ");
 
   return `
     <div class="pick-summary">
       <div class="pick-summary-top">
-        <span class="pick-summary-title">📤 ${rows.length} mặt hàng</span>
-        <span class="pick-summary-status">${totalPicked>0?`Đã xuất ${totalPicked}`:`Sẵn sàng xuất`}</span>
+        <span class="pick-summary-title">📋 ${rows.length} mặt hàng</span>
       </div>
       <div class="pick-summary-bottom">
-        <span>Còn lại: <b>${totalRemaining}</b></span>
-        <span>Tổng: <b>${totalOriginal}</b></span>
+        <span>Tổng số lượng: <b>${escapeHtml(totalsText)}</b></span>
       </div>
     </div>`;
 }
 
+// Bảng CHI TIẾT từng mặt hàng trong kiện — CHỈ HIỂN THỊ (không có nút +/-
+// xuất/trả hàng nữa). Số lượng và đơn vị được tự động tách/lọc từ mô tả
+// hàng hóa hoặc từ cột Số lượng/Đơn vị SL trong file Excel gốc (VD dây cáp
+// tự nhận đơn vị "M", vật tư rời tự nhận đơn vị "EA"...).
 function pickAreaHtml(x){
   const detail=getItemDetail(x);
-  const rows=detail.filter(it=>it.qty!=null);
-  if(!rows.length)return "";
+  if(!detail.length)return "";
 
   return `<div class="pick-area">
     <div class="pick-area-head">
       <div>
-        <div class="pick-area-title"><span class="mini-icon">📤</span> KHU XUẤT HÀNG</div>
-        <div class="pick-area-hint">Mỗi dòng là 1 mặt hàng • − khi lấy hàng • + khi trả lại</div>
+        <div class="pick-area-title"><span class="mini-icon">📋</span> CHI TIẾT MẶT HÀNG</div>
+        <div class="pick-area-hint">Toàn bộ mặt hàng và số lượng theo Packing List</div>
       </div>
-      <div class="pick-area-count">${rows.length} dòng</div>
+      <div class="pick-area-count">${detail.length} dòng</div>
     </div>
 
     <div class="pick-table-head">
       <span>Mặt hàng</span>
-      <span>Số lượng còn</span>
+      <span>Số lượng</span>
     </div>
 
     ${detail.map((it,i)=>{
       if(it.qty==null){
         return `<div class="pick-row pick-row-plain">
+          <span class="pick-index">${i+1}</span>
           <span class="pick-name">${escapeHtml(it.name)}</span>
         </div>`;
       }
 
-      const original=Number(it.qty)||0;
-      const remaining=Number(it.remaining)||0;
-      const picked=Math.max(0,original-remaining);
-      const pct=original>0?Math.round((remaining/original)*100):0;
-      const low=remaining<=0;
-
-      return `<div class="pick-row ${low?'pick-row-empty':''}">
+      return `<div class="pick-row">
         <div class="pick-item-main">
           <span class="pick-index">${i+1}</span>
           <div class="pick-item-text">
             <span class="pick-name">${escapeHtml(it.name)}</span>
-            <span class="pick-item-meta">${picked>0?`Đã xuất ${picked} ${escapeHtml(it.unit)}`:`Chưa xuất`} • Tổng ${original} ${escapeHtml(it.unit)}</span>
           </div>
         </div>
 
-        <div class="pick-controls">
-          <input type="number" class="pick-qty-input" id="pickIn_${escapeHtml(x.code)}_${i}"
-                 value="1" min="0.001" step="any" inputmode="decimal"
-                 aria-label="Số lượng xuất/trả mỗi lần bấm" title="Nhập số lượng rồi bấm − hoặc +">
-
-          <button class="pick-btn pick-minus"
-                  aria-label="Xuất ${escapeHtml(it.unit)}"
-                  title="Lấy hàng theo số lượng đã nhập"
-                  onclick="pickItem('${escapeHtml(x.code)}',${i},-pickInputVal('${escapeHtml(x.code)}',${i}))"
-                  ${remaining<=0?'disabled':''}>−</button>
-
-          <div class="pick-qty-box">
-            <span class="pick-qty ${low?'pick-qty-low':''}">${remaining}</span>
-            <small>${escapeHtml(it.unit)}</small>
-          </div>
-
-          <button class="pick-btn pick-plus"
-                  aria-label="Trả lại ${escapeHtml(it.unit)}"
-                  title="Trả hàng theo số lượng đã nhập"
-                  onclick="pickItem('${escapeHtml(x.code)}',${i},pickInputVal('${escapeHtml(x.code)}',${i}))"
-                  ${remaining>=original?'disabled':''}>+</button>
+        <div class="pick-qty-box">
+          <span class="pick-qty">${Number(it.qty).toLocaleString("vi-VN")}</span>
+          <small>${escapeHtml(it.unit)}</small>
         </div>
-
-        <div class="pick-bar"><div class="pick-bar-fill" style="width:${pct}%"></div></div>
       </div>`;
     }).join("")}
   </div>`;
 }
 
-// Đọc số lượng người dùng nhập trong ô ở khu xuất hàng (mặc định 1 nếu bỏ trống/không hợp lệ).
-function pickInputVal(code,idx){
-  const el=document.getElementById("pickIn_"+code+"_"+idx);
-  const v=el?parseFloat(String(el.value).replace(/,/g,".")):NaN;
-  return (!isNaN(v)&&v>0)?v:1;
-}
-
-// Trừ/cộng số lượng trong KHU XUẤT HÀNG rồi lưu lên GitHub.
-// − = xuất theo số lượng đã nhập (mặc định 1), + = trả lại theo số lượng đã nhập.
-let pickBusy=new Set();
-async function pickItem(code,idx,delta){
-  const key=code+"|"+idx;
-  if(pickBusy.has(key))return;
-
-  const x=data.find(d=>d.code===code);
-  if(!x)return;
-
-  const detail=getItemDetail(x);
-  const it=detail[idx];
-  if(!it||it.qty==null)return;
-
-  const oldRemaining=Number(it.remaining)||0;
-  const maxQty=Number(it.qty)||0;
-  const next=Math.max(0,Math.min(maxQty,oldRemaining+delta));
-  if(next===oldRemaining)return;
-
-  let token=localStorage.getItem("ghToken");
-  if(!token){
-    token=window.prompt("Nhập GitHub Token để lưu thay đổi số lượng (sẽ được ghi nhớ cho lần sau):");
-    if(!token)return;
-    localStorage.setItem("ghToken",token);
-  }
-
-  const prevDetailJson=x.detail||"";
-
-  it.log=[{
-    time:new Date().toLocaleString("vi-VN"),
-    change:next-oldRemaining,
-    after:next
-  },...(it.log||[])].slice(0,50);
-
-  it.remaining=next;
-  const detailJson=JSON.stringify(detail);
-  x.detail=detailJson;
-
-  pickBusy.add(key);
-  render();
-
-  try{
-    await queueWrite(async()=>{
-      let rows=await fetchOverrideRows();
-      const patch={"Chi tiết xuất kho":detailJson};
-      upsertRow(rows,code,patch);
-
-      await commitOverrideRows(
-        rows,
-        (delta<0?"Xuất ":"Nhập trả ")+Math.abs(delta)+" "+(it.unit||"")+" "+it.name+" - kiện "+code,
-        token
-      );
-
-      optimisticApply(code,patch);
-    });
-  }catch(e){
-    x.detail=prevDetailJson;
-    alert("❌ Lỗi khi lưu số lượng: "+e.message);
-  }finally{
-    pickBusy.delete(key);
-    render();
-  }
-}
-
 let currentFiltered=[];
 let currentPage=1;
-const pageSize=20;
+const pageSize=10;
 
 function render(){
   refreshFilters();
@@ -3011,13 +2515,13 @@ function render(){
             <div class="code">${start+i+1}. ${escapeHtml(x.code)}</div>
             <button class="copy" onclick="copyCode('${escapeHtml(x.code)}')"><span>📋</span> Copy mã</button>
           </div>
-          <div class="field field-pick-summary"><span class="field-label"><span class="mini-icon">📤</span> Khu xuất hàng</span>${pickSummaryHtml(x)}</div>
+          <div class="field field-pick-summary"><span class="field-label"><span class="mini-icon">📋</span> Chi tiết hàng hóa</span>${pickSummaryHtml(x)}</div>
           <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
           <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
-          <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">📤 Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">📥 Trong kho</span>`}</span></div>
-          <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button><button class="share" style="display:block;width:100%;margin-top:6px;background:linear-gradient(135deg,#8c6ce8,#a98af0);border-color:#8c6ce8" onclick="openEditModal(${start+i})"><span>✏️</span> Sửa</button></div>
-          <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked)" ${selectedCodes.has(x.code)?'checked':''}></label>
+          <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">Trong kho</span>`}</span></div>
+          <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button></div>
+          <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked,this)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
         ${pickAreaHtml(x)}
         ${extraInfoHtml(x)}
@@ -3026,8 +2530,12 @@ function render(){
     : '<div class="empty">Không tìm thấy kiện hàng.</div>';
   updateBulkBar();
 
+  // Cửa sổ số trang phải TRƯỢT theo currentPage (giống hệt logic phân trang ở
+  // "Danh sách file" bên dưới) — trước đây luôn cố định hiện trang 1..5 dù
+  // đang ở trang bao nhiêu, khiến không thể bấm số để nhảy tới trang >5, phải
+  // bấm "›" từng trang một rất bất tiện với danh sách nhiều trang.
   const p=document.getElementById("pagination");
-  p.innerHTML=totalPages>1 ? `<button onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(totalPages,5)},(_,i)=>{let n=i+1;return `<button class="${n===currentPage?'active':''}" onclick="goPage(${n})">${n}</button>`}).join("")+`<button onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>` : '';
+  p.innerHTML=totalPages>1 ? `<button onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(totalPages,5)},(_,i)=>{let n=i+1;if(totalPages>5&&currentPage>3)n=Math.min(totalPages-4+i,totalPages);return `<button class="${n===currentPage?'active':''}" onclick="goPage(${n})">${n}</button>`}).join("")+`<button onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>` : '';
 }
 function goPage(n){currentPage=Math.max(1,Math.min(n,Math.ceil(currentFiltered.length/pageSize)||1));render();window.scrollTo({top:document.getElementById("list").offsetTop-10,behavior:"smooth"});}
 
@@ -3093,6 +2601,64 @@ function reloadGitHubData(){
   });
 }
 
+/* ---------- TẢI FILE GỐC KÈM VỊ TRÍ HIỆN TẠI ----------
+   File Excel gốc do NCC gửi (upload lúc đầu) không có cột "Vị trí", vì vị trí
+   chỉ được nhập/cập nhật SAU NÀY trên trang (lưu riêng ở file
+   chinh-sua-tay.xlsx, không đụng tới file gốc). Nếu bấm "Tải file" mà chỉ tải
+   thẳng file gốc thì sẽ KHÔNG có vị trí mới nhất.
+   -> Khi bấm tải, lấy file gốc, rồi CHÈN THÊM 1 sheet "Vị trí kiện hàng" liệt
+   kê vị trí/trạng thái HIỆN TẠI (đọc từ mảng `data` đang hiển thị trên trang,
+   đã gồm mọi chỉnh sửa) của các kiện thuộc đúng file đó, rồi mới tải về —
+   không sửa/xoá bất kỳ sheet/nội dung gốc nào, chỉ thêm sheet mới.
+*/
+async function downloadFileWithLocation(name){
+  try{
+    const r=await fetch(fileUrl(name),{cache:"no-store"});
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    const buf=await r.arrayBuffer();
+    const wb=XLSX.read(buf,{type:"array",cellDates:false,cellNF:true});
+
+    // LƯU Ý: không lọc theo `sourceFile`. Sau khi 1 kiện được sửa qua web,
+    // sourceFile của kiện đó trong `data` đổi thành "chinh-sua-tay.xlsx" (vì
+    // file sửa tay luôn được merge SAU CÙNG — xem loadAllDailyExcel). Nếu lọc
+    // theo sourceFile===name thì đúng những kiện ĐÃ CÓ vị trí (đã từng sửa)
+    // sẽ bị loại khỏi sheet vị trí — ngược với mục đích của tính năng này.
+    // P/L No. (category) mới là giá trị luôn được giữ đúng theo tên file gốc,
+    // kể cả sau khi kiện đã được sửa (xem readDetailedPLSheet: "P/L No. lấy
+    // theo TÊN FILE").
+    const plNo=norm(name.replace(/\.(xlsx|xls)$/i,""));
+    const rows=data.filter(x=>x.category===plNo).map(x=>({
+      "Package No.":x.code,
+      "Mô tả hàng hóa":x.group||"",
+      "Vị trí":x.loc||"",
+      "Trạng thái":x.trangThai||"",
+      "Ngày cập nhật":x.ngayCapNhat||""
+    }));
+
+    if(rows.length){
+      const sheetName="Vị trí kiện hàng";
+      const wsLoc=XLSX.utils.json_to_sheet(rows,{header:["Package No.","Mô tả hàng hóa","Vị trí","Trạng thái","Ngày cập nhật"]});
+      // Thêm vào ĐẦU danh sách sheet để mở file là thấy ngay, không đè lên sheet nào có sẵn.
+      if(!wb.Sheets[sheetName]){
+        wb.SheetNames.unshift(sheetName);
+        wb.Sheets[sheetName]=wsLoc;
+      }
+    }
+
+    const out=XLSX.write(wb,{bookType:"xlsx",type:"array"});
+    const blob=new Blob([out],{type:"application/octet-stream"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url; a.download=name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),4000);
+  }catch(e){
+    console.error(e);
+    // Nếu có lỗi (mạng, file hỏng...) vẫn cho tải file gốc như trước, không chặn người dùng.
+    window.location.href=fileUrl(name);
+  }
+}
+
 let fileCurrentPage=1;
 const filePageSize=7;
 function showDailyFiles(){
@@ -3109,7 +2675,10 @@ function renderFileList(){
   const pages=Math.max(1,Math.ceil(filtered.length/filePageSize)); if(fileCurrentPage>pages)fileCurrentPage=pages;
   const items=filtered.slice((fileCurrentPage-1)*filePageSize,fileCurrentPage*filePageSize);
   document.getElementById("fileSortNote").textContent=filtered.length+" file • Mới nhất trước";
-  document.getElementById("fileList").innerHTML=items.length?items.map(x=>`<div class="file-item"><div class="file-icon">📊</div><div class="file-info"><div class="file-name">${escapeHtml(x.name)}</div><div class="file-meta">📅 ${fileDateText(x.name)} • ${x.size?formatFileSize(x.size):"Excel"}</div></div><a class="file-download" href="${fileUrl(x.name)}" download="${escapeHtml(x.name)}">⬇ Tải file</a></div>`).join(""):'<div class="file-empty">🔎 Không tìm thấy file phù hợp.</div>';
+  document.getElementById("fileList").innerHTML=items.length?items.map(x=>`<div class="file-item"><div class="file-icon">📊</div><div class="file-info"><div class="file-name">${escapeHtml(x.name)}</div><div class="file-meta">📅 ${fileDateText(x.name)} • ${x.size?formatFileSize(x.size):"Excel"}</div></div><button type="button" class="file-download" data-filename="${escapeHtml(x.name)}">⬇ Tải file</button></div>`).join(""):'<div class="file-empty">🔎 Không tìm thấy file phù hợp.</div>';
+  document.getElementById("fileList").querySelectorAll(".file-download").forEach(btn=>{
+    btn.addEventListener("click",()=>downloadFileWithLocation(btn.dataset.filename));
+  });
   const p=document.getElementById("filePagination"); p.innerHTML=pages>1?`<button onclick="goFilePage(${fileCurrentPage-1})" ${fileCurrentPage===1?'disabled':''}>‹</button>`+Array.from({length:Math.min(pages,5)},(_,i)=>{let n=i+1;if(pages>5&&fileCurrentPage>3)n=Math.min(pages-4+i,pages);return `<button class="${n===fileCurrentPage?'active':''}" onclick="goFilePage(${n})">${n}</button>`}).join("")+`<button onclick="goFilePage(${fileCurrentPage+1})" ${fileCurrentPage===pages?'disabled':''}>›</button>`:"";
 }
 function goFilePage(n){fileCurrentPage=Math.max(1,n);renderFileList();document.getElementById("fileList").scrollTop=0;}
