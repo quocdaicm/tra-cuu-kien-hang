@@ -38,7 +38,7 @@ h1{margin:3px 0 4px;font-size:28px;letter-spacing:.2px}.sub{font-size:15px;line-
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:62px}.buttons{display:flex;gap:15px;align-items:center}.buttons button{white-space:nowrap}
 button{font:inherit;border:1px solid #d0dee8;border-radius:12px;background:#fff;padding:11px 18px;cursor:pointer;color:#173450;transition:.2s;box-shadow:0 3px 8px rgba(32,91,119,.06)}button:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(17,105,143,.12)}button.primary{background:linear-gradient(135deg,#087bd1,#268fe0);color:#fff;border-color:#087bd1;box-shadow:0 8px 17px rgba(8,123,209,.20)}
 .status-box{display:flex;align-items:center;gap:9px;min-width:220px;justify-content:flex-end}.status-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#20b77b;color:#fff;font-size:12px;font-weight:800}.status-title{font-size:13px;font-weight:800;line-height:1.2}.status{margin:3px 0 0;text-align:left;font-size:11px;color:#718293;white-space:nowrap}
-.search-panel{background:rgba(255,255,255,.93);border:1px solid #e5eef4;border-radius:21px;padding:14px;box-shadow:0 8px 25px rgba(37,112,143,.08);margin-bottom:16px}.search-row{display:flex;gap:10px;align-items:center}.search{background:#fff;border:1px solid #dfe8ef;border-radius:18px;padding:15px 18px;width:100%;font-size:18px;outline:none;box-shadow:0 4px 13px rgba(35,111,144,.06)}.search:focus{border-color:#45b9eb;box-shadow:0 0 0 4px rgba(69,185,235,.13)}.filter-toggle{width:52px;height:52px;padding:0;border-radius:50%;font-size:23px;flex:0 0 52px}.filters{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.filter-box{background:#fff;padding:10px 12px;border:1px solid #e1eaf0;border-radius:13px;box-shadow:0 3px 10px rgba(33,107,138,.04)}.filter-box label{display:block;font-size:12px;font-weight:800;color:#1b3650;margin:0 0 7px}select{width:100%;font:inherit;border:1px solid #d5e3eb;border-radius:11px;background:#fff;padding:10px 12px;color:#4a6275;outline:none}
+.search-panel{background:rgba(255,255,255,.93);border:1px solid #e5eef4;border-radius:21px;padding:14px;box-shadow:0 8px 25px rgba(37,112,143,.08);margin-bottom:16px}.search-row{display:flex;gap:10px;align-items:center}.search{background:#fff;border:1px solid #dfe8ef;border-radius:18px;padding:15px 18px;width:100%;font-size:18px;outline:none;box-shadow:0 4px 13px rgba(35,111,144,.06)}.search:focus{border-color:#45b9eb;box-shadow:0 0 0 4px rgba(69,185,235,.13)}.filter-toggle{width:52px;height:52px;padding:0;border-radius:50%;font-size:23px;flex:0 0 52px}.filters{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:13px}.filter-box{background:#fff;padding:10px 12px;border:1px solid #e1eaf0;border-radius:13px;box-shadow:0 3px 10px rgba(33,107,138,.04)}.filter-box label{display:block;font-size:12px;font-weight:800;color:#1b3650;margin:0 0 7px}select{width:100%;font:inherit;border:1px solid #d5e3eb;border-radius:11px;background:#fff;padding:10px 12px;color:#4a6275;outline:none}
 .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0 0 18px}.stat{min-height:92px;background:rgba(255,255,255,.97);padding:12px 13px;border-radius:15px;box-shadow:0 6px 18px rgba(29,112,137,.08);border:1px solid #e1ebf1;display:flex;align-items:center;gap:10px}.stat:before{display:none!important}.stat b{display:block;font-size:22px;color:#173a60;line-height:1.1}.stat span{font-size:12px;color:#68798e;display:block;margin-top:4px}
 .card{background:rgba(255,255,255,.98);padding:15px 18px 11px;border-radius:16px;margin-bottom:12px;border:1px solid #e0e9ef;border-left:4px solid #269ee2;box-shadow:0 7px 20px rgba(30,112,136,.08);position:relative;overflow:hidden}.card:after{content:"";position:absolute;right:-20px;top:-25px;width:90px;height:135px;background:radial-gradient(ellipse,#6fcfa055 0 17%,transparent 18%);transform:rotate(35deg);opacity:.45;pointer-events:none}.card:nth-child(2){border-left-color:#35b991}.card:nth-child(3){border-left-color:#f4ad35}
 .card-main{display:grid;grid-template-columns:70px minmax(180px,1.3fr) repeat(5,minmax(84px,1fr)) auto;gap:13px;align-items:center;position:relative;z-index:1}
@@ -1091,7 +1091,6 @@ header, .hero, .wrap, .topbar, .search-panel, .stats, #list, .pagination, .site-
     <div class="filters">
       <div class="filter-box"><label><span class="filter-icon file">📄</span> P/L No.</label><select id="category" onchange="currentPage=1;render()"><option value="">Chọn P/L No.</option></select></div>
       <div class="filter-box"><label><span class="filter-icon pin">📍</span> Vị trí</label><select id="loc" onchange="currentPage=1;render()"><option value="">Vị trí</option></select></div>
-      <div class="filter-box"><label><span class="filter-icon">📤</span> Trạng thái</label><select id="status" onchange="currentPage=1;render()"><option value="">Trạng thái</option><option value="Trong kho">Trong kho</option><option value="Đã xuất">Đã xuất</option></select></div>
     </div>
   </div>
 
@@ -2487,11 +2486,10 @@ function render(){
   const q=norm(document.getElementById("q").value).toLowerCase();
   const category=document.getElementById("category").value;
   const loc=document.getElementById("loc").value;
-  const status=document.getElementById("status").value;
 
   const filtered=data.filter(x=>{
     const hay=[x.date,x.code,x.group,x.category,x.loc,x.supplier,x.origin,x.tagModel,x.packageType,x.remark].join(" ").toLowerCase();
-    return (!q||hay.includes(q)) && (!category||x.category===category) && (!loc||x.loc===loc) && (!status||x.trangThai===status);
+    return (!q||hay.includes(q)) && (!category||x.category===category) && (!loc||x.loc===loc);
   });
 
   currentFiltered=filtered;
@@ -2519,7 +2517,7 @@ function render(){
           <div class="field"><span class="field-label"><span class="mini-icon">📄</span> P/L No.</span><span class="field-value">${escapeHtml(x.category||"—")}</span></div>
           <div class="field field-location"><span class="field-label"><span class="mini-icon">📍</span> Vị trí</span><span class="field-value">${x.loc ? `<span class="location-badge">${escapeHtml(x.loc)}</span>` : `<span class="location-empty">Chưa có</span>`}</span></div>
           <div class="field"><span class="field-label"><span class="mini-icon">📅</span> Ngày nhận</span><span class="field-value">${escapeHtml(x.date||"—")}</span></div>
-          <div class="field"><span class="field-label"><span class="mini-icon">📤</span> Trạng thái</span><span class="field-value">${x.trangThai==="Đã xuất"?`<span class="status-badge status-out">Đã xuất${x.ngayXuat?" · "+escapeHtml(x.ngayXuat):""}</span>`:`<span class="status-badge status-in">Trong kho</span>`}</span></div>
+          <div class="field"><span class="field-label"><span class="mini-icon">📝</span> Mô tả kiện hàng</span><span class="field-value">${escapeHtml(x.group||"—")}</span></div>
           <div class="share-wrap"><button class="share" onclick="shareItem(${start+i})"><span>🔗</span> Chia sẻ</button></div>
           <label class="pick-box"><input type="checkbox" onchange="toggleSelect('${escapeHtml(x.code)}',this.checked,this)" ${selectedCodes.has(x.code)?'checked':''}></label>
         </div>
