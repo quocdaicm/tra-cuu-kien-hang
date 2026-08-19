@@ -2384,7 +2384,7 @@ function getItemDetail(x){
   let stored=[];
   try{ stored=x.detail?JSON.parse(x.detail):[]; }catch(e){ stored=[]; }
 
-  return parsed.map((p,i)=>{
+  let result=parsed.map((p,i)=>{
     const s=stored[i];
     const same=s && s.name===p.name && Number(s.qty)===Number(p.qty);
     const remaining=same && s.remaining!=null
@@ -2399,6 +2399,18 @@ function getItemDetail(x){
       log:(same && Array.isArray(s.log))?s.log:[]
     };
   });
+
+  // Dòng đầu tiên (vd "HRSG Embeded Material (Anchor Bolt/Nut/Washer) (1
+  // PKG)") là mô tả/đơn vị đóng gói của CẢ KIỆN, không phải một mặt hàng
+  // con thực sự — khi kiện có thêm các mặt hàng chi tiết khác thì ẩn dòng
+  // "kiện tổng" này đi để khỏi trùng lặp với ô "Mô tả kiện hàng" phía trên;
+  // nếu kiện chỉ có đúng 1 dòng (không có mặt hàng con nào khác) thì vẫn
+  // giữ lại để biết đó là 1 kiện.
+  if(result.length>1 && String(result[0].unit||"").toUpperCase()==="PKG"){
+    result=result.slice(1);
+  }
+
+  return result;
 }
 
 // Tóm tắt số lượng hiển thị ở đầu thẻ (chỉ đọc — không còn +/- xuất hàng ở
