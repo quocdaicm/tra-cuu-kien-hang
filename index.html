@@ -1716,7 +1716,28 @@ function readDetailedPLSheet(item,wb,sheetName){
   if(headerRow<0)return null;
 
   const row1=aoa[headerRow]||[];
-  const row2=aoa[headerRow+1]||[];
+  // Một số file có tiêu đề trải ra 2 dòng (VD "Quantity" ở dòng trên, "Nos"/
+  // "Unit" tách ở dòng dưới — file "Detailed PL"/"PL(2_2)"...), số khác chỉ
+  // có ĐÚNG 1 dòng tiêu đề rồi dữ liệu vào ngay dòng kế tiếp (VD "Break Down
+  // CI"...). Trước đây code LUÔN coi có 2 dòng tiêu đề (bỏ qua cứng 2 dòng),
+  // nên với file chỉ có 1 dòng tiêu đề thì dòng DỮ LIỆU ĐẦU TIÊN (thường
+  // chứa cột "Vị trí") bị bỏ qua mất — đây là lý do có file tự nhận được vị
+  // trí, có file thì không dù đều có cột "Vị trí" trong sheet.
+  // Cách nhận biết: dòng ngay dưới header là dòng tiêu đề phụ (không phải dữ
+  // liệu) khi và chỉ khi ô ở đúng cột "Package No." của dòng đó TRỐNG (mọi
+  // dòng dữ liệu thật luôn có mã kiện ở cột này); ngược lại, dòng đó chính
+  // là dữ liệu và không được bỏ qua.
+  const rawNextRow=aoa[headerRow+1]||[];
+  function findColIn(row,...regexes){
+    for(const re of regexes){
+      for(let c=0;c<row.length;c++)if(re.test(norm(row[c])))return c;
+    }
+    return -1;
+  }
+  const probeCode=findColIn(row1,/package\s*no/i);
+  const nextRowIsHeader=probeCode>=0 ? !norm(rawNextRow[probeCode]) : false;
+  const row2=nextRowIsHeader?rawNextRow:[]; // chỉ dùng dòng dưới làm tiêu đề phụ khi thực sự là tiêu đề
+  const dataStart=nextRowIsHeader?headerRow+2:headerRow+1;
   function findCol(...regexes){
     for(const re of regexes){
       for(let c=0;c<row1.length;c++)if(re.test(norm(row1[c])))return c;
@@ -1766,7 +1787,7 @@ function readDetailedPLSheet(item,wb,sheetName){
 
   // Phát hiện định dạng "gộp nhiều mặt hàng": có dòng đánh dấu "Sub-Total".
   let hasSubtotal=false;
-  for(let r=headerRow+2;r<aoa.length;r++){
+  for(let r=dataStart;r<aoa.length;r++){
     if((aoa[r]||[]).some(c=>/^sub-?total$/i.test(norm(c)))){hasSubtotal=true;break;}
   }
 
@@ -1774,8 +1795,8 @@ function readDetailedPLSheet(item,wb,sheetName){
     colPackageType,colLength,colWidth,colHeight,colVolume,colNetWeight,colGrossWeight,
     colTagModel,colHazard,colStorage,colRemark};
 
-  if(hasSubtotal)return parseGroupedPLRows(aoa,headerRow+2,colCode,cols,get,plNo,item,dimUnit);
-  return parseFlatPLRows(aoa,headerRow+2,colCode,cols,get,plNo,item,dimUnit);
+  if(hasSubtotal)return parseGroupedPLRows(aoa,dataStart,colCode,cols,get,plNo,item,dimUnit);
+  return parseFlatPLRows(aoa,dataStart,colCode,cols,get,plNo,item,dimUnit);
 }
 
 function hazardText(v){
@@ -1961,7 +1982,7 @@ const EXCEL_CACHE_PREFIX="xlsCache:";
 // (kết quả phân tích SAI theo logic cũ) sẽ không bao giờ tự làm mới, khiến
 // người dùng vẫn thấy lỗi cũ dù code đã sửa. Đổi số version ép đọc lại 1
 // lần cho mọi người sau khi deploy bản sửa lỗi logic đọc file.
-const PARSER_LOGIC_VERSION="4";
+const PARSER_LOGIC_VERSION="5";
 function loadExcelCache(name){
   try{
     const raw=localStorage.getItem(EXCEL_CACHE_PREFIX+name);
