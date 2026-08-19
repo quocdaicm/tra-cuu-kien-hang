@@ -1887,6 +1887,7 @@ function parseGroupedPLRows(aoa,startRow,colCode,cols,get,plNo,item,dimUnit){
 
     return {
       date:"",code:g.code,group:descParts.join("; "),category:plNo,loc:g.loc||"",
+      packageDesc:g.selfDesc||"",
       trangThai:"Trong kho",ngayXuat:"",ngayCapNhat:"",
       supplier:g.supplier,origin:g.origin,posSchedule:g.posSchedule,
       qty,qtyUnit,packageType:g.packageType||"",
@@ -1960,7 +1961,7 @@ const EXCEL_CACHE_PREFIX="xlsCache:";
 // (kết quả phân tích SAI theo logic cũ) sẽ không bao giờ tự làm mới, khiến
 // người dùng vẫn thấy lỗi cũ dù code đã sửa. Đổi số version ép đọc lại 1
 // lần cho mọi người sau khi deploy bản sửa lỗi logic đọc file.
-const PARSER_LOGIC_VERSION="3";
+const PARSER_LOGIC_VERSION="4";
 function loadExcelCache(name){
   try{
     const raw=localStorage.getItem(EXCEL_CACHE_PREFIX+name);
@@ -2163,6 +2164,7 @@ async function loadAllDailyExcel(){
       date:item.date||old.date,
       code:item.code,
       group:item.group||old.group,
+      packageDesc:item.packageDesc||old.packageDesc,
       category:item.category||old.category,
       // Blank location in a newer file means "not entered yet", not "delete old location".
       loc:newLoc||oldLoc,
@@ -2173,7 +2175,7 @@ async function loadAllDailyExcel(){
   }
 
   data=[...map.values()].map(x=>({
-    date:x.date,code:x.code,group:x.group,category:x.category,loc:x.loc,
+    date:x.date,code:x.code,group:x.group,packageDesc:x.packageDesc||"",category:x.category,loc:x.loc,
     trangThai:norm(x.trangThai)||"Trong kho",ngayXuat:x.ngayXuat||"",
     // Thông tin mở rộng từ file "Detailed Packing List" gốc của NCC (nếu có)
     supplier:x.supplier||"",origin:x.origin||"",posSchedule:x.posSchedule||"",
@@ -2420,6 +2422,12 @@ function getItemDetail(x){
 // trong kiện (đã hiển thị riêng ở bảng "Chi tiết mặt hàng"), không phải là
 // một phần của tên/mô tả kiện hàng nên không được gộp chung khi hiển thị.
 function packageDescription(x){
+  // Ưu tiên mô tả THẬT của cả kiện, lấy từ đúng dòng đầu tiên của kiện đó
+  // trong file Packing List gốc (dòng Qty=1, Unit=PKG kèm kích thước/trọng
+  // lượng cả kiện) — được lưu riêng vào packageDesc lúc import, KHÔNG lấy
+  // theo tên mặt hàng con đầu tiên trong bảng chi tiết (dễ sai khi kiện có
+  // nhiều mặt hàng con, thứ tự không phải lúc nào cũng đúng với mô tả kiện).
+  if(x.packageDesc)return x.packageDesc;
   const parsed=parseGroupItems(x.group);
   return (parsed[0] && parsed[0].name) ? parsed[0].name : (x.group||"");
 }
